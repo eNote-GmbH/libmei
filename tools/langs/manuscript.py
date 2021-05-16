@@ -203,7 +203,7 @@ GetTail "(element) {
 }"
 
     destroy "() {
-        // cleans up 
+        // cleans up
         Self._property:MEIFlattened = CreateDictionary();
         Self._property:MEIDocument = CreateSparseArray();
         Self._property:MEIID = 0;
@@ -246,28 +246,6 @@ GetTail "(element) {
         }
     }
     return res;
-}"
-    getPositionInDocument "(obj) {
-    if (not Self.MEIFlattened) {
-        return false;
-    }
-    for i = 0 to Length(Self.MEIFlattened) {
-        if (Self.MEIFlattened[i] = obj) {
-            return i;
-        }
-    }
-    return false;
-}"
-    lookBack "(from, name) {
-    if (not Self.MEIFlattened) {
-        return false;
-    }
-    pos = getPositionInDocument(from);
-    for i = pos to 0 step -1 {
-        if (getName(Self.MEIFlattened[i]) = name) {
-            return Self.MEIFlattened[i];
-        }
-    }
 }"
     createXmlTag "(name, id, attributesList, isTerminal) {
     if (name = '<!--')
@@ -413,19 +391,6 @@ GetTail "(element) {
     meiDocumentToString "(meidoc) {
         return _exportMeiDocument(meidoc);
     }"
-    documentFromFile "(filename) {
-    res = _xmlImport(filename);
-
-    return res;
-}"
-    popMode "(arr) {
-    if (arr.Length > 0) {
-        return arr.Pop();
-    } else {
-        // return PRE
-        return 15;
-    }
-}"
     _encodeEntities "(string)
     {
         /*
@@ -453,6 +418,43 @@ GetTail "(element) {
 
         return string;
     }"
+
+generateRandomID "() {
+//$module(ExportGenerators.mss)
+    id = Self._property:MEIID + 1;
+    Self._property:MEIID = id;
+    id = 'm-' & id;
+    return id;
+}"
+"""
+
+AUTHORS = "Andrew Hankinson, Alastair Porter, and Others"
+
+FILE_TEMPLATE = """
+{{
+    {license}
+    {classes}
+    {extras}
+}}
+"""
+
+# The XML parser code does not work at the moment because of how the code above
+# has changed over time. It's kept anyway to facilitate future work on MEI
+# import.
+XMLPARSER ="""
+    documentFromFile "(filename) {
+    res = _xmlImport(filename);
+
+    return res;
+}"
+    popMode "(arr) {
+    if (arr.Length > 0) {
+        return arr.Pop();
+    } else {
+        // return PRE
+        return 15;
+    }
+}"
     _xmlImport "(filename) {
     /*
         Based on the Quick-n-Dirty XML parser at
@@ -836,14 +838,6 @@ GetTail "(element) {
         lnum = lnum + 1;
     }
     return meidoc;
-}"
-
-generateRandomID "() {
-//$module(ExportGenerators.mss)
-    id = Self._property:MEIID + 1;
-    Self._property:MEIID = id;
-    id = 'm-' & id;
-    return id;
 }"
 """
 
