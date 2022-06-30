@@ -232,13 +232,14 @@ def __create_mixin_classes(schema, outdir):
         tplvars = {
             "includes": "",
             'license': LICENSE.format(authors=AUTHORS),
-            'moduleNameCaps': "{0}MIXIN".format((module.upper()).replace("-","_")),
+            'moduleNameCaps': "{0}MIXIN".format((module.upper()).replace("-", "_")),
             'elements': classes.strip()
         }
         if "std::string" in classes:
             tplvars["includes"] = "#include <string>"
         fullout = CLASSES_HEAD_TEMPLATE.format(**tplvars)
-        fmh = open(os.path.join(outdir, "{0}mixins.h".format(module.lower())), 'w')
+        fmh = open(os.path.join(
+            outdir, "{0}mixins.h".format(module.lower())), 'w')
         fmh.write(fullout)
         fmh.close()
         lg.debug("\tCreated {0}mixins.h".format(module.lower()))
@@ -297,7 +298,8 @@ def __create_mixin_classes(schema, outdir):
             "elements": classes
         }
         fullout = CLASSES_IMPL_TEMPLATE.format(**tplvars)
-        fmi = open(os.path.join(outdir, "{0}mixins.cpp".format(module.lower())), 'w')
+        fmi = open(os.path.join(
+            outdir, "{0}mixins.cpp".format(module.lower())), 'w')
         fmi.write(fullout)
         fmi.close()
         lg.debug("\tCreated {0}mixins.cpp".format(module.lower()))
@@ -332,10 +334,12 @@ def __create_element_classes(schema, outdir):
                             "attNameLowerJoined": schema.strpdot(sda),
                             "documentation": docstr
                         }
-                        attribute_methods += METHODS_HEADER_TEMPLATE.format(**methstr)
+                        attribute_methods += METHODS_HEADER_TEMPLATE.format(
+                            **methstr)
 
                 else:
-                    element_mixins += ELEMENT_MIXIN_TEMPLATE.format(attNameUpper=schema.cc(schema.strpatt(attribute)))
+                    element_mixins += ELEMENT_MIXIN_TEMPLATE.format(
+                        attNameUpper=schema.cc(schema.strpatt(attribute)))
 
                     # figure out includes
                     if attribute in list(schema.inverse_attribute_group_structure.keys()):
@@ -361,7 +365,7 @@ def __create_element_classes(schema, outdir):
         outvars = {
             "includes": incl_output,
             "license": LICENSE.format(authors=AUTHORS),
-            "moduleNameCaps": (module.upper()).replace("-","_"),
+            "moduleNameCaps": (module.upper()).replace("-", "_"),
             "elements": element_output.strip()
         }
         if "std::string" in element_output:
@@ -412,12 +416,16 @@ def __create_element_classes(schema, outdir):
                             "attNameLowerJoined": schema.strpdot(sda),
                             # "namespaceDefinition": nsDef,
                             "attrNs": attrNs,
-                            "accessor": "",  # we need this for mixins, but not for elements.
+                            # we need this for mixins, but not for elements.
+                            "accessor": "",
                         }
-                        attribute_methods += METHODS_IMPL_TEMPLATE.format(**methstr)
+                        attribute_methods += METHODS_IMPL_TEMPLATE.format(
+                            **methstr)
                 else:
-                    element_mixins += "    m_{0}(this),\n".format(schema.cc(schema.strpatt(attribute)))
-                    element_onlymixins += ",\n    m_{0}(this)".format(schema.cc(schema.strpatt(attribute)))
+                    element_mixins += "    m_{0}(this),\n".format(
+                        schema.cc(schema.strpatt(attribute)))
+                    element_onlymixins += ",\n    m_{0}(this)".format(
+                        schema.cc(schema.strpatt(attribute)))
             element_mixins = element_mixins.rstrip(",\n")
 
             consvars = {
@@ -427,7 +435,8 @@ def __create_element_classes(schema, outdir):
                 'onlyMixIns': element_onlymixins,
                 'methods': attribute_methods
             }
-            element_constructor += ELEMENT_CLASS_IMPL_CONS_TEMPLATE.format(**consvars)
+            element_constructor += ELEMENT_CLASS_IMPL_CONS_TEMPLATE.format(
+                **consvars)
 
         implvars = {
             'moduleNameLower': module.lower(),
@@ -474,11 +483,13 @@ def __parse_includefile(contents):
     # parse the include file for our methods.
     ret = {}
     inc = []
-    reg = re.compile(r"/\* <(?P<elementName>[^>]+)> \*/(.+?)/\* </(?P=elementName)> \*/", re.MULTILINE | re.DOTALL)
+    reg = re.compile(
+        r"/\* <(?P<elementName>[^>]+)> \*/(.+?)/\* </(?P=elementName)> \*/", re.MULTILINE | re.DOTALL)
     ret = dict(re.findall(reg, contents))
 
     # grab the include for the includes...
-    reginc = re.compile(r"/\* #include_block \*/(.+?)/\* #include_block \*/", re.MULTILINE | re.DOTALL)
+    reginc = re.compile(
+        r"/\* #include_block \*/(.+?)/\* #include_block \*/", re.MULTILINE | re.DOTALL)
     inc = re.findall(reginc, contents)
     return (ret, inc)
 
@@ -498,16 +509,9 @@ def __parse_codefile(methods, includes, directory, codefile):
         match = re.match(regmatch, line)
         if match:
             if match.group("elementName") in list(methods.keys()):
-                contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
+                contents[i] = methods[match.group(
+                    "elementName")].lstrip("\n") + "\n"
 
     f = open(os.path.join(directory, codefile), 'w')
     f.writelines(contents)
     f.close()
-
-
-
-
-
-
-
-

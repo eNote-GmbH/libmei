@@ -4,7 +4,7 @@ import re
 
 lg = logging.getLogger('schemaparser')
 
-LANG_NAME="Java"
+LANG_NAME = "Java"
 
 MODULE_TEMPLATE = """{license}
 
@@ -50,12 +50,14 @@ LICENSE = """/*
 
 AUTHORS = "Andrew Hankinson, Alastair Porter, and Others"
 
+
 def create(schema, outdir):
     lg.debug("Begin Java Output...")
 
     __create_java_classes(schema, outdir)
 
     lg.debug("Success!")
+
 
 def __create_java_classes(schema, outdir):
     lg.debug("Creating Python Modules")
@@ -91,13 +93,15 @@ def __create_java_classes(schema, outdir):
             fmi.close()
             lg.debug("\tCreated {0}".format(file_name, class_name))
 
+
 def __parse_codefile(methods, includes, directory, codefile):
     f = open(os.path.join(directory, codefile), 'r')
     contents = f.readlines()
     f.close()
-    regmatch = re.compile(r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE|re.DOTALL)
+    regmatch = re.compile(
+        r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)
     incmatch = re.compile(r"/\* #include_block \*/")
-    for i,line in enumerate(contents):
+    for i, line in enumerate(contents):
         imatch = re.match(incmatch, line)
         if imatch:
             if includes:
@@ -106,11 +110,13 @@ def __parse_codefile(methods, includes, directory, codefile):
         match = re.match(regmatch, line)
         if match:
             if match.group("elementName") in list(methods.keys()):
-                contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
+                contents[i] = methods[match.group(
+                    "elementName")].lstrip("\n") + "\n"
 
     f = open(os.path.join(directory, codefile), 'w')
     f.writelines(contents)
     f.close()
+
 
 def capitalize_first_letter(text):
     """

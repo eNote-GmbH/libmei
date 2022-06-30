@@ -46,6 +46,7 @@ LICENSE = """\"\"\"
 
 AUTHORS = "Andrew Hankinson, Alastair Porter, and Others"
 
+
 def create(schema, outdir):
     lg.debug("Begin Python Output...")
 
@@ -53,6 +54,7 @@ def create(schema, outdir):
     __create_init(schema, outdir)
 
     lg.debug("Success!")
+
 
 def __create_python_classes(schema, outdir):
     lg.debug("Creating Python Modules")
@@ -68,7 +70,7 @@ def __create_python_classes(schema, outdir):
                 "className": element
             }
             class_output += MODULE_CLASS_TEMPLATE.format(**methstr)
-        
+
         modstr = {
             "classes": class_output,
             "license": LICENSE.format(authors=AUTHORS),
@@ -79,6 +81,7 @@ def __create_python_classes(schema, outdir):
         fmi.write(module_output)
         fmi.close()
         lg.debug("\tCreated {0}.py".format(module.lower()))
+
 
 def __create_init(schema, outdir):
     m = []
@@ -91,12 +94,13 @@ def __create_init(schema, outdir):
     p.writelines(m)
     p.close()
 
+
 def parse_includes(file_dir, includes_dir):
     lg.debug("Parsing includes")
     # get the files in the includes directory
     includes = [f for f in os.listdir(includes_dir) if not f.startswith(".")]
 
-    for dp,dn,fn in os.walk(file_dir):
+    for dp, dn, fn in os.walk(file_dir):
         for f in fn:
             if f.startswith("."):
                 continue
@@ -104,8 +108,9 @@ def parse_includes(file_dir, includes_dir):
             if methods:
                 __parse_codefile(methods, inc, dp, f)
 
+
 def __process_include(fname, includes, includes_dir):
-    name,ext = os.path.splitext(fname)
+    name, ext = os.path.splitext(fname)
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
@@ -117,25 +122,30 @@ def __process_include(fname, includes, includes_dir):
     else:
         return (None, None)
 
+
 def __parse_includefile(contents):
     # parse the include file for our methods.
     ret = {}
     inc = []
-    reg = re.compile(r"# <(?P<elementName>[^>]+)>(.+?)# </(?P=elementName)>", re.MULTILINE|re.DOTALL)
+    reg = re.compile(
+        r"# <(?P<elementName>[^>]+)>(.+?)# </(?P=elementName)>", re.MULTILINE | re.DOTALL)
     ret = dict(re.findall(reg, contents))
 
     # grab the include for the includes...
-    reginc = re.compile(r"/\* #include_block \*/(.+?)/\* #include_block \*/", re.MULTILINE|re.DOTALL)
+    reginc = re.compile(
+        r"/\* #include_block \*/(.+?)/\* #include_block \*/", re.MULTILINE | re.DOTALL)
     inc = re.findall(reginc, contents)
     return (ret, inc)
+
 
 def __parse_codefile(methods, includes, directory, codefile):
     f = open(os.path.join(directory, codefile), 'r')
     contents = f.readlines()
     f.close()
-    regmatch = re.compile(r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE|re.DOTALL)
+    regmatch = re.compile(
+        r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)
     incmatch = re.compile(r"/\* #include_block \*/")
-    for i,line in enumerate(contents):
+    for i, line in enumerate(contents):
         imatch = re.match(incmatch, line)
         if imatch:
             if includes:
@@ -144,16 +154,9 @@ def __parse_codefile(methods, includes, directory, codefile):
         match = re.match(regmatch, line)
         if match:
             if match.group("elementName") in list(methods.keys()):
-                contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
-    
+                contents[i] = methods[match.group(
+                    "elementName")].lstrip("\n") + "\n"
+
     f = open(os.path.join(directory, codefile), 'w')
     f.writelines(contents)
     f.close()
-
-
-
-
-
-
-
-
