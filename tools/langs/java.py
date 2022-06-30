@@ -1,7 +1,7 @@
-import os
-import codecs
-import re
 import logging
+import os
+import re
+
 lg = logging.getLogger('schemaparser')
 
 LANG_NAME="Java"

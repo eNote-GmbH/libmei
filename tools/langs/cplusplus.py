@@ -1,9 +1,10 @@
 # -- coding: utf-8 --
-import sys
+import logging
 import os
 import re
+import sys
 import textwrap
-import logging
+
 lg = logging.getLogger('schemaparser')
 
 LANG_NAME = "C++"

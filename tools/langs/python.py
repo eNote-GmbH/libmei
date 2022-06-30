@@ -1,10 +1,10 @@
-import os
-import codecs
-import re
 import logging
+import os
+import re
+
 lg = logging.getLogger('schemaparser')
 
-LANG_NAME="Python"
+LANG_NAME = "Python"
 
 MODULE_TEMPLATE = """
 {license}
