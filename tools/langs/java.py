@@ -60,11 +60,11 @@ def create(schema, outdir):
 def __create_java_classes(schema, outdir):
     lg.debug("Creating Python Modules")
 
-    for module, elements in sorted(schema.element_structure.iteritems()):
+    for module, elements in sorted(schema.element_structure.items()):
         if not elements:
             continue
 
-        for element, atgroups in sorted(elements.iteritems()):
+        for element, atgroups in sorted(elements.items()):
             class_name = capitalize_first_letter(element)
             # Generate the class
             methstr = {
@@ -105,7 +105,7 @@ def __parse_codefile(methods, includes, directory, codefile):
 
         match = re.match(regmatch, line)
         if match:
-            if match.group("elementName") in methods.keys():
+            if match.group("elementName") in list(methods.keys()):
                 contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
 
     f = open(os.path.join(directory, codefile), 'w')

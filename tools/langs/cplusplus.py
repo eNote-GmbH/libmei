@@ -337,7 +337,7 @@ def __create_element_classes(schema, outdir):
                     element_mixins += ELEMENT_MIXIN_TEMPLATE.format(attNameUpper=schema.cc(schema.strpatt(attribute)))
 
                     # figure out includes
-                    if attribute in schema.inverse_attribute_group_structure.keys():
+                    if attribute in list(schema.inverse_attribute_group_structure.keys()):
                         mod = schema.inverse_attribute_group_structure[attribute]
                         if mod not in includes:
                             includes.append(mod)
@@ -496,7 +496,7 @@ def __parse_codefile(methods, includes, directory, codefile):
 
         match = re.match(regmatch, line)
         if match:
-            if match.group("elementName") in methods.keys():
+            if match.group("elementName") in list(methods.keys()):
                 contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
 
     f = open(os.path.join(directory, codefile), 'w')

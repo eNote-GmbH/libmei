@@ -57,13 +57,13 @@ def create(schema, outdir):
 def __create_python_classes(schema, outdir):
     lg.debug("Creating Python Modules")
 
-    for module, elements in sorted(schema.element_structure.iteritems()):
+    for module, elements in sorted(schema.element_structure.items()):
         if not elements:
             continue
         class_output = ""
         module_output = ""
 
-        for element, atgroups in sorted(elements.iteritems()):
+        for element, atgroups in sorted(elements.items()):
             methstr = {
                 "className": element
             }
@@ -84,7 +84,7 @@ def __create_init(schema, outdir):
     m = []
     a = []
     p = open(os.path.join(outdir, "__init__.py"), 'w')
-    for module, elements in sorted(schema.element_structure.iteritems()):
+    for module, elements in sorted(schema.element_structure.items()):
         a.append('"{0}"'.format(module.lower()))
         m.append("from pymei.Modules.{0} import *\n".format(module.lower()))
     p.write("__all__ = [{0}]\n\n".format(", ".join(a)))
@@ -143,7 +143,7 @@ def __parse_codefile(methods, includes, directory, codefile):
 
         match = re.match(regmatch, line)
         if match:
-            if match.group("elementName") in methods.keys():
+            if match.group("elementName") in list(methods.keys()):
                 contents[i] = methods[match.group("elementName")].lstrip("\n") + "\n"
     
     f = open(os.path.join(directory, codefile), 'w')
