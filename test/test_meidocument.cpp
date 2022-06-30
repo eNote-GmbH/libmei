@@ -2,11 +2,21 @@
 // MeiDocument tests
 //
 
+
 #include <gtest/gtest.h>
+
+#ifdef WIN32
+#include <meielement.h>
+#include <meidocument.h>
+#include <exceptions.h>
+#include <shared.h>
+#else
 #include <mei/meielement.h>
 #include <mei/meidocument.h>
 #include <mei/exceptions.h>
 #include <mei/shared.h>
+#endif
+
 
 using std::string;
 using std::vector;

@@ -3,20 +3,29 @@
  Copyright (c) 2011 Alastair Porter, Andrew Hankinson
 */
 
-#include <mei/meielement.h>
-#include <mei/meidocument.h>
-#include <mei/mei.h>
-#include <mei/shared.h>
-#include <mei/exceptions.h>
 
-#include <execinfo.h>
+
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <exception>
 #include <stdexcept>
-
 #include <gtest/gtest.h>
+
+#ifdef WIN32
+#include <meielement.h>
+#include <meidocument.h>
+#include <mei.h>
+#include <shared.h>
+#include <exceptions.h>
+#else
+#include <execinfo.h>
+#include <mei/meielement.h>
+#include <mei/meidocument.h>
+#include <mei/mei.h>
+#include <mei/shared.h>
+#include <mei/exceptions.h>
+#endif
 
 using std::vector;
 using std::string;

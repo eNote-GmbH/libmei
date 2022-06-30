@@ -6,14 +6,22 @@
 //
 //
 
-#include <gtest/gtest.h>
-#include <iostream>
+#ifdef WIN32
+#include <xmlimport.h>
+#include <meielement.h>
+#include <meidocument.h>
+#include <exceptions.h>
+#include <shared.h>
+#else
 #include <mei/xmlimport.h>
 #include <mei/meielement.h>
 #include <mei/meidocument.h>
 #include <mei/exceptions.h>
 #include <mei/shared.h>
+#endif
 
+#include <iostream>
+#include <gtest/gtest.h>
 #include <string>
 #include <vector>
 

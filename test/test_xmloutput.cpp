@@ -8,12 +8,22 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
+#ifdef WIN32
+#include <xmlimport.h>
+#include <xmlexport.h>
+#include <meidocument.h>
+#include <meielement.h>
+#include <meiattribute.h>
+#include <exceptions.h>
+#else
 #include <mei/xmlimport.h>
 #include <mei/xmlexport.h>
 #include <mei/meidocument.h>
 #include <mei/meielement.h>
 #include <mei/meiattribute.h>
 #include <mei/exceptions.h>
+#endif
+
 
 #include <string>
 #include <utility>

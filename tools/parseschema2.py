@@ -107,8 +107,8 @@ class MeiSchema(object):
 
             group_module = group.get("module").split(".")[-1]
             attdefs = group.xpath("./tei:attList/tei:attDef", namespaces=TEI_NS)
-            if not attdefs:
-                continue
+            # if not attdefs:
+                # continue
 
             if group_module not in self.attribute_group_structure.keys():
                 self.attribute_group_structure[group_module] = {}
@@ -211,7 +211,7 @@ if __name__ == "__main__":
         print("error: You must include a compiled ODD file")
         sys.exit(1)
 
-    avail_langs = ["cpp", "python", "manuscript"]
+    avail_langs = ["cpp", "python", "manuscript", "csharp"]
     
     if not args.lang == "python":
         for l_langs in args.lang:
@@ -281,6 +281,17 @@ if __name__ == "__main__":
         java.create(schema, output_directory)
         if args.includes:
             java.parse_includes(output_directory, args.includes)
+
+    if "csharp" in l_langs.lower():
+            import langs.csharp as csharp
+            output_directory = os.path.join(outdir, "c-sharp")
+            if os.path.exists(output_directory):
+                lg.debug("Removing old C# output directory")
+                shutil.rmtree(output_directory)
+            os.mkdir(output_directory)
+            csharp.create(schema, output_directory)
+            if args.includes:
+                csharp.parse_includes(output_directory, args.includes)
 
     mei_source.close()
 

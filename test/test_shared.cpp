@@ -8,9 +8,16 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
+#ifdef WIN32
+#include <shared.h>
+#include <header.h>
+#include <meielement.h>
+#else
 #include <mei/shared.h>
 #include <mei/header.h>
 #include <mei/meielement.h>
+#endif
+
 using mei::MeiAttribute;
 using mei::MeiElement;
 using mei::Note;

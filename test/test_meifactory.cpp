@@ -7,9 +7,17 @@
 //
 
 #include <gtest/gtest.h>
+
+#ifdef WIN32
+#include <shared.h>
+#include <meielement.h>
+#include <exceptions.h>
+#else
 #include <mei/shared.h>
 #include <mei/meielement.h>
 #include <mei/exceptions.h>
+#endif
+
 
 using mei::ElementNotRegisteredException;
 using mei::MeiElement;

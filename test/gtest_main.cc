@@ -28,8 +28,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
-
 #include <gtest/gtest.h>
+
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
