@@ -22,19 +22,22 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sys
+
 if sys.version_info < (2, 7):
     raise Exception("requires python 2.7")
 
-from lxml import etree
-import os
-import shutil
 import codecs
-import re
-from argparse import ArgumentParser
 import logging
+import os
+import re
+import shutil
+from argparse import ArgumentParser
+
+from lxml import etree
 
 lg = logging.getLogger('schemaparser')
-f = logging.Formatter("%(levelname)s %(asctime)s On Line: %(lineno)d %(message)s")
+f = logging.Formatter(
+    "%(levelname)s %(asctime)s On Line: %(lineno)d %(message)s")
 h = logging.StreamHandler()
 h.setFormatter(f)
 
@@ -43,7 +46,8 @@ lg.addHandler(h)
 
 # globals
 TEI_NS = {"tei": "http://www.tei-c.org/ns/1.0"}
-TEI_RNG_NS = {"tei": "http://www.tei-c.org/ns/1.0", "rng": "http://relaxng.org/ns/structure/1.0"}
+TEI_RNG_NS = {"tei": "http://www.tei-c.org/ns/1.0",
+              "rng": "http://relaxng.org/ns/structure/1.0"}
 NAMESPACES = {'xml': 'http://www.w3.org/XML/1998/namespace',
               'xlink': 'http://www.w3.org/1999/xlink'}
 
@@ -211,8 +215,8 @@ if __name__ == "__main__":
         print("error: You must include a compiled ODD file")
         sys.exit(1)
 
-    avail_langs = ["cpp", "python", "manuscript", "csharp"]
-    
+    avail_langs = ["cpp", "python", "java", "manuscript", "csharp"]
+
     if not args.lang == "python":
         for l_langs in args.lang:
             if l_langs.lower() not in avail_langs:
@@ -271,18 +275,18 @@ if __name__ == "__main__":
             os.mkdir(output_directory)
             ms.create(schema, output_directory)
 
-    if "java" in args.lang:
-        import langs.java as java
-        output_directory = os.path.join(outdir, "java")
-        if os.path.exists(output_directory):
-            lg.debug("Removing old Java output directory")
-            shutil.rmtree(output_directory)
-        os.mkdir(output_directory)
-        java.create(schema, output_directory)
-        if args.includes:
-            java.parse_includes(output_directory, args.includes)
+        if "java" in l_langs.lower():
+            import langs.java as java
+            output_directory = os.path.join(outdir, "java")
+            if os.path.exists(output_directory):
+                lg.debug("Removing old Java output directory")
+                shutil.rmtree(output_directory)
+            os.mkdir(output_directory)
+            java.create(schema, output_directory)
+            if args.includes:
+                java.parse_includes(output_directory, args.includes)
 
-    if "csharp" in l_langs.lower():
+        if "csharp" in l_langs.lower():
             import langs.csharp as csharp
             output_directory = os.path.join(outdir, "c-sharp")
             if os.path.exists(output_directory):
