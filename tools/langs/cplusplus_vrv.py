@@ -1,16 +1,14 @@
  # -- coding: utf-8 --
 
-import sys
+import logging
 import os
 import re
-import codecs
+import sys
 import textwrap
-import logging
-import types
-lg = logging.getLogger('schemaparser')
-import pdb
 
-#import yaml
+lg = logging.getLogger('schemaparser')
+
+import yaml
 
 LANG_NAME="C++"
 
@@ -24,6 +22,10 @@ AUTHORS = "Andrew Hankinson, Alastair Porter, and Others"
 METHODS_HEADER_TEMPLATE = """    void Set{attNameUpper}({attType} {attNameLowerJoined}{attTypeName}_) {{ m_{attNameLowerJoined}{attTypeName} = {attNameLowerJoined}{attTypeName}_; }}
     {attType} Get{attNameUpper}() const {{ return m_{attNameLowerJoined}{attTypeName}; }}
     bool Has{attNameUpper}() const;
+    """
+
+METHODS_HEADER_TEMPLATE_ALTERNATE = """/** Getter for reference (for alternate type only) */
+    {attType} *Get{attNameUpper}Alternate() {{ return &m_{attNameLowerJoined}{attTypeName}; }}
     """
 
 MEMBERS_HEADER_TEMPLATE = """{documentation}
@@ -46,6 +48,13 @@ WRITES_IMPL_TEMPLATE = """if (this->Has{attNameUpper}()) {{
 CHECKERS_IMPL_TEMPLATE = """bool Att{attGroupNameUpper}::Has{attNameUpper}() const
 {{
     return (m_{attNameLowerJoined}{attTypeName} != {attDefault});
+}}
+
+"""
+
+CHECKERS_IMPL_TEMPLATE_ALTERNATE = """bool Att{attGroupNameUpper}::Has{attNameUpper}() const
+{{
+    return (m_{attNameLowerJoined}{attTypeName}.HasValue());
 }}
 
 """
@@ -91,7 +100,6 @@ namespace vrv {
 """
 
 TYPE_GRP_END = """
-
 } // vrv namespace
 
 #endif // __VRV_ATT_TYPES_H__
@@ -107,7 +115,8 @@ TYPE_VALUE = """
     {val_prefix}_{value},"""
 
 TYPE_END = """
-};
+    {val_prefix}_MAX
+}};
 
 """
 
@@ -137,7 +146,7 @@ public:"""
 
 CONVERTER_HEADER_TEMPLATE = """
     std::string {fname}ToStr({type} data) const;
-    {type} StrTo{fname}(std::string value) const;
+    {type} StrTo{fname}(const std::string &value, bool logWarning = true) const;
 """
 
 CONVERTER_HEADER_TEMPLATE_END = """};
@@ -173,7 +182,7 @@ std::string AttConverter::{fname}ToStr({type} data) const
     switch (data) {{"""
 
 CONVERTER_IMPL_TEMPLATE_METHOD2_START = """
-{type} AttConverter::StrTo{fname}(std::string value) const
+{type} AttConverter::StrTo{fname}(const std::string &value, bool logWarning) const
 {{"""
 
 CONVERTER_IMPL_TEMPLATE_METHOD1 = """
@@ -193,7 +202,8 @@ CONVERTER_IMPL_TEMPLATE_METHOD1_END = """
 """
 
 CONVERTER_IMPL_TEMPLATE_METHOD2_END = """
-    LogWarning("Unsupported value '%s' for {type}", value.c_str());
+    if (logWarning && !value.empty())
+        LogWarning("Unsupported value '%s' for {type}", value.c_str());
     return {prefix}_NONE;
 }}
 """
@@ -207,7 +217,7 @@ CONVERTER_IMPL_TEMPLATE_END = """
 # These templates generate a module level static method for setting attribute on an unspcified Object
 #
 
-SETTERS_IMPL_TEMPLATE_START = """bool Att::Set{moduleNameCap}(Object *element, std::string attrType, std::string attrValue)
+SETTERS_IMPL_TEMPLATE_START = """bool Att::Set{moduleNameCap}(Object *element, const std::string &attrType, const std::string &attrValue)
 {{
 """
 
@@ -245,7 +255,7 @@ GETTERS_IMPL_TEMPLATE_GRP_START = """    if (element->HasAttClass({attId})) {{
 """
 
 GETTERS_IMPL_TEMPLATE = """        if (att->Has{attNameUpper}()) {{
-            attributes->push_back(std::make_pair("{attNameLower}{attTypeName}", att->{converterWrite}(att->Get{attNameUpper}())));
+            attributes->push_back({{ "{attNameLower}{attTypeName}", att->{converterWrite}(att->Get{attNameUpper}()) }});
         }}
 """
 
@@ -413,7 +423,7 @@ def vrv_load_config(includes_dir):
         return
     
     f = open(config, "r")
-    CONFIG = yaml.load(f)
+    CONFIG = yaml.load(f, Loader=yaml.FullLoader)
     f.close()
     
 def vrv_get_att_config(module, gp, att):
@@ -430,6 +440,11 @@ def vrv_get_type_default(type):
     
 def vrv_is_excluded_type(type):
     if not type in CONFIG["excludes"]:
+        return False
+    return True
+    
+def vrv_is_alternate_type(type):
+    if not type in CONFIG["alternates"]:
         return False
     return True
 
@@ -495,7 +510,7 @@ def vrv_getatttype(schema, module, gp, aname, includes_dir = ""):
     return ("std::string", "")
 
 def vrv_getattdefault(schema, module, gp, aname, includes_dir = ""):        
-    """ returns the attribut default value for element name, or string if not detectable."""
+    """ returns the attribute default value for element name, or string if not detectable."""
     
     attype, hungarian = vrv_getatttype(schema, module, gp, aname, includes_dir)
     default = vrv_get_att_config_default(module, gp, aname)
@@ -605,6 +620,8 @@ def __create_att_classes(schema, outdir, includes_dir):
                 if len(methods) > 0:
                     methods += "//\n"
                 methods += METHODS_HEADER_TEMPLATE.format(**substrings)
+                if (vrv_is_alternate_type(atttype)):
+                    methods += METHODS_HEADER_TEMPLATE_ALTERNATE.format(**substrings)
                 members += MEMBERS_HEADER_TEMPLATE.format(**substrings)
                 
             clsubstr = {
@@ -674,6 +691,7 @@ def __create_att_classes(schema, outdir, includes_dir):
                 else:
                     nsDef = ""
                     attrNs = ""
+                atttype, atttypename = vrv_getatttype(schema.schema, module, gp, att, includes_dir)
                 attdefault, atttypename, converters = vrv_getattdefault(schema.schema, module, gp, att, includes_dir)
                 
                 attsubstr = {
@@ -694,7 +712,10 @@ def __create_att_classes(schema, outdir, includes_dir):
                 defaults += DEFAULTS_IMPL_TEMPLATE.format(**attsubstr)
                 reads += READS_IMPL_TEMPLATE.format(**attsubstr)
                 writes += WRITES_IMPL_TEMPLATE.format(**attsubstr)
-                checkers += CHECKERS_IMPL_TEMPLATE.format(**attsubstr)
+                if (vrv_is_alternate_type(atttype)):
+                    checkers += CHECKERS_IMPL_TEMPLATE_ALTERNATE.format(**attsubstr)
+                else:
+                    checkers += CHECKERS_IMPL_TEMPLATE.format(**attsubstr)
                 setters += SETTERS_IMPL_TEMPLATE.format(**attsubstr)
                 getters += GETTERS_IMPL_TEMPLATE.format(**attsubstr)
             
@@ -750,7 +771,11 @@ def __create_att_classes(schema, outdir, includes_dir):
     
     for data_type, values in sorted(schema.data_types.items()):
         if vrv_is_excluded_type(data_type) == True:
-            lg.debug("Skipping {0}".format(data_type))
+            lg.debug("Skipping excluded {0}".format(data_type))
+            continue
+        
+        if vrv_is_alternate_type(data_type) == True:
+            lg.debug("Skipping alternate {0}".format(data_type))
             continue
         
         vstr = ""
@@ -765,10 +790,14 @@ def __create_att_classes(schema, outdir, includes_dir):
             tpsubstr = { 
                 "val_prefix": val_prefix,
                 "value": v.replace('.','_').replace('-','_').replace(',','_').replace('+','plus')
-             }
+            }
             vstr += TYPE_VALUE.format(**tpsubstr)
           
-        vstr += TYPE_END  
+        tpsubstr = { 
+            "val_prefix": val_prefix,
+            "test": "test"
+        }
+        vstr += TYPE_END.format(**tpsubstr)
         fmi.write(vstr)
         
     for list_type, values in sorted(schema.data_lists.items()):
@@ -792,7 +821,10 @@ def __create_att_classes(schema, outdir, includes_dir):
              }
             vstr += TYPE_VALUE.format(**tpsubstr)
           
-        vstr += TYPE_END  
+        tpsubstr = {
+            "val_prefix": val_prefix
+        }
+        vstr += TYPE_END.format(**tpsubstr)
         fmi.write(vstr)
 
     fmi.write(TYPE_GRP_END)
@@ -813,9 +845,13 @@ def __create_att_classes(schema, outdir, includes_dir):
     
     for data_type, values in sorted(schema.data_types.items()):
         if vrv_is_excluded_type(data_type) == True:
-            lg.debug("Skipping {0}".format(data_type))
+            lg.debug("Skipping excluded {0}".format(data_type))
             continue
-        
+
+        if vrv_is_alternate_type(data_type) == True:
+            lg.debug("Skipping alternate {0}".format(data_type))
+            continue
+
         vrvtype = vrv_getformattedtype(data_type);
         val_prefix =  vrvtype.replace("data_","")
         vrvfname = vrv_converter_cc(vrvtype)

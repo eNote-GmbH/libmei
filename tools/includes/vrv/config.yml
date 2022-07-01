@@ -1,0 +1,309 @@
+# Warning: do not use tabs, only spaces!
+---
+excludes:
+    [
+    data.COLOR,
+    data.DURATION,
+    data.DURATION.cmn,
+    data.DURATION.mensural,
+    data.DURATION.gestural,
+    data.HEXNUM,
+    data.KEYSIGNATURE,
+    data.MODUSMAIOR,
+    data.MODUSMINOR,
+    data.OCTAVE.DIS,
+    data.PROLATIO,
+    data.TEMPUS,
+    # string
+    data.URI,
+    # alternates but with .
+    data.FONTSIZE,
+    data.LINEWIDTH,
+    data.PLACEMENT
+    ]
+
+alternates:
+    [
+    data_FONTSIZE,
+    data_LINEWIDTH,
+    data_PLACEMENT
+    ]
+
+mapped:
+    data.AUGMENTDOT:
+        int
+    data.BEAM:
+        std::string
+    data.BEAT:
+        double
+    data.BEND.AMOUNT:
+        std::string
+    data.COLOR:
+        std::string
+    data.CONFIDENCE:
+        double
+    data.DEGREES:
+        double
+    data.CLEFLINE:
+        char
+    data.COURSENUMBER:
+        int
+    data.DURATION.cmn:
+        data_DURATION
+    data.DURATION.gestural:
+        data_DURATION
+    data.DURATION.mensural:
+        data_DURATION
+    data.FONTFAMILY:
+        std::string
+    data.FONTNAME:
+        std::string
+    data.FONTSIZESCALE:
+        int
+    data.INTERVAL.HARMONIC:
+        std::string
+    data.INTERVAL.MELODIC:
+        std::string
+    data.ISODATE:
+        std::string
+    data.ISOTIME:
+        std::string
+    data.KEYFIFTHS:
+        std::string
+    data.KEYSIGTOKEN:
+        std::string
+    data.LINESTARTENDSYMBOLSIZE:
+        std::string
+    data.MEASUREBEATOFFSET:
+        data_MEASUREBEAT
+    data.MIDIBPM:
+        double
+    data.MIDIVALUE_PERCENT:
+        data_PERCENT
+    data.MUSICFONT:
+        std::string
+    data.ORNAM.cmn:
+        std::string
+    data.PAGE.PANELS:
+        std::string
+    data.PGSCALE:
+        std::string
+    data.PITCHNAME.GES:
+        data_PITCHNAME
+    data.PITCHCLASS:
+        int
+    data.PITCHNUMBER:
+        int
+    data.SCALEDEGREE:
+        std::string
+    data.SLASH:
+        char
+    data.SLUR:
+        std::string
+    data.STAFFLOC:
+        int
+    data.TEMPOVALUE:
+        double
+    data.TSTAMPOFFSET:
+        double
+    data.TUPLET:
+        std::string
+    data.URI:
+        std::string
+    data.URIS:
+        std::string
+
+defaults:
+    data_ARTICULATION_List:
+        std::vector<data_ARTICULATION>()
+    data_BULGE:
+        std::vector<std::pair<double, double>>()
+    data_COMPASSDIRECTION:
+        data_COMPASSDIRECTION()
+    data_EVENTREL:
+        data_EVENTREL()
+    data_HEXNUM:
+        0
+    data_FONTSIZE:
+        data_FONTSIZE()
+    data_KEYSIGNATURE:
+        std::make_pair(-1, ACCIDENTAL_WRITTEN_NONE)
+    data_LINEWIDTH:
+        data_LINEWIDTH()
+    data_MEASUREBEAT:
+        std::make_pair(-1, -1.0)
+    data_MEASUREMENTABS:
+        VRV_UNSET
+    data_MEASUREMENTREL:
+        VRV_UNSET
+    data_METERCOUNT_pair:
+        std::pair<std::vector<int>, MeterCountSign>()
+    data_MIDICHANNEL:
+        -1
+    data_MIDIMSPB:
+        -1
+    data_MIDIVALUE:
+        -1
+    data_MIDIVALUE_NAME:
+        data_MIDIVALUE_NAME()
+    data_MIDIVALUE_PAN:
+        data_MIDIVALUE_PAN()
+    data_OCTAVE:
+        -127
+    data_SUMMAND_List:
+        std::vector<int>()
+    xsdAnyURI_List:
+        std::vector<std::string>()
+    xsdPositiveInteger_List:
+        std::vector<int>()
+    data_PLACEMENT:
+        data_PLACEMENT()
+    data_PERCENT:
+        -1.0
+    data_PERCENT_LIMITED:
+        -1.0
+    data_PERCENT_LIMITED_SIGNED:
+        VRV_UNSET
+    data_STAFFITEM:
+        data_STAFFITEM()
+    data_STAFFREL:
+        data_STAFFREL()
+
+modules:
+    externalsymbols:
+        att.extsym:
+            glyphnum:
+                type: wchar_t
+                default: 0
+
+    gestural:
+        att.articulation.gestural:
+            artic.ges:
+                type: data_ARTICULATION_List
+        att.duration.gestural:
+            dots.ges:
+                default: -1
+
+    mensural:
+        att.mensural.log:
+            proport.num:
+                default: -1
+            proport.numbase:
+                default: -1
+
+    shared:
+        att.articulation:
+            artic:
+                type: data_ARTICULATION_List
+        att.augmentDots:
+            dots:
+                default: -1
+        att.barLine.log:
+            form:
+                default: BARRENDITION_single
+        att.curvature:
+            bulge:
+                type: data_BULGE
+        att.duration.ratio:
+            num:
+                default: -1
+            numbase:
+                default: -1
+        att.keySig.log:
+            sig:
+                type: data_KEYSIGNATURE
+        att.keySigDefault.log:
+            key.sig:
+                type: data_KEYSIGNATURE
+        att.meterSig.log:
+            count:
+                type: data_METERCOUNT_pair
+            unit:
+                type: int
+        att.meterSigDefault.log:
+            meter.count:
+                type: data_METERCOUNT_pair
+            meter.unit:
+                type: int
+        att.nInteger:
+            n:
+                type: int
+                default: -1
+        att.nNumberLike:
+            n:
+                type: std::string
+        att.plist:
+            plist:
+                type: xsdAnyURI_List
+        att.staffLoc:
+            loc:
+                default: VRV_UNSET
+        att.staffIdent:
+            staff:
+                type: xsdPositiveInteger_List
+        att.stems:
+            stem.len:
+                type: double
+                default: -1
+        att.timestamp.logical:
+            tstamp:
+                default: -1.0
+        att.transposition:
+            trans.diat:
+                default: VRV_UNSET
+            trans.semi:
+                default: VRV_UNSET
+        att.verticalAlignment:
+            vgrp:
+                type: int
+                default: VRV_UNSET
+
+    frettab:
+        att.note.ges.tab:
+            tab.fret:
+                type: int
+                default: -1
+
+    visual:
+        att.fTrem.vis:
+            beams.float:
+                default: -1
+
+att-classes:
+  - id: "accidental"
+    attributes:
+    - ["accid", "Supported values are 's', 'f', 'n', 'x', 'ff', 'ns' and 'nf'.", ""]
+  - id: "barLine.log"
+    attributes:
+    - ["rend", "Supported values are: 'single', 'rptboth', 'rptstart', 'rptend', 'dbl', and 'end'.", ""]
+  - id: "cleffing.log"
+    attributes:
+    - ["clef.shape", "Supported values are 'C', 'F' and 'G'.", ""]
+    - ["clef.line", "Supported values are 1-5 for shape 'C', 1-2 for 'G' and 3-5 for 'F'.", ""]
+    - ["clef.dis", "Only value '8' is supported and it assumes shape 'G' and line 2.", ""]
+    - ["clef.place", "Supported values: 'below'", ""]
+
+interfaces:
+  - id: "pitchInterface"
+    att-classes:
+      - accidental
+      - octave
+      - pitch
+classes:
+  - id: "note"
+    interfaces:
+      - pitchInterface
+    att-classes:
+      - coloration
+      - grace
+      - stemmed
+      - note.log.mensural
+    attributes: []
+  - id: "app"
+    att-classes:
+      - common
+    attributes: []
+  - id: "beam"
+  - id: "barLine"
+    att-classes:
+      - barLine.log
