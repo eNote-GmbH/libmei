@@ -43,7 +43,7 @@ class IneumeLogMixIn {
         void removeForm();
         /** \brief Records the name of the neume.
          */
-        MeiAttribute* getName() const;
+        MeiAttribute* getName();
         void setName(std::string _name);
         bool hasName();
         void removeName();
@@ -66,7 +66,7 @@ class UneumeLogMixIn {
         void removeForm();
         /** \brief Records the name of the neume.
          */
-        MeiAttribute* getName() const;
+        MeiAttribute* getName();
         void setName(std::string _name);
         bool hasName();
         void removeName();

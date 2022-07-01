@@ -29,7 +29,7 @@ bool mei::IneumeLogMixIn::hasForm() {
 void mei::IneumeLogMixIn::removeForm() {
     b->removeAttribute("form");
 };
-MeiAttribute* mei::IneumeLogMixIn::getName() const {
+MeiAttribute* mei::IneumeLogMixIn::getName() {
     if (!b->hasAttribute("name")) {
         return NULL;
     }
@@ -74,7 +74,7 @@ bool mei::UneumeLogMixIn::hasForm() {
 void mei::UneumeLogMixIn::removeForm() {
     b->removeAttribute("form");
 };
-MeiAttribute* mei::UneumeLogMixIn::getName() const {
+MeiAttribute* mei::UneumeLogMixIn::getName() {
     if (!b->hasAttribute("name")) {
         return NULL;
     }
