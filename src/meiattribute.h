@@ -46,7 +46,7 @@ namespace mei {
         {
         public:
             /** \brief The MeiAttribute Constructor, requires the attribute name and value*/
-            MeiAttribute(std::string attrname, std::string attrvalue);
+            MeiAttribute(const std::string &attrname, const std::string &attrvalue);
 
             virtual ~MeiAttribute() {}
 

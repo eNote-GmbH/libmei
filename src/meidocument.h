@@ -46,7 +46,7 @@ class MEI_EXPORT MeiDocument {
         /**
          * \brief Create a new document with a particular MEI Version type
          */
-        MeiDocument(std::string meiVers);
+        MeiDocument(const std::string &meiVers);
     
         /**
          *  \brief Create a new document. This will be assigned the latest supported MEI Version.
@@ -73,14 +73,14 @@ class MEI_EXPORT MeiDocument {
          *  \return The Mei element with the given id, or NULL if
          *   the element doesn't exist
          */
-        MeiElement* getElementById(std::string id);
+        MeiElement* getElementById(const std::string &id);
 
         /** \brief Get the elements with a given name
          *
          *  \return A vector of MeiElements
          *
          */
-        std::vector<MeiElement*> getElementsByName(std::string name) const;
+        std::vector<MeiElement*> getElementsByName(const std::string &name) const;
 
         /** \brief Gets an element's position in the flattened
          *      tree representation.
@@ -94,14 +94,14 @@ class MEI_EXPORT MeiDocument {
          *  core, but generally the ID map is managed internally, so except in rare cases 
          *  it should not be called directly.
          */
-        void addIdMap(std::string, MeiElement*);
+        void addIdMap(const std::string &id, MeiElement*);
     
         /**
          *  \brief Removes an ID from the ID Map.
          *  
          *  See usage note on addIdMap for more information.
          */
-        void rmIdMap(std::string id);
+        void rmIdMap(const std::string &id);
 
         /** \brief Returns the flattened document tree */
         const std::vector<MeiElement*> &getFlattenedTree() const;
@@ -123,7 +123,7 @@ class MEI_EXPORT MeiDocument {
         
         void updateFlattenedTree();
 
-        MeiElement* getElementById(std::string id, MeiElement* from);
+        MeiElement* getElementById(const std::string &id, MeiElement* from);
         /** The version of this MEI document. */
         std::string meiVersion;
         MeiElement* root;

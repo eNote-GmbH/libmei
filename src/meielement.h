@@ -117,7 +117,7 @@ class MEI_EXPORT MeiElement
         const std::string getValue() const;
 
         /** \brief Set the value associated with the Mei Element */
-        void setValue(std::string value);
+        void setValue(const std::string &value);
 
         /** \brief Get a list of all the attributes associated with an Mei Element
          *
@@ -145,24 +145,24 @@ class MEI_EXPORT MeiElement
          * If an attribute with the same name already exists on
          * this element, it is replaced
          */
-        void addAttribute(std::string attrname, std::string attrvalue);
+        void addAttribute(const std::string &attrname, const std::string &attrvalue);
 
         /**
          * \brief Convienence method to get the attribute with a given name.
          *
          * \return the attribute with this name, or NULL if the atribute doesn't exist.
          */
-        MeiAttribute* getAttribute(std::string name) const;
+        MeiAttribute* getAttribute(const std::string &name) const;
 
         /**
          * \brief Remove the attribute with the given name.
          */
-        void removeAttribute(std::string name);
+        void removeAttribute(const std::string &name);
 
         /**
          * \brief See if this element has an attribute with the given name.
          */
-        bool hasAttribute(std::string name) const;
+        bool hasAttribute(const std::string &name) const;
 
         /** \brief Check if this element has a parent element
          *
@@ -220,7 +220,7 @@ class MEI_EXPORT MeiElement
         /**
          * \brief Get all of the children of this element that have a given name.
          */
-        const std::vector<MeiElement*> getChildrenByName(std::string name);
+        const std::vector<MeiElement*> getChildrenByName(const std::string &name);
 
         /**
          * \brief Remove all of the children of this element.
@@ -232,7 +232,7 @@ class MEI_EXPORT MeiElement
         /**
          * \brief Remove the children from this element that have a given name.
          */
-        void removeChildrenByName(std::string cname);
+        void removeChildrenByName(const std::string &cname);
 
         /**
          * \brief Remove the specified element as a child from this element.
@@ -250,20 +250,20 @@ class MEI_EXPORT MeiElement
         /**
          * \brief Check if this element has any children with the given name.
          */
-        bool hasChildren(std::string cname) const;
+        bool hasChildren(const std::string &cname) const;
 
         /**
          *  \brief Get the ancestor with a given element name
          *
          *  \return MeiElement, or NULL if no ancestor is found.
          */
-        MeiElement* getAncestor(std::string name) const;
+        MeiElement* getAncestor(const std::string &name) const;
 
         /**
          *  \brief Returns TRUE if this element has an ancestor element 
          *     with a given name; FALSE otherwise
          */   
-        bool hasAncestor(std::string name) const;
+        bool hasAncestor(const std::string &name) const;
 
         /**
          *  \brief Get all descendants of the current element.
@@ -274,7 +274,7 @@ class MEI_EXPORT MeiElement
          *  \brief Get all descendants of the current element that match
          *     a given name
          */
-        std::vector<MeiElement*> getDescendantsByName(std::string name);
+        std::vector<MeiElement*> getDescendantsByName(const std::string &name);
 
         /**
          *  \brief Get all the peer elements of the current element.
@@ -302,7 +302,7 @@ class MEI_EXPORT MeiElement
         /** \brief Looks backwards from this element. Wrapper around the document->lookBack()
          *     method.
          */
-        MeiElement* lookBack(std::string name);
+        MeiElement* lookBack(const std::string &name);
 
         const std::vector<MeiElement*> flatten();
 
@@ -356,7 +356,7 @@ struct MeiFactory {
      * macros. The ID is optional. If it is not given, a new ID will be generated.
      * \return an instance of the element, or NULL if the type doesn't exist.
      */
-    static MeiElement* createInstance(std::string const& s, std::string const& id) throw(ElementNotRegisteredException) {
+    static MeiElement* createInstance(const std::string &s, const std::string &id) throw(ElementNotRegisteredException) {
         default_map::iterator it = getMap()->find(s);
         if (it == getMap()->end()) {
             throw ElementNotRegisteredException(s);
@@ -364,7 +364,7 @@ struct MeiFactory {
         return it->second(id);
     }
 
-    static bool inMap(std::string const& query) {
+    static bool inMap(const std::string &query) {
         default_map::iterator it = getMap()->find(query);
         if (it == getMap()->end()) {
             return false;
@@ -386,7 +386,7 @@ private:
 
     template<typename T>
     struct DerivedRegister : MeiFactory {
-        DerivedRegister(std::string const& s) {
+        DerivedRegister(const std::string &s) {
             getMap()->insert(std::make_pair(s, &MeiElement::createT<T>));
         }
     };

@@ -6,7 +6,7 @@
 using std::string;
 using mei::MeiElement;
 
-mei::MeiAttribute::MeiAttribute(string attrname, string attrvalue) {
+mei::MeiAttribute::MeiAttribute(const std::string &attrname, const std::string &attrvalue) {
     this->name = attrname;
     this->value = attrvalue;
     this->element = NULL;
