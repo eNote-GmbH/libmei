@@ -77,7 +77,7 @@ ELEMENT_CLASS_HEAD_TEMPLATE = """
 class MEI_EXPORT {elementNameUpper} : public MeiElement {{
     public:
         {elementNameUpper}();
-        {elementNameUpper}(const {elementNameUpper}& other);
+        {elementNameUpper}(const {elementNameUpper} &other);
         virtual ~{elementNameUpper}();
 {methods}
 /* include <{elementName}> */
@@ -93,7 +93,7 @@ ELEMENT_CLASS_IMPL_CONS_TEMPLATE = """mei::{elementNameUpper}::{elementNameUpper
 }}
 REGISTER_DEFINITION(mei::{elementNameUpper}, \"{elementNameLower}\");
 mei::{elementNameUpper}::~{elementNameUpper}() {{}}
-mei::{elementNameUpper}::{elementNameUpper}(const {elementNameUpper}& other) :
+mei::{elementNameUpper}::{elementNameUpper}(const {elementNameUpper} &other) :
     MeiElement(other){onlyMixIns}
 {{
 }}
