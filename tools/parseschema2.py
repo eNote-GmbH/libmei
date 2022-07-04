@@ -309,8 +309,8 @@ if __name__ == "__main__":
     avail_langs = ("cpp", "csharp", "java", "manuscript", "python", "vrv")
 
     if not args.lang == "python":
-        for l_langs in args.lang:
-            if l_langs.lower() not in avail_langs:
+        for lang in args.lang:
+            if lang.lower() not in avail_langs:
                 p.print_usage()
                 print("error: One or more of the languages you have chosen are not supported. To check supported languages use the -sl flag")
                 sys.exit(1)
@@ -334,8 +334,8 @@ if __name__ == "__main__":
 
     schema = MeiSchema(mei_source)
 
-    for l_langs in args.lang:
-        if "cpp" in l_langs.lower():
+    for lang in args.lang:
+        if "cpp" in lang.lower():
             import langs.cplusplus as cpp
             output_directory = os.path.join(outdir, "cpp")
             if os.path.exists(output_directory):
@@ -346,7 +346,7 @@ if __name__ == "__main__":
             if args.includes:
                 cpp.parse_includes(output_directory, args.includes)
 
-        if "python" in l_langs.lower():
+        if "python" in lang.lower():
             import langs.python as py
             output_directory = os.path.join(outdir, "python")
             if os.path.exists(output_directory):
@@ -357,7 +357,7 @@ if __name__ == "__main__":
             if args.includes:
                 py.parse_includes(output_directory, args.includes)
 
-        if "manuscript" in l_langs.lower():
+        if "manuscript" in lang.lower():
             import langs.manuscript as ms
             output_directory = os.path.join(outdir, "manuscript")
             if os.path.exists(output_directory):
@@ -366,7 +366,7 @@ if __name__ == "__main__":
             os.mkdir(output_directory)
             ms.create(schema, output_directory)
 
-        if "java" in l_langs.lower():
+        if "java" in lang.lower():
             import langs.java as java
             output_directory = os.path.join(outdir, "java")
             if os.path.exists(output_directory):
@@ -377,7 +377,7 @@ if __name__ == "__main__":
             if args.includes:
                 java.parse_includes(output_directory, args.includes)
 
-        if "csharp" in l_langs.lower():
+        if "csharp" in lang.lower():
             import langs.csharp as csharp
             output_directory = os.path.join(outdir, "c-sharp")
             if os.path.exists(output_directory):
@@ -388,28 +388,26 @@ if __name__ == "__main__":
             if args.includes:
                 csharp.parse_includes(output_directory, args.includes)
 
-        if "vrv" in l_langs.lower():
+        if "vrv" in lang.lower():
             import langs.cplusplus_vrv as vrv
             output_directory = os.path.join(outdir, "libmei")
             if os.path.exists(output_directory):
                 lg.debug("Removing old Verovio C++ output directory")
                 shutil.rmtree(output_directory)
             os.mkdir(output_directory)
-            
             if args.includes:
                 vrv.create(schema, output_directory, args.includes)
                 vrv.parse_includes(output_directory, args.includes)
             else:
                 vrv.create(schema, output_directory)
                 
-        if "vdoc" in l_langs.lower():
+        if "vdoc" in lang.lower():
             import langs.html_vrv as vrv
             output_directory = os.path.join(outdir, "doc")
             if os.path.exists(output_directory):
                 lg.debug("Removing old Verovio C++ output directory")
                 shutil.rmtree(output_directory)
             os.mkdir(output_directory)
-            
             vrv.create(schema, output_directory, args.includes)
 
     mei_source.close()
