@@ -306,7 +306,7 @@ if __name__ == "__main__":
         print("error: You must include a compiled ODD file")
         sys.exit(1)
 
-    avail_langs = ["cpp", "csharp", "java", "manuscript", "python"]
+    avail_langs = ["cpp", "csharp", "java", "manuscript", "python", "vrv"]
 
     if not args.lang == "python":
         for l_langs in args.lang:
@@ -387,6 +387,30 @@ if __name__ == "__main__":
             csharp.create(schema, output_directory)
             if args.includes:
                 csharp.parse_includes(output_directory, args.includes)
+
+        if "vrv" in l_langs.lower():
+            import langs.cplusplus_vrv as vrv
+            output_directory = os.path.join(outdir, "libmei")
+            if os.path.exists(output_directory):
+                lg.debug("Removing old Verovio C++ output directory")
+                shutil.rmtree(output_directory)
+            os.mkdir(output_directory)
+            
+            if args.includes:
+                vrv.create(schema, output_directory, args.includes)
+                vrv.parse_includes(output_directory, args.includes)
+            else:
+                vrv.create(schema, output_directory)
+                
+        if "vdoc" in l_langs.lower():
+            import langs.html_vrv as vrv
+            output_directory = os.path.join(outdir, "doc")
+            if os.path.exists(output_directory):
+                lg.debug("Removing old Verovio C++ output directory")
+                shutil.rmtree(output_directory)
+            os.mkdir(output_directory)
+            
+            vrv.create(schema, output_directory, args.includes)
 
     mei_source.close()
 
