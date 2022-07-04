@@ -346,25 +346,16 @@ if __name__ == "__main__":
             if args.includes:
                 cpp.parse_includes(output_directory, args.includes)
 
-        if "python" in lang.lower():
-            import langs.python as py
-            output_directory = os.path.join(outdir, "python")
+        if "csharp" in lang.lower():
+            import langs.csharp as csharp
+            output_directory = os.path.join(outdir, "c-sharp")
             if os.path.exists(output_directory):
-                lg.debug("Removing old Python output directory")
+                lg.debug("Removing old C# output directory")
                 shutil.rmtree(output_directory)
             os.mkdir(output_directory)
-            py.create(schema, output_directory)
+            csharp.create(schema, output_directory)
             if args.includes:
-                py.parse_includes(output_directory, args.includes)
-
-        if "manuscript" in lang.lower():
-            import langs.manuscript as ms
-            output_directory = os.path.join(outdir, "manuscript")
-            if os.path.exists(output_directory):
-                lg.debug("Removing old Manuscript output directory")
-                shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
-            ms.create(schema, output_directory)
+                csharp.parse_includes(output_directory, args.includes)
 
         if "java" in lang.lower():
             import langs.java as java
@@ -377,16 +368,25 @@ if __name__ == "__main__":
             if args.includes:
                 java.parse_includes(output_directory, args.includes)
 
-        if "csharp" in lang.lower():
-            import langs.csharp as csharp
-            output_directory = os.path.join(outdir, "c-sharp")
+        if "manuscript" in lang.lower():
+            import langs.manuscript as ms
+            output_directory = os.path.join(outdir, "manuscript")
             if os.path.exists(output_directory):
-                lg.debug("Removing old C# output directory")
+                lg.debug("Removing old Manuscript output directory")
                 shutil.rmtree(output_directory)
             os.mkdir(output_directory)
-            csharp.create(schema, output_directory)
+            ms.create(schema, output_directory)
+
+        if "python" in lang.lower():
+            import langs.python as py
+            output_directory = os.path.join(outdir, "python")
+            if os.path.exists(output_directory):
+                lg.debug("Removing old Python output directory")
+                shutil.rmtree(output_directory)
+            os.mkdir(output_directory)
+            py.create(schema, output_directory)
             if args.includes:
-                csharp.parse_includes(output_directory, args.includes)
+                py.parse_includes(output_directory, args.includes)
 
         if "vrv" in lang.lower():
             import langs.cplusplus_vrv as vrv
