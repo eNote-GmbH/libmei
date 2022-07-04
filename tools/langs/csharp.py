@@ -39,11 +39,16 @@ ATT_METHODS = """#region {attNameLower}
       MeiAtt_controller.SetAttribute({interfaceParamInvoke}, {attConst}, _val);
     }}
 
-    public{static} XAttribute Get{attNameUpper}({interfaceParamDef})
+    public{static} XAttribute Get{attNameUpper}Attribute({interfaceParamDef})
     {{
       return MeiAtt_controller.GetAttribute({interfaceParamInvoke}, {attConst});
     }}
-
+    
+    public{static} string Get{attNameUpper}Value({interfaceParamDef})
+    {{
+      return MeiAtt_controller.GetAttributeValue({interfaceParamInvoke}, {attConst});
+    }}
+    
     public{static} bool Has{attNameUpper}({interfaceParamDef})
     {{
       return MeiAtt_controller.HasAttribute({interfaceParamInvoke}, {attConst});
@@ -115,11 +120,6 @@ LICENSE = """///////////////////////////////////////////////////////////////////
 //
 // Code generated using a modified version of libmei
 // by Andrew Hankinson, Alastair Porter, and Others
-/////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////
-// NOTE: this file was generated with the Verovio libmei version and
-// should not be edited because changes will be lost.
 /////////////////////////////////////////////////////////////////////////////"""
 
 # globals
@@ -204,12 +204,12 @@ def windll_writeAttMethods(attribute, atgroup, schema):
         interfaceParamDefSet = ""
         interfaceParamInvoke = "this"
 
-    if att_name == "type":
-        att_name = "typeAttribute"
+    # if att_name == "type":
+    #    att_name = "typeAttribute"
 
     att_strings = {
         "ns_decl": ns_decl,
-        "attNameUpper": schema.cc(att_name) if att_name == "typeAttribute" else schema.cc(schema.strpatt(attribute)),
+        "attNameUpper": schema.cc(schema.strpatt(attribute)),
         "attConst": att_const,
         "interfaceParamDef": interfaceParamDef,
         "interfaceParamInvoke": interfaceParamInvoke,
