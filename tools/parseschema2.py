@@ -306,7 +306,7 @@ if __name__ == "__main__":
         print("error: You must include a compiled ODD file")
         sys.exit(1)
 
-    avail_langs = ["cpp", "csharp", "java", "manuscript", "python", "vrv"]
+    avail_langs = ("cpp", "csharp", "java", "manuscript", "python", "vrv")
 
     if not args.lang == "python":
         for l_langs in args.lang:
