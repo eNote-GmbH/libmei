@@ -62,11 +62,17 @@ class MeiSchema(object):
         self.element_structure = {}  # the element structure.
         self.attribute_group_structure = {}  # the attribute group structure
         self.inverse_attribute_group_structure = {}  # inverted, so we can map attgroups to modules
+        # holding data types and data lists
+        self.data_types = {}
+        self.data_lists = {}
 
         self.get_elements()
         self.get_attribute_groups()
+        self.get_data_types_and_lists()
         self.invert_attribute_group_structure()
         self.set_active_modules()
+
+        # lg.debug(self.data_lists)
 
     def get_elements(self):
         elements = [m for m in self.schema.xpath("//tei:elementSpec", namespaces=TEI_NS)]
@@ -111,8 +117,8 @@ class MeiSchema(object):
 
             group_module = group.get("module").split(".")[-1]
             attdefs = group.xpath("./tei:attList/tei:attDef", namespaces=TEI_NS)
-            # if not attdefs:
-                # continue
+            if not attdefs:
+                continue
 
             if group_module not in self.attribute_group_structure.keys():
                 self.attribute_group_structure[group_module] = {}
@@ -123,6 +129,91 @@ class MeiSchema(object):
                     continue
                 attname = self.__process_att(attdef)
                 self.attribute_group_structure[group_module][group_name].append(attname)
+
+    def get_data_types_and_lists(self):
+
+        compoundalternate = [m for m in self.schema.xpath(
+            "//tei:macroSpec[@type=\"dt\" and .//tei:alternate[@minOccurs=\"1\" and @maxOccurs=\"1\"]]", namespaces=TEI_RNG_NS)]
+        for ct in compoundalternate:
+            #lg.debug("TYPE - {0}".format(ct.get("ident")))
+            data_type = ct.get("ident")
+            self.data_types[data_type] = []
+            subtypes = [m for m in ct.xpath(
+                ".//tei:alternate/tei:macroRef", namespaces=TEI_RNG_NS)]
+            for st in subtypes:
+                #lg.debug("SUBTYPE - {0}".format(st.get("name")))
+                subtype = st.xpath("//tei:macroSpec[@ident=\"{0}\"]//tei:valList/tei:valItem".format(
+                    st.get("key")), namespaces=TEI_RNG_NS)
+                for v in subtype:
+                    # lg.debug("\t{0}".format(v.get("ident")))
+                    type_value = v.get("ident")
+                    self.data_types[data_type].append(type_value)
+            if len(self.data_types[data_type]) == 0:
+                del self.data_types[data_type]
+                #lg.debug("REMOVE {0}".format(data_type))
+
+        compoundchoice = [m for m in self.schema.xpath(
+            "//tei:macroSpec[@type=\"dt\" and .//rng:choice]", namespaces=TEI_RNG_NS)]
+        for ct in compoundchoice:
+            #lg.debug("TYPE - {0}".format(ct.get("ident")))
+            data_type = ct.get("ident")
+            self.data_types[data_type] = []
+            subtypes = [m for m in ct.xpath(
+                ".//rng:choice/rng:ref", namespaces=TEI_RNG_NS)]
+            for st in subtypes:
+                #lg.debug("SUBTYPE - {0}".format(st.get("name")))
+                subtype = st.xpath("//tei:macroSpec[@ident=\"{0}\"]//tei:valList/tei:valItem".format(
+                    st.get("name")), namespaces=TEI_RNG_NS)
+                for v in subtype:
+                    # lg.debug("\t{0}".format(v.get("ident")))
+                    type_value = v.get("ident")
+                    self.data_types[data_type].append(type_value)
+            if len(self.data_types[data_type]) == 0:
+                del self.data_types[data_type]
+                #lg.debug("REMOVE {0}".format(data_type))
+
+        types = [m for m in self.schema.xpath(
+            "//tei:macroSpec[.//tei:valList[@type=\"closed\" or @type=\"semi\"]]", namespaces=TEI_RNG_NS)]
+        for t in types:
+            #lg.debug("TYPE - {0}".format(t.get("ident")))
+            data_type = t.get("ident")
+            self.data_types[data_type] = []
+            values = t.xpath(".//tei:valList/tei:valItem",
+                             namespaces=TEI_RNG_NS)
+            for v in values:
+                # lg.debug("\t{0}".format(v.get("ident")))
+                type_value = v.get("ident")
+                self.data_types[data_type].append(type_value)
+
+        vallists = [m for m in self.schema.xpath(
+            "//tei:valList[@type=\"closed\" or @type=\"semi\"]", namespaces=TEI_RNG_NS)]
+        for vl in vallists:
+            element = vl.xpath("./ancestor::tei:classSpec",
+                               namespaces=TEI_RNG_NS)
+            attName = vl.xpath("./parent::tei:attDef/@ident",
+                               namespaces=TEI_RNG_NS)
+            # if ($current.valList/ancestor::tei:classSpec) then($current.valList/ancestor::tei:classSpec/@ident) else($current.valList/ancestor::tei:elementSpec/@ident
+            if element:
+                #lg.debug("VALLIST - ELEMEMT {0} --- {1}".format(element[0].get("ident"),attName[0]))
+                data_list = "{0}@{1}".format(
+                    element[0].get("ident"), attName[0])
+                self.data_lists[data_list] = []
+                self.data_lists[data_list]
+                values = vl.xpath(".//tei:valItem", namespaces=TEI_RNG_NS)
+                for v in values:
+                    # lg.debug("\t{0}".format(v.get("ident")))
+                    list_value = v.get("ident")
+                    self.data_lists[data_list].append(list_value)
+            # elif attName:
+            #    elName = vl.xpath("./ancestor::tei:elementSpec/@ident", namespaces=TEI_RNG_NS)
+            #    lg.debug("VALLIST {0} --- {1}".format(elName[0],attName[0]))
+            #    data_list = "{0}.{1}".format(elName[0],attName[0])
+            #    self.data_lists[data_list] = []
+            #    values = vl.xpath(".//tei:valItem", namespaces=TEI_RNG_NS)
+            #    for v in values:
+            #        lg.debug("\t{0}".format(v.get("ident")))
+            #        list_value = v.get("ident")
+            #        self.data_lists[data_list].append(list_value)
 
     def invert_attribute_group_structure(self):
         for module, groups in self.attribute_group_structure.items():
