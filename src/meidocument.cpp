@@ -39,7 +39,7 @@ using std::find;
 
 using mei::MeiElement;
 
-mei::MeiDocument::MeiDocument(string meiVers) {
+mei::MeiDocument::MeiDocument(const std::string &meiVers) {
     this->root = NULL;
     this->meiVersion = meiVers;
 }
@@ -82,16 +82,16 @@ string mei::MeiDocument::getVersion() {
     return meiVersion;
 }
 
-void mei::MeiDocument::addIdMap(string id, MeiElement *element) {
+void mei::MeiDocument::addIdMap(const std::string &id, MeiElement *element) {
     idMap.insert(std::make_pair(id, element));
 }
 
-void mei::MeiDocument::rmIdMap(string id) {
+void mei::MeiDocument::rmIdMap(const std::string &id) {
     map<string, MeiElement*>::iterator iter = idMap.find(id);
     idMap.erase(iter);
 }
 
-MeiElement* mei::MeiDocument::getElementById(string id) {
+MeiElement* mei::MeiDocument::getElementById(const std::string &id) {
     map<string, MeiElement*>::iterator iter = idMap.find(id);
     if (iter == idMap.end()) {
         return NULL;
@@ -100,9 +100,9 @@ MeiElement* mei::MeiDocument::getElementById(string id) {
     }
 }
 
-vector<MeiElement*> mei::MeiDocument::getElementsByName(string name) {
+vector<MeiElement*> mei::MeiDocument::getElementsByName(const std::string &name) const {
     vector<MeiElement*> ret;
-    for (vector<MeiElement*>::iterator iter = flattenedDoc.begin(); iter != flattenedDoc.end(); ++iter) {
+    for (vector<MeiElement*>::const_iterator iter = flattenedDoc.begin(); iter != flattenedDoc.end(); ++iter) {
         if ((*iter)->getName() == name) {
             ret.push_back((*iter));
         }
@@ -110,7 +110,7 @@ vector<MeiElement*> mei::MeiDocument::getElementsByName(string name) {
     return ret;
 }
 
-int mei::MeiDocument::getPositionInDocument(MeiElement* element) {
+int mei::MeiDocument::getPositionInDocument(MeiElement* element) const {
     vector<MeiElement*> els = this->getFlattenedTree();
     vector<MeiElement*>::iterator pos = find(els.begin(), els.end(), element);
     if (pos != els.end()) {
@@ -120,7 +120,7 @@ int mei::MeiDocument::getPositionInDocument(MeiElement* element) {
     return -1;
 }
 
-const std::vector<MeiElement*> &mei::MeiDocument::getFlattenedTree() {
+const std::vector<MeiElement*> &mei::MeiDocument::getFlattenedTree() const {
     return flattenedDoc;
 }
 
