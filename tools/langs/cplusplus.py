@@ -1,9 +1,9 @@
 # -- coding: utf-8 --
 import logging
-import os
 import re
 import sys
 import textwrap
+from pathlib import Path
 
 lg = logging.getLogger('schemaparser')
 
@@ -160,9 +160,10 @@ def create(schema, outdir):
 
 
 def __get_docstr(text, indent=0):
-    """ Format a docstring. Take the first sentence (. followed by a space)
+    """ 
+        Format a docstring. Take the first sentence (. followed by a space)
         and use it for the brief. Then put the rest of the text after a blank
-        line if there is text there
+        line if there is text there.
     """
     # string handling is handled differently in Python 3+
     if sys.version_info >= (3, 0):
@@ -213,7 +214,7 @@ def __create_mixin_classes(schema, outdir):
             for att in atts:
                 if len(att.split("|")) > 1:
                     ns, att = att.split("|")
-                docstr = __get_docstr(schema.getattdocs(att), indent=8)
+                docstr = __get_docstr(schema.get_att_desc(att), indent=8)
                 substrings = {
                     "attNameUpper": schema.cc(schema.strpatt(att)),
                     "attNameLower": att,
@@ -238,8 +239,7 @@ def __create_mixin_classes(schema, outdir):
         if "std::string" in classes:
             tplvars["includes"] = "#include <string>"
         fullout = CLASSES_HEAD_TEMPLATE.format(**tplvars)
-        fmh = open(os.path.join(
-            outdir, "{0}mixins.h".format(module.lower())), 'w')
+        fmh = open(Path(outdir, "{0}mixins.h".format(module.lower())), 'w')
         fmh.write(fullout)
         fmh.close()
         lg.debug("\tCreated {0}mixins.h".format(module.lower()))
@@ -298,8 +298,7 @@ def __create_mixin_classes(schema, outdir):
             "elements": classes
         }
         fullout = CLASSES_IMPL_TEMPLATE.format(**tplvars)
-        fmi = open(os.path.join(
-            outdir, "{0}mixins.cpp".format(module.lower())), 'w')
+        fmi = open(Path(outdir, "{0}mixins.cpp".format(module.lower())), 'w')
         fmi.write(fullout)
         fmi.close()
         lg.debug("\tCreated {0}mixins.cpp".format(module.lower()))
@@ -327,7 +326,8 @@ def __create_element_classes(schema, outdir):
                         if len(sda.split("|")) > 1:
                             ns, sda = sda.split("|")
 
-                        docstr = __get_docstr(schema.getattdocs(sda), indent=8)
+                        docstr = __get_docstr(
+                            schema.get_att_desc(sda), indent=8)
                         methstr = {
                             "attNameUpper": schema.cc(schema.strpatt(sda)),
                             "attNameLower": sda,
@@ -346,7 +346,7 @@ def __create_element_classes(schema, outdir):
                         mod = schema.inverse_attribute_group_structure[attribute]
                         if mod not in includes:
                             includes.append(mod)
-            docstr = __get_docstr(schema.geteldocs(element), indent=0)
+            docstr = __get_docstr(schema.get_elem_desc(element), indent=0)
             elvars = {
                 "elementNameUpper": schema.cc(element),
                 "methods": attribute_methods,
@@ -372,7 +372,7 @@ def __create_element_classes(schema, outdir):
             outvars["includes"] += "#include <string>\n"
 
         fullout = CLASSES_HEAD_TEMPLATE.format(**outvars)
-        fmh = open(os.path.join(outdir, "{0}.h".format(module.lower())), 'w')
+        fmh = open(Path(outdir, "{0}.h".format(module.lower())), 'w')
         fmh.write(fullout)
         fmh.close()
         lg.debug("\tCreated {0}.h".format(module.lower()))
@@ -444,7 +444,7 @@ def __create_element_classes(schema, outdir):
         }
         fullout = CLASSES_IMPL_TEMPLATE.format(**implvars)
 
-        fmi = open(os.path.join(outdir, "{0}.cpp".format(module.lower())), 'w')
+        fmi = open(Path(outdir, "{0}.cpp".format(module.lower())), 'w')
         fmi.write(fullout)
         fmi.close()
         lg.debug("\t Created {0}.cpp".format(module.lower()))
@@ -452,25 +452,23 @@ def __create_element_classes(schema, outdir):
 
 def parse_includes(file_dir, includes_dir):
     lg.debug("Parsing includes")
-
     # get the files in the includes directory
-    includes = [f for f in os.listdir(includes_dir) if not f.startswith(".")]
+    includes = [f for f in Path(includes_dir).iterdir()
+                if not f.name.startswith(".")]
 
-    for dp, dn, fn in os.walk(file_dir):
-        for f in fn:
-            if f.startswith("."):
-                continue
-            methods, inc = __process_include(f, includes, includes_dir)
-            if methods:
-                __parse_codefile(methods, inc, dp, f)
+    for f in Path(file_dir).iterdir():
+        if f.name.startswith("."):
+            continue
+        methods, inc = __process_include(f, includes, includes_dir)
+        if methods:
+            __parse_codefile(methods, inc, f.parent, f)
 
 
 def __process_include(fname, includes, includes_dir):
-    name, ext = os.path.splitext(fname)
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
-        f = open(os.path.join(includes_dir, "{0}.inc".format(fname)), 'r')
+        f = open(Path(includes_dir, "{0}.inc".format(fname)), 'r')
         includefile = f.read()
         f.close()
         new_methods, includes_block = __parse_includefile(includefile)
@@ -495,9 +493,9 @@ def __parse_includefile(contents):
 
 
 def __parse_codefile(methods, includes, directory, codefile):
-    f = open(os.path.join(directory, codefile), 'r')
-    contents = f.readlines()
-    f.close()
+    f = Path(directory, codefile)
+    f.open()
+    contents = f.read_text()
     regmatch = re.compile(r"/\* include <(?P<elementName>[^>]+)> \*/")
     incmatch = re.compile(r"/\* #include_block \*/")
     for i, line in enumerate(contents):
@@ -508,10 +506,7 @@ def __parse_codefile(methods, includes, directory, codefile):
 
         match = re.match(regmatch, line)
         if match:
-            if match.group("elementName") in list(methods.keys()):
-                contents[i] = methods[match.group(
-                    "elementName")].lstrip("\n") + "\n"
+            if match.group("elementName") in methods.keys():
+                contents[i] = methods[match.group("elementName")].lstrip("\n")
 
-    f = open(os.path.join(directory, codefile), 'w')
-    f.writelines(contents)
-    f.close()
+    f.write_text(contents)

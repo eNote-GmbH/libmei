@@ -1,6 +1,6 @@
 # -- coding: utf-8 --
 
-# Copyright (c) 2011-2015 Andrew Hankinson, Alastair Porter, and Others
+# Copyright (c) 2011-2022 Andrew Hankinson, Alastair Porter, and Others
 
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -75,6 +75,7 @@ class MeiSchema(object):
         # lg.debug(self.data_lists)
 
     def get_elements(self):
+        """Retrieves all defined elements from the schema."""
         elements = [m for m in self.schema.xpath("//tei:elementSpec", namespaces=TEI_NS)]
         for element in elements:
             modname = element.get("module").split(".")[-1]
@@ -108,6 +109,7 @@ class MeiSchema(object):
                 self.element_structure[modname][element_name].append(selfattributes)
 
     def get_attribute_groups(self):
+        """Retrieves all defined attribute classes from the schema."""
         attribute_groups = [m for m in self.schema.xpath("//tei:classSpec[@type=$at]", at="atts", namespaces=TEI_NS)]
         for group in attribute_groups:
             group_name = group.get("ident")
@@ -261,30 +263,31 @@ class MeiSchema(object):
         for mship in m2s:
             self.__get_membership(mship, resarr)
 
-    def strpatt(self, name):
-        """ Returns a version of the string with any leading att. stripped. """
-        return name.replace("att.", "")
+    def strpatt(self, string: str) -> str:
+        """Returns a version of the string with any leading att. stripped."""
+        return string.replace("att.", "")
 
-    def strpdot(self, name):
-        return "".join([n for n in name.split(".")])
+    def strpdot(self, string: str) -> str:
+        """Returns a version of the string without any dots."""
+        return "".join([n for n in string.split(".")])
 
-    def cc(self, name):
-        """ Returns a CamelCasedName version of attribute.case.names.
-        """
-        return "".join([n[0].upper() + n[1:] for n in name.split(".")])
+    def cc(self, att_name: str) -> str:
+        """Returns a CamelCasedName version of attribute.case.names."""
+        return "".join([n[0].upper() + n[1:] for n in att_name.split(".")])
 
-    def getattdocs(self, aname):
-        """ returns the documentation string for element name, or an empty string if there is none."""
-        dsc = self.schema.xpath("//tei:attDef[@ident=$name]/tei:desc/text()", name=aname, namespaces=TEI_NS)
-        if dsc:
-            return re.sub('[\s\t]+', ' ', dsc[0])  # strip extraneous whitespace
+    def get_att_desc(self, att_name: str) -> str:
+        """Returns the documentation string for an attribute by name."""
+        desc = self.schema.xpath(f"//tei:attDef[@ident='{att_name}']/tei:desc/text()", namespaces=TEI_NS)
+        if desc:
+            return re.sub('[\s\t]+', ' ', desc[0])  # strip extraneous whitespace
         else:
             return ""
 
-    def geteldocs(self, ename):
-        dsc = self.schema.xpath("//tei:elementSpec[@ident=$name]/tei:desc/text()", name=ename, namespaces=TEI_NS)
-        if dsc:
-            return re.sub('[\s\t]+', ' ', dsc[0])  # strip extraneous whitespace
+    def get_elem_desc(self, elem_name: str) -> str:
+        """Returns the documentation string for an element by name."""
+        desc = self.schema.xpath(f"//tei:elementSpec[@ident='{elem_name}']/tei:desc/text()", namespaces=TEI_NS)
+        if desc:
+            return re.sub('[\s\t]+', ' ', desc[0])  # strip extraneous whitespace
         else:
             return ""
 
