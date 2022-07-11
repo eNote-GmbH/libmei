@@ -1,5 +1,5 @@
 import logging
-import os
+from pathlib import Path
 
 lg = logging.getLogger('schemaparser')
 
@@ -432,7 +432,7 @@ generateRandomID "() {
 # The XML parser code does not work at the moment because of how the code above
 # has changed over time. It's kept anyway to facilitate future work on MEI
 # import.
-XMLPARSER ="""
+XMLPARSER = """
     documentFromFile "(filename) {
     res = _xmlImport(filename);
 
@@ -870,7 +870,7 @@ def __create_manuscript_classes(schema, outdir):
     }
     fileoutput = FILE_TEMPLATE.format(**filestr)
 
-    fmi = open(os.path.join(outdir, 'libmei.plg'), 'w')
-    fmi.write(fileoutput)
-    fmi.close()
+    fmi = Path(outdir, "libmei.plg")
+    fmi.open("w")
+    fmi.write_text(fileoutput)
     return True
