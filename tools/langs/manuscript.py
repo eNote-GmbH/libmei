@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+
 lg = logging.getLogger('schemaparser')
 
 LANG_NAME = "ManuScript"
