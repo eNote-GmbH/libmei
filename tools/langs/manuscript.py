@@ -429,16 +429,6 @@ generateRandomID "() {
 }"
 """
 
-AUTHORS = "Andrew Hankinson, Alastair Porter, and Others"
-
-FILE_TEMPLATE = """
-{{
-    {license}
-    {classes}
-    {extras}
-}}
-"""
-
 # The XML parser code does not work at the moment because of how the code above
 # has changed over time. It's kept anyway to facilitate future work on MEI
 # import.
