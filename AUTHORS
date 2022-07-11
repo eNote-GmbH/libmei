@@ -8,6 +8,7 @@ There have been a number of other important contributors:
      Peter Henderson: Travis-CI integration, Windows compatibility
 2015 Ian Karp
 2017 Anna Plaksin: C# library
+2019 Thomas Weber: ManuScript improvements
 
 Raffaele Viglianti: Helper methods in the Python Bindings
 Laurent Pugin: Advice and consulting
