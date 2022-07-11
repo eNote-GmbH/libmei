@@ -1,6 +1,6 @@
 import logging
-import os
 import re
+from pathlib import Path
 
 lg = logging.getLogger('schemaparser')
 
@@ -84,20 +84,19 @@ def __create_java_classes(schema, outdir):
 
             # Save to a file
             file_name = "{0}.java".format(class_name)
-            path = os.path.join(outdir, module.lower())
+            path = Path(outdir, module.lower())
             # Make directory if necessary
-            if not os.path.exists(path):
-                os.makedirs(path)
-            fmi = open(os.path.join(path, file_name), "w")
+            path.mkdir(parents=True, exist_ok=True)
+            fmi = open(Path(path, file_name), "w")
             fmi.write(module_output)
             fmi.close()
             lg.debug("\tCreated {0}".format(file_name, class_name))
 
 
 def __parse_codefile(methods, includes, directory, codefile):
-    f = open(os.path.join(directory, codefile), 'r')
-    contents = f.readlines()
-    f.close()
+    f = Path(directory, codefile)
+    f.open()
+    contents = f.read_text()
     regmatch = re.compile(
         r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)
     incmatch = re.compile(r"/\* #include_block \*/")
@@ -113,9 +112,7 @@ def __parse_codefile(methods, includes, directory, codefile):
                 contents[i] = methods[match.group(
                     "elementName")].lstrip("\n") + "\n"
 
-    f = open(os.path.join(directory, codefile), 'w')
-    f.writelines(contents)
-    f.close()
+    f.write_text(contents)
 
 
 def capitalize_first_letter(string: str) -> str:
