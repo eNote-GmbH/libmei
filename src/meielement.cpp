@@ -98,7 +98,7 @@ void mei::MeiElement::generateAndSetId() {
     this->setId(out);
 }
 
-const string mei::MeiElement::getId() {
+const string mei::MeiElement::getId() const {
     return this->id;
 }
 
@@ -106,19 +106,19 @@ void mei::MeiElement::setId(string id) {
     this->id = id;
 }
 
-bool mei::MeiElement::hasId() {
+bool mei::MeiElement::hasId() const {
     return this->id != "";
 }
 
-const string mei::MeiElement::getName() {
+const string mei::MeiElement::getName() const {
     return this->name;
 }
 
-const string mei::MeiElement::getValue() {
+const string mei::MeiElement::getValue() const {
     return this->value;
 }
 
-void mei::MeiElement::setValue(string value) {
+void mei::MeiElement::setValue(const std::string &value) {
     this->value = value;
 }
 
@@ -130,7 +130,7 @@ void mei::MeiElement::setTail(string tail) {
     this->tail = tail;
 }
 
-const vector<MeiAttribute*>& mei::MeiElement::getAttributes() {
+const vector<MeiAttribute*>& mei::MeiElement::getAttributes() const {
     return this->attributes;
 }
 
@@ -142,8 +142,8 @@ void mei::MeiElement::setAttributes(const vector<MeiAttribute*> attrs) {
     }
 }
 
-MeiAttribute* mei::MeiElement::getAttribute(string name) {
-    for (vector<MeiAttribute*>::iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
+MeiAttribute* mei::MeiElement::getAttribute(const std::string &name) const {
+    for (vector<MeiAttribute*>::const_iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
         if ((*iter)->getName() == name) {
             return *iter;
         }
@@ -151,10 +151,10 @@ MeiAttribute* mei::MeiElement::getAttribute(string name) {
     return NULL;
 }
 
-bool mei::MeiElement::hasAttribute(string name) {
+bool mei::MeiElement::hasAttribute(const std::string &name) const {
     if (attributes.empty()) return false;
     
-    for (vector<MeiAttribute*>::iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
+    for (vector<MeiAttribute*>::const_iterator iter = attributes.begin(); iter != attributes.end(); ++iter) {
         if ((*iter)->getName() == name) return true;
     }
     return false;
@@ -168,7 +168,7 @@ void mei::MeiElement::addAttribute(MeiAttribute *attr) {
     attributes.push_back(attr);
 }
 
-void mei::MeiElement::addAttribute(string attrname, string attrvalue) {
+void mei::MeiElement::addAttribute(const std::string &attrname, const std::string &attrvalue) {
     MeiAttribute* attr = new MeiAttribute(attrname, attrvalue);
     if (this->hasAttribute(attrname)) {
         removeAttribute(attrname);
@@ -177,7 +177,7 @@ void mei::MeiElement::addAttribute(string attrname, string attrvalue) {
     attributes.push_back(attr);
 }
 
-void mei::MeiElement::removeAttribute(string name) {
+void mei::MeiElement::removeAttribute(const std::string &name) {
     vector<MeiAttribute*>::iterator iter = attributes.begin();
     MeiAttribute *temp;
     while (iter != attributes.end()) {
@@ -191,7 +191,7 @@ void mei::MeiElement::removeAttribute(string name) {
     }
 }
 
-bool mei::MeiElement::hasParent() {
+bool mei::MeiElement::hasParent() const {
     return parent != NULL;
 }
 
@@ -218,7 +218,7 @@ void mei::MeiElement::setDocument(MeiDocument *document) throw(DocumentRootNotSe
     }
 }
 
-MeiDocument* mei::MeiElement::getDocument() {
+MeiDocument* mei::MeiElement::getDocument() const {
     return this->document;
 }
 
@@ -276,7 +276,7 @@ const vector<mei::MeiElement*>& mei::MeiElement::getChildren() {
     return this->children;
 }
 
-const vector<mei::MeiElement*> mei::MeiElement::getChildrenByName(string name) {
+const vector<mei::MeiElement*> mei::MeiElement::getChildrenByName(const std::string &name) {
     vector<mei::MeiElement*> res;
     for (vector<MeiElement*>::iterator iter = this->children.begin(); iter != this->children.end(); ++iter) {
         if ((*iter)->getName() == name) {
@@ -310,7 +310,7 @@ void mei::MeiElement::removeChild(MeiElement *child) {
     updateDocument();
 }
 
-void mei::MeiElement::removeChildrenByName(string name) {
+void mei::MeiElement::removeChildrenByName(const std::string &name) {
     vector<MeiElement*>::iterator iter = this->children.begin();
     while (iter != this->children.end()) {
         if (name == (*iter)->getName()) {
@@ -324,19 +324,19 @@ void mei::MeiElement::removeChildrenByName(string name) {
     updateDocument();
 }
 
-bool mei::MeiElement::hasChildren() {
+bool mei::MeiElement::hasChildren() const {
     // topsy-turvy world! returns true if not empty.
     return !this->children.empty();
 }
 
-bool mei::MeiElement::hasChildren(string cname) {
-    for (vector<MeiElement*>::iterator iter = this->children.begin(); iter != this->children.end(); ++iter) {
+bool mei::MeiElement::hasChildren(const std::string &cname) const {
+    for (vector<MeiElement*>::const_iterator iter = this->children.begin(); iter != this->children.end(); ++iter) {
         if ((*iter)->getName() == cname) return true;
     }
     return false;
 }
 
-mei::MeiElement* mei::MeiElement::getAncestor(string name) {
+mei::MeiElement* mei::MeiElement::getAncestor(const std::string &name) const {
     if (parent == NULL) {
         return NULL;
     }
@@ -346,7 +346,7 @@ mei::MeiElement* mei::MeiElement::getAncestor(string name) {
     return parent->getAncestor(name);
 }
 
-bool mei::MeiElement::hasAncestor(string name) {
+bool mei::MeiElement::hasAncestor(const std::string &name) const {
     MeiElement* m = getAncestor(name);
     if (m != NULL) {
         return true;
@@ -360,7 +360,7 @@ vector<mei::MeiElement*> mei::MeiElement::getDescendants() {
     return res;
 }
 
-vector<mei::MeiElement*> mei::MeiElement::getDescendantsByName(string name) {
+vector<mei::MeiElement*> mei::MeiElement::getDescendantsByName(const std::string &name) {
     vector<mei::MeiElement*> res;
     vector<mei::MeiElement*> desc = this->flatten();
 
@@ -372,7 +372,7 @@ vector<mei::MeiElement*> mei::MeiElement::getDescendantsByName(string name) {
     return res;
 }
 
-vector<mei::MeiElement*> mei::MeiElement::getPeers() {
+vector<mei::MeiElement*> mei::MeiElement::getPeers() const {
     if (this->parent) {
         return this->parent->getChildren();
     }
@@ -415,7 +415,7 @@ void mei::MeiElement::printElement(int level) {
     }
 }
 
-mei::MeiElement* mei::MeiElement::lookBack(string name) {
+mei::MeiElement* mei::MeiElement::lookBack(const string &name) {
     if (!this->document) {
         return NULL;
     }

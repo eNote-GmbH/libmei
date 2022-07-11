@@ -37,7 +37,7 @@ class MEI_EXPORT MeiException : public std::runtime_error {
 private:
     std::string message;
 public:
-    explicit MeiException(const std::string& message) : std::runtime_error(message) {
+    explicit MeiException(const std::string &message) : std::runtime_error(message) {
         this->message = message;
     }
 
