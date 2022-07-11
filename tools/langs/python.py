@@ -1,6 +1,6 @@
 import logging
-import os
 import re
+from pathlib import Path
 
 lg = logging.getLogger('schemaparser')
 
@@ -77,46 +77,45 @@ def __create_python_classes(schema, outdir):
         }
         module_output = MODULE_TEMPLATE.format(**modstr)
 
-        fmi = open(os.path.join(outdir, "{0}.py".format(module.lower())), "w")
-        fmi.write(module_output)
-        fmi.close()
+        fmi = Path(outdir, "{0}.py".format(module.lower()))
+        fmi.open("w")
+        fmi.write_text(module_output)
         lg.debug("\tCreated {0}.py".format(module.lower()))
 
 
 def __create_init(schema, outdir):
     m = []
     a = []
-    p = open(os.path.join(outdir, "__init__.py"), 'w')
+    p = Path(outdir, "__init__.py")
     for module, elements in sorted(schema.element_structure.items()):
         a.append('"{0}"'.format(module.lower()))
         m.append("from pymei.Modules.{0} import *\n".format(module.lower()))
-    p.write("__all__ = [{0}]\n\n".format(", ".join(a)))
-    p.writelines(m)
-    p.close()
+    init_string = "__all__ = [{0}]\n\n".format(", ".join(a)) + "".join(m)
+    p.open("w")
+    p.write_text(init_string)
 
 
 def parse_includes(file_dir, includes_dir):
     lg.debug("Parsing includes")
     # get the files in the includes directory
-    includes = [f for f in os.listdir(includes_dir) if not f.startswith(".")]
+    includes = [f for f in Path(includes_dir).iterdir()
+                if not f.name.startswith(".")]
 
-    for dp, dn, fn in os.walk(file_dir):
-        for f in fn:
-            if f.startswith("."):
-                continue
-            methods, inc = __process_include(f, includes, includes_dir)
-            if methods:
-                __parse_codefile(methods, inc, dp, f)
+    for f in Path(file_dir).iterdir():
+        if f.name.startswith("."):
+            continue
+        methods, inc = __process_include(f, includes, includes_dir)
+        if methods:
+            __parse_codefile(methods, inc, f.parent, f)
 
 
 def __process_include(fname, includes, includes_dir):
-    name, ext = os.path.splitext(fname)
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
-        f = open(os.path.join(includes_dir, "{0}.inc".format(fname)), 'r')
-        includefile = f.read()
-        f.close()
+        f = Path(includes_dir, "{0}.inc".format(fname))
+        f.open("r")
+        includefile = f.read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
     else:
@@ -139,9 +138,9 @@ def __parse_includefile(contents):
 
 
 def __parse_codefile(methods, includes, directory, codefile):
-    f = open(os.path.join(directory, codefile), 'r')
-    contents = f.readlines()
-    f.close()
+    f = Path(directory, codefile)
+    f.open()
+    contents = f.read_text()
     regmatch = re.compile(
         r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)
     incmatch = re.compile(r"/\* #include_block \*/")
@@ -157,6 +156,4 @@ def __parse_codefile(methods, includes, directory, codefile):
                 contents[i] = methods[match.group(
                     "elementName")].lstrip("\n") + "\n"
 
-    f = open(os.path.join(directory, codefile), 'w')
-    f.writelines(contents)
-    f.close()
+    f.write_text(contents)
