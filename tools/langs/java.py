@@ -118,10 +118,10 @@ def __parse_codefile(methods, includes, directory, codefile):
     f.close()
 
 
-def capitalize_first_letter(text):
+def capitalize_first_letter(string: str) -> str:
     """
     Given a string, capitalize the first letter.
     """
-    chars = list(text.strip())
+    chars = list(string.strip())
     chars[0] = chars[0].upper()
     return "".join(chars)
