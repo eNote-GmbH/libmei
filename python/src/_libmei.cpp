@@ -187,13 +187,13 @@ BOOST_PYTHON_MODULE(_libmei) {
     ;
 
     void (MeiElement::*addAttributeByObject)(MeiAttribute*) = &MeiElement::addAttribute;
-    void (MeiElement::*addAttributeByString)(string, string) = &MeiElement::addAttribute;
+    void (MeiElement::*addAttributeByString)(const string&, const string&) = &MeiElement::addAttribute;
     void (MeiElement::*setDocument)(MeiDocument*) = &MeiElement::setDocument;
-    bool (MeiElement::*hasChildrenBool)() = &MeiElement::hasChildren;
-    bool (MeiElement::*hasChildrenArgs)(string) = &MeiElement::hasChildren;
+    bool (MeiElement::*hasChildrenBool)() const = &MeiElement::hasChildren;
+    bool (MeiElement::*hasChildrenArgs)(const string&) const = &MeiElement::hasChildren;
     void (MeiElement::*printElement)() = &MeiElement::printElement;
 
-    MeiElement* (MeiDocument::*getElementById)(string) = &MeiDocument::getElementById;
+    MeiElement* (MeiDocument::*getElementById)(const string&) = &MeiDocument::getElementById;
     
     /*
         Import functions
