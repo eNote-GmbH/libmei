@@ -78,7 +78,6 @@ def __create_python_classes(schema, outdir):
         module_output = MODULE_TEMPLATE.format(**modstr)
 
         fmi = Path(outdir, "{0}.py".format(module.lower()))
-        fmi.open("w")
         fmi.write_text(module_output)
         lg.debug("\tCreated {0}.py".format(module.lower()))
 
@@ -91,7 +90,6 @@ def __create_init(schema, outdir):
         a.append('"{0}"'.format(module.lower()))
         m.append("from pymei.Modules.{0} import *\n".format(module.lower()))
     init_string = "__all__ = [{0}]\n\n".format(", ".join(a)) + "".join(m)
-    p.open("w")
     p.write_text(init_string)
 
 
@@ -114,7 +112,6 @@ def __process_include(fname, includes, includes_dir):
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
         f = Path(includes_dir, "{0}.inc".format(fname))
-        f.open("r")
         includefile = f.read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
@@ -139,7 +136,6 @@ def __parse_includefile(contents):
 
 def __parse_codefile(methods, includes, directory, codefile):
     f = Path(directory, codefile)
-    f.open()
     contents = f.read_text()
     regmatch = re.compile(
         r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)

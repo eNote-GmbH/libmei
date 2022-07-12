@@ -937,7 +937,6 @@ def __process_include(fname, includes, includes_dir):
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
         f = Path(includes_dir, "{0}.inc".format(fname))
-        f.open("r")
         includefile = f.read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
@@ -958,7 +957,6 @@ def __parse_includefile(contents):
 
 def __parse_codefile(methods, includes, directory, codefile):
     f = Path(directory, codefile)
-    f.open()
     contents = f.read_text()
     regmatch = re.compile(r"/\* include <(?P<elementName>[^>]+)> \*/")
     incmatch = re.compile(r"/\* #include_block \*/")

@@ -871,6 +871,5 @@ def __create_manuscript_classes(schema, outdir):
     fileoutput = FILE_TEMPLATE.format(**filestr)
 
     fmi = Path(outdir, "libmei.plg")
-    fmi.open("w")
     fmi.write_text(fileoutput)
     return True

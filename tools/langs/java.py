@@ -95,7 +95,6 @@ def __create_java_classes(schema, outdir):
 
 def __parse_codefile(methods, includes, directory, codefile):
     f = Path(directory, codefile)
-    f.open()
     contents = f.read_text()
     regmatch = re.compile(
         r"[\s]+# <(?P<elementName>[^>]+)>", re.MULTILINE | re.DOTALL)
