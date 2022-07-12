@@ -53,17 +53,17 @@ typedef vector<MeiAttribute*> MeiAttributeList;
 typedef vector<string> XMLProcessingInstructions;
 typedef vector<string> ImportWarnings;
 
-bool MeiElement_EqualWrap(const MeiElement* x, const MeiElement* y) { return x == y; }
-bool MeiElement_NEqualWrap(const MeiElement* x, const MeiElement* y) { return x != y; }
-string MeiElement_Print(MeiElement* x) { return "<MeiElement " + x->getName() + ":" + x->getId() + ">"; }
+bool MeiElement_EqualWrap(const MeiElement *x, const MeiElement *y) { return x == y; }
+bool MeiElement_NEqualWrap(const MeiElement *x, const MeiElement *y) { return x != y; }
+string MeiElement_Print(MeiElement *x) { return "<MeiElement " + x->getName() + ":" + x->getId() + ">"; }
 
-bool MeiDocument_EqualWrap(const MeiDocument* x, const MeiDocument* y) { return x == y; }
-bool MeiDocument_NEqualWrap(const MeiDocument* x, const MeiDocument* y) { return x != y; }
+bool MeiDocument_EqualWrap(const MeiDocument *x, const MeiDocument *y) { return x == y; }
+bool MeiDocument_NEqualWrap(const MeiDocument *x, const MeiDocument *y) { return x != y; }
 string MeiDocument_Print(MeiDocument *x) { return "<MeiDocument " + x->getVersion() + ">"; }
 
-bool MeiAttribute_EqualWrap(const MeiAttribute* x, const MeiAttribute* y) { return x == y; }
-bool MeiAttribute_NEqualWrap(const MeiAttribute* x, const MeiAttribute* y) { return x != y; }
-string MeiAttribute_Print(MeiAttribute* x) { return "<MeiAttribute " + x->getName() + ":" + x->getValue() + ">"; }
+bool MeiAttribute_EqualWrap(const MeiAttribute *x, const MeiAttribute *y) { return x == y; }
+bool MeiAttribute_NEqualWrap(const MeiAttribute *x, const MeiAttribute *y) { return x != y; }
+string MeiAttribute_Print(MeiAttribute *x) { return "<MeiAttribute " + x->getName() + ":" + x->getValue() + ">"; }
 
 bool MeiElementList_EqualWrap(const MeiElementList x, const MeiElementList y) { return x == y; }
 bool MeiElementList_NEqualWrap(const MeiElementList x, const MeiElementList y) { return x != y; }
@@ -78,13 +78,13 @@ string MeiElementList_Print(MeiElementList x) {
     return res.str();
 }
 
-MeiElement* MeiElementList_PopFromList(MeiElementList* x) {
-    MeiElement* t = x->back();
+MeiElement *MeiElementList_PopFromList(MeiElementList *x) {
+    MeiElement *t = x->back();
     x->pop_back();
     return t;
 }
 
-void MeiElementList_PushToList(MeiElementList* x, MeiElement* y) {
+void MeiElementList_PushToList(MeiElementList *x, MeiElement *y) {
     x->insert(x->begin(), y);
 }
 
@@ -101,18 +101,18 @@ string MeiAttributeList_Print(MeiAttributeList x) {
     return res.str();
 }
 
-MeiAttribute* MeiAttributeList_PopFromList(MeiAttributeList* x) {
-    MeiAttribute* t = x->back();
+MeiAttribute *MeiAttributeList_PopFromList(MeiAttributeList *x) {
+    MeiAttribute *t = x->back();
     x->pop_back();
     return t;
 }
 
-void MeiAttributeList_PushToList(MeiAttributeList* x, MeiAttribute* y) {
+void MeiAttributeList_PushToList(MeiAttributeList *x, MeiAttribute *y) {
     x->insert(x->begin(), y);
 }
 
 /*
- * Converter for python lists to vector<T>
+  *Converter for python lists to vector<T>
  */
 template<typename T>
 struct VectorFromList {
@@ -120,7 +120,7 @@ struct VectorFromList {
         converter::registry::push_back(&convertible, &construct, type_id<vector<T*> >()); 
     }
 
-    static void* convertible(PyObject* obj_ptr){
+    static void *convertible(PyObject *obj_ptr){
         if (!PySequence_Check(obj_ptr)) {
             return 0;
         }
@@ -129,9 +129,9 @@ struct VectorFromList {
         }
     }
 
-    static void construct(PyObject* obj_ptr, converter::rvalue_from_python_stage1_data* data){
+    static void construct(PyObject *obj_ptr, converter::rvalue_from_python_stage1_data *data){
         // Get pointer to memory where the vector will be constructed
-        void* storage = ((converter::rvalue_from_python_storage<std::vector<T*> >*)(data))->storage.bytes;
+        void *storage = ((converter::rvalue_from_python_storage<std::vector<T*> >*)(data))->storage.bytes;
 
         // construct the new vector in place using the python list data
         new (storage) vector<T*>();
@@ -193,7 +193,7 @@ BOOST_PYTHON_MODULE(_libmei) {
     bool (MeiElement::*hasChildrenArgs)(const string&) const = &MeiElement::hasChildren;
     void (MeiElement::*printElement)() = &MeiElement::printElement;
 
-    MeiElement* (MeiDocument::*getElementById)(const string&) = &MeiDocument::getElementById;
+    MeiElement *(MeiDocument::*getElementById)(const string&) = &MeiDocument::getElementById;
     
     /*
         Import functions
