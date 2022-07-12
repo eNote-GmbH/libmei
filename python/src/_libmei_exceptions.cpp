@@ -1,4 +1,4 @@
-/*    
+/*   
     Copyright (c) 2011-2012 Andrew Hankinson, Alastair Porter, Greg Burlet and others
     
     Permission is hereby granted, free of charge, to any person obtaining
@@ -33,82 +33,82 @@
 using namespace boost::python;
 using namespace std;
 
-PyObject* pyMeiExceptionType;
-PyObject* pyVersionMismatchExceptionType;
-PyObject* pyDuplicateAttributeExceptionType;
-PyObject* pyAttributeNotFoundExceptionType;
-PyObject* pyChildNotFoundExceptionType;
-PyObject* pyNoVersionFoundExceptionType;
-PyObject* pyElementNotRegisteredExceptionType;
-PyObject* pyDocumentRootNotSetExceptionType;
-PyObject* pyFileWriteFailureExceptionType;
-PyObject* pyFileReadFailureExceptionType;
-PyObject* pyMalformedXMLExceptionType;
+PyObject *pyMeiExceptionType;
+PyObject *pyVersionMismatchExceptionType;
+PyObject *pyDuplicateAttributeExceptionType;
+PyObject *pyAttributeNotFoundExceptionType;
+PyObject *pyChildNotFoundExceptionType;
+PyObject *pyNoVersionFoundExceptionType;
+PyObject *pyElementNotRegisteredExceptionType;
+PyObject *pyDocumentRootNotSetExceptionType;
+PyObject *pyFileWriteFailureExceptionType;
+PyObject *pyFileReadFailureExceptionType;
+PyObject *pyMalformedXMLExceptionType;
 
-void MeiExceptionTranslate(mei::MeiException const& e) {
+void MeiExceptionTranslate(mei::MeiException const &e) {
     assert(pyMeiExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyMeiExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void VersionMismatchExceptionTranslate(mei::VersionMismatchException const& e) {
+void VersionMismatchExceptionTranslate(mei::VersionMismatchException const &e) {
     assert(pyVersionMismatchExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyVersionMismatchExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void DuplicateAttributeExceptionTranslate(mei::DuplicateAttributeException const& e) {
+void DuplicateAttributeExceptionTranslate(mei::DuplicateAttributeException const &e) {
     assert(pyDuplicateAttributeExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyDuplicateAttributeExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void AttributeNotFoundExceptionTranslate(mei::AttributeNotFoundException const& e) {
+void AttributeNotFoundExceptionTranslate(mei::AttributeNotFoundException const &e) {
     assert(pyAttributeNotFoundExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyAttributeNotFoundExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void ChildNotFoundExceptionTranslate(mei::ChildNotFoundException const& e) {
+void ChildNotFoundExceptionTranslate(mei::ChildNotFoundException const &e) {
     assert(pyChildNotFoundExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyChildNotFoundExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void NoVersionFoundExceptionTranslate(mei::NoVersionFoundException const& e) {
+void NoVersionFoundExceptionTranslate(mei::NoVersionFoundException const &e) {
     assert(pyNoVersionFoundExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyNoVersionFoundExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void ElementNotRegisteredExceptionTranslate(mei::ElementNotRegisteredException const& e) {
+void ElementNotRegisteredExceptionTranslate(mei::ElementNotRegisteredException const &e) {
     assert(pyElementNotRegisteredExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyElementNotRegisteredExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void DocumentRootNotSetExceptionTranslate(mei::DocumentRootNotSetException const& e) {
+void DocumentRootNotSetExceptionTranslate(mei::DocumentRootNotSetException const &e) {
     assert(pyDocumentRootNotSetExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyDocumentRootNotSetExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void FileWriteFailureExceptionTranslate(mei::FileWriteFailureException const& e) {
+void FileWriteFailureExceptionTranslate(mei::FileWriteFailureException const &e) {
     assert(pyFileWriteFailureExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyFileWriteFailureExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-void FileReadFailureExceptionTranslate(mei::FileReadFailureException const& e) {
+void FileReadFailureExceptionTranslate(mei::FileReadFailureException const &e) {
     assert(pyFileReadFailureExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyFileReadFailureExceptionType, pythonExceptionInstance.ptr());
@@ -116,23 +116,23 @@ void FileReadFailureExceptionTranslate(mei::FileReadFailureException const& e) {
 }
 
 
-void MalformedXMLExceptionTranslate(mei::MalformedXMLException const& e) {
+void MalformedXMLExceptionTranslate(mei::MalformedXMLException const &e) {
     assert(pyMalformedXMLExceptionType != NULL);
     object pythonExceptionInstance(e);
     PyErr_SetObject(pyMalformedXMLExceptionType, pythonExceptionInstance.ptr());
     throw_error_already_set();
 }
 
-PyObject* createExceptionClass(const char* name, PyObject* baseTypeObj = PyExc_Exception)
+PyObject *createExceptionClass(const char *name, PyObject *baseTypeObj = PyExc_Exception)
 {
     using std::string;
     namespace bp = boost::python;
 
     string scopeName = bp::extract<string>(bp::scope().attr("__name__"));
     string qualifiedName0 = scopeName + "." + name;
-    char* qualifiedName1 = const_cast<char*>(qualifiedName0.c_str());
+    char *qualifiedName1 = const_cast<char*>(qualifiedName0.c_str());
 
-    PyObject* typeObj = PyErr_NewException(qualifiedName1, baseTypeObj, 0);
+    PyObject *typeObj = PyErr_NewException(qualifiedName1, baseTypeObj, 0);
     if(!typeObj) bp::throw_error_already_set();
     bp::scope().attr(name) = bp::handle<>(bp::borrowed(typeObj));
     return typeObj;
