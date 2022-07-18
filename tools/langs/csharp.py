@@ -1,8 +1,8 @@
 # -- coding: utf-8 --
 import logging
-import os
 import sys
 import textwrap
+from pathlib import Path
 
 lg = logging.getLogger('schemaparser')
 
@@ -266,8 +266,8 @@ def __get_docstr(text, indent=0):
 def __create_att_classes(schema, outdir):
     lg.debug("Creating Attribute Classes")
 
-    outdir_att = os.path.join(outdir, "atts")
-    os.mkdir(outdir_att)
+    outdir_att = Path(outdir, "atts")
+    outdir_att.mkdir()
 
     for module, atgroup in sorted(schema.attribute_group_structure.items()):
         fullout = ""
@@ -322,10 +322,9 @@ def __create_att_classes(schema, outdir):
 
             fullout = ATT_FILE.format(**tplvars)
 
-            fmh = open(os.path.join(outdir_att, "att_{0}.cs".format(
-                schema.cc(schema.strpatt(gp)).lower())), 'w')
-            fmh.write(fullout)
-            fmh.close()
+            fmh = Path(outdir_att, "att_{0}.cs".format(
+                schema.cc(schema.strpatt(gp)).lower()))
+            fmh.write_text(fullout)
             lg.debug("\tCreated att_{0}.cs".format(
                 schema.cc(schema.strpatt(gp)).lower()))
 
@@ -333,8 +332,8 @@ def __create_att_classes(schema, outdir):
 def __create_element_classes(schema, outdir):
     lg.debug("Creating Element Classes")
 
-    outdir_el = os.path.join(outdir, "elements")
-    os.mkdir(outdir_el)
+    outdir_el = Path(outdir, "elements")
+    outdir_el.mkdir()
 
     for module, elements in sorted(schema.element_structure.items()):
 
@@ -399,8 +398,6 @@ def __create_element_classes(schema, outdir):
 
             fullout += ELEMENT_FILE.format(**el_docstrings)
 
-            fmi = open(os.path.join(
-                outdir_el, "{0}.cs".format(schema.cc(element))), 'w')
-            fmi.write(fullout)
-            fmi.close()
+            fmi = Path(outdir_el, "{0}.cs".format(schema.cc(element)))
+            fmi.write_text(fullout)
             lg.debug("\tCreated {0}.cs".format(schema.cc(element)))
