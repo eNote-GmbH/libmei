@@ -1,6 +1,6 @@
 project( libmei )
 
-cmake_minimum_required( VERSION 2.6 )
+cmake_minimum_required (VERSION 3.0)
 
 find_path    (UUID_INCLUDE_DIR   uuid/uuid.h)
 find_library (UUID_LIBRARY NAMES uuid)
@@ -23,8 +23,8 @@ endif()
 
 set( CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}")
 
-set( MEI_LIB_MAJOR_VERSION "1" )
-set( MEI_LIB_MINOR_VERSION "0" )
+set( MEI_LIB_MAJOR_VERSION "3" )
+set( MEI_LIB_MINOR_VERSION "1" )
 set( MEI_LIB_PATCH_VERSION "0" )
 set( MEI_LIB_VERSION "${MEI_LIB_MAJOR_VERSION}.${MEI_LIB_MINOR_VERSION}.${MEI_LIB_PATCH_VERSION}" )
 set( MEI_LIB_VERSION_SONAME "${MEI_LIB_MAJOR_VERSION}.${MEI_LIB_MINOR_VERSION}")
@@ -49,12 +49,12 @@ set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "A library to read and write MEI (music e
 
 # make uninstall support
 CONFIGURE_FILE(
-  "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-  IMMEDIATE @ONLY)
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY)
 
 ADD_CUSTOM_TARGET(uninstall
-  "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+    "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 
 FILE(GLOB src_files "src/*.cpp")
 FILE(GLOB src_header_hpp "src/*.hpp")
@@ -77,7 +77,7 @@ set( LIBMEI_H
 	${src_headers}
     ${src_header_hpp}
 	${module_headers}
-	${import_headers}
+    ${import_headers}
 	${export_headers}
 )
 
@@ -88,10 +88,10 @@ endif (CMAKE_COMPILER_IS_GNUCXX)
 
 INCLUDE_DIRECTORIES(
 	${CMAKE_CURRENT_SOURCE_DIR}/src
-	${CMAKE_CURRENT_SOURCE_DIR}/src/import
-	${CMAKE_CURRENT_SOURCE_DIR}/src/export
-	${CMAKE_CURRENT_SOURCE_DIR}/src/modules
-	${UUID_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/import
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/export
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/modules
+    ${UUID_INCLUDE_DIR}
 )
 
 ADD_DEFINITIONS(
@@ -124,10 +124,10 @@ if( MEI_BUILD_TESTS )
         "gtest-1.6.0/include"
     )
 
-	file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/mei)
-	file(GLOB meifiles "test/*.mei")
-	file(COPY ${LIBMEI_H} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/mei)
-	file(COPY ${meifiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+    file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/mei)
+    file(GLOB meifiles "test/*.mei")
+    file(COPY ${LIBMEI_H} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/mei)
+    file(COPY ${meifiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
     macro(add_mei_test _source)
         get_filename_component(_name ${_source} NAME_WE)

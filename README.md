@@ -28,10 +28,8 @@ To use libmei, include
 
     #include <mei/mei.h>
 
-We provide two sample applications to demonstrate use. ```util/readmei.cpp``` is a trivial
-example of reading and writing MEI, and making a change to the document structure.
-```util/mxmltomei``` contains a tool to convert between MusicXML and MEI. This tool is
-still in active development.
+We provide two sample applications to demonstrate use. ```util/readmei.cpp``` is a trivial example of reading and writing MEI, and making a change to the document structure.
+```util/mxmltomei``` contains a tool to convert between MusicXML and MEI. This tool is still in active development.
 
 More detailed information about compilation and use is available at the
 libmei wiki: https://github.com/DDMAL/libmei/wiki
