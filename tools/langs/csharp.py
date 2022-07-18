@@ -1,9 +1,9 @@
 # -- coding: utf-8 --
-import sys
-import os
-import re
-import textwrap
 import logging
+import sys
+import textwrap
+from pathlib import Path
+
 lg = logging.getLogger('schemaparser')
 
 LANG_NAME = "C#"
@@ -16,7 +16,7 @@ NS_PREFIX_MAP = {
 
 AUTHORS = "Anna Plaksin"
 
-ATT_FILE ="""using System;
+ATT_FILE = """using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,11 +39,16 @@ ATT_METHODS = """#region {attNameLower}
       MeiAtt_controller.SetAttribute({interfaceParamInvoke}, {attConst}, _val);
     }}
 
-    public{static} XAttribute Get{attNameUpper}({interfaceParamDef})
+    public{static} XAttribute Get{attNameUpper}Attribute({interfaceParamDef})
     {{
       return MeiAtt_controller.GetAttribute({interfaceParamInvoke}, {attConst});
     }}
-
+    
+    public{static} string Get{attNameUpper}Value({interfaceParamDef})
+    {{
+      return MeiAtt_controller.GetAttributeValue({interfaceParamInvoke}, {attConst});
+    }}
+    
     public{static} bool Has{attNameUpper}({interfaceParamDef})
     {{
       return MeiAtt_controller.HasAttribute({interfaceParamInvoke}, {attConst});
@@ -97,10 +102,10 @@ namespace mei
 }}
 """
 
-NS_DECLARATION ="""private static readonly XNamespace ns_{objectName} = "{ns}";
+NS_DECLARATION = """private static readonly XNamespace ns_{objectName} = "{ns}";
 """
 
-ELEMENT_CONSTRUCTORS ="""{ns_decl}
+ELEMENT_CONSTRUCTORS = """{ns_decl}
         public {elementNameUpper}() : base({elementConst}) {{ }}
 
         public {elementNameUpper}(object _content) : base({elementConst}, _content) {{ }}
@@ -115,19 +120,17 @@ LICENSE = """///////////////////////////////////////////////////////////////////
 //
 // Code generated using a modified version of libmei
 // by Andrew Hankinson, Alastair Porter, and Others
-/////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////
-// NOTE: this file was generated with the Verovio libmei version and
-// should not be edited because changes will be lost.
 /////////////////////////////////////////////////////////////////////////////"""
 
 # globals
-TEI_NS = {"tei": "http://www.tei-c.org/ns/1.0", "rng": "http://relaxng.org/ns/structure/1.0"}
+TEI_NS = {"tei": "http://www.tei-c.org/ns/1.0",
+          "rng": "http://relaxng.org/ns/structure/1.0"}
+
 
 def windll_getAttClassMembers(schema, group):
-    #returns a list of members of an attribute class
-    memberList = schema.xpath("//tei:classSpec[@type=$att][@ident=$nm]/tei:classes/tei:memberOf/@key", att="atts", nm=group, namespaces=TEI_NS)
+    # returns a list of members of an attribute class
+    memberList = schema.xpath(
+        "//tei:classSpec[@type=$att][@ident=$nm]/tei:classes/tei:memberOf/@key", att="atts", nm=group, namespaces=TEI_NS)
 
     if "att.id" in memberList:
         memberList.remove("att.id")
@@ -140,14 +143,17 @@ def windll_getAttClassMembers(schema, group):
 
     return (members)
 
+
 def windll_getElementNS(schema, element):
-    #returns non-mei namespaces
-    ns = schema.xpath("//tei:elementSpec[@ident=$el]/@ns", el = element, namespaces=TEI_NS)
+    # returns non-mei namespaces
+    ns = schema.xpath(
+        "//tei:elementSpec[@ident=$el]/@ns", el=element, namespaces=TEI_NS)
 
     if "http://www.music-encoding.org/ns/mei" in ns:
         ns.remove("http://www.music-encoding.org/ns/mei")
 
     return (ns)
+
 
 def windll_writeAttMethods(attribute, atgroup, schema):
     # writes attribute methods for the defined attribute
@@ -161,23 +167,25 @@ def windll_writeAttMethods(attribute, atgroup, schema):
     if len(attribute.split("|")) > 1:
         ns, attribute = attribute.split("|")
 
-        #check, if namespace is already in prefix list
+        # check, if namespace is already in prefix list
         if ns in NS_PREFIX_MAP:
             prefix = NS_PREFIX_MAP[ns]
         else:
             exp_ns = ns
 
-    att_name = "{0}:{1}".format(prefix, attribute) if prefix != "" else "{0}".format(attribute)
-        
-    #build readonly for explicit namespaces
+    att_name = "{0}:{1}".format(
+        prefix, attribute) if prefix != "" else "{0}".format(attribute)
+
+    # build readonly for explicit namespaces
     if exp_ns != "":
         ns_strings = {
-            "ns" : exp_ns,
-            "objectName" : att_name,
-            }
+            "ns": exp_ns,
+            "objectName": att_name,
+        }
         ns_decl += NS_DECLARATION.format(**ns_strings)
-    
-    att_const = "\"{0}\"".format(att_name) if exp_ns == "" else "\"{0}\", ns_{0}".format(att_name)
+
+    att_const = "\"{0}\"".format(
+        att_name) if exp_ns == "" else "\"{0}\", ns_{0}".format(att_name)
 
     # Set interface parameter for an attribute of an attribute class or an element
     interfaceParamDef = ""
@@ -185,8 +193,10 @@ def windll_writeAttMethods(attribute, atgroup, schema):
     interfaceParamDefSet = ""
     static = ""
     if atgroup != "":
-        interfaceParamDef = "this IAtt{0} e".format(schema.cc(schema.strpatt(atgroup)))
-        interfaceParamDefSet = "this IAtt{0} e, ".format(schema.cc(schema.strpatt(atgroup)))
+        interfaceParamDef = "this IAtt{0} e".format(
+            schema.cc(schema.strpatt(atgroup)))
+        interfaceParamDefSet = "this IAtt{0} e, ".format(
+            schema.cc(schema.strpatt(atgroup)))
         interfaceParamInvoke = "e"
         static = " static"
     else:
@@ -194,19 +204,19 @@ def windll_writeAttMethods(attribute, atgroup, schema):
         interfaceParamDefSet = ""
         interfaceParamInvoke = "this"
 
-    if att_name == "type":
-        att_name = "typeAttribute"
+    # if att_name == "type":
+    #    att_name = "typeAttribute"
 
     att_strings = {
-        "ns_decl" : ns_decl,
-        "attNameUpper" : schema.cc(att_name) if att_name == "typeAttribute" else schema.cc(schema.strpatt(attribute)),
-        "attConst" : att_const,
-        "interfaceParamDef" : interfaceParamDef,
-        "interfaceParamInvoke" : interfaceParamInvoke,
-        "interfaceParamDefSet" : interfaceParamDefSet,
-        "attNameLower" : att_name,
-        "static" : static,
-        }
+        "ns_decl": ns_decl,
+        "attNameUpper": schema.cc(schema.strpatt(attribute)),
+        "attConst": att_const,
+        "interfaceParamDef": interfaceParamDef,
+        "interfaceParamInvoke": interfaceParamInvoke,
+        "interfaceParamDefSet": interfaceParamDefSet,
+        "attNameLower": att_name,
+        "static": static,
+    }
 
     att_methods = ATT_METHODS.format(**att_strings)
 
@@ -256,9 +266,9 @@ def __get_docstr(text, indent=0):
 def __create_att_classes(schema, outdir):
     lg.debug("Creating Attribute Classes")
 
-    outdir_att = os.path.join(outdir, "atts")
-    os.mkdir(outdir_att)
-    
+    outdir_att = Path(outdir, "atts")
+    outdir_att.mkdir()
+
     for module, atgroup in sorted(schema.attribute_group_structure.items()):
         fullout = ""
 
@@ -267,7 +277,7 @@ def __create_att_classes(schema, outdir):
             continue
 
         for gp, atts in sorted(atgroup.items()):
-            
+
             extension_classes = ""
             interfaces = ""
 
@@ -282,48 +292,51 @@ def __create_att_classes(schema, outdir):
                 methods += windll_writeAttMethods(att, gp, schema)
 
             clsubstrings = {
-                "methods" : methods,
-                "attGroupNameUpper" : schema.cc(schema.strpatt(gp)),
-                "attGroupName" : gp,
-                }
-            #add List of members
+                "methods": methods,
+                "attGroupNameUpper": schema.cc(schema.strpatt(gp)),
+                "attGroupName": gp,
+            }
+            # add List of members
             members = ""
             for member in gp_members:
                 members += ", I{0}".format(schema.cc(member))
 
             intstrings = {
-                "attGroupNameUpper" : schema.cc(schema.strpatt(gp)),
-                "attGroupName" : gp,
-                "members" : members
-                }
-             
+                "attGroupNameUpper": schema.cc(schema.strpatt(gp)),
+                "attGroupName": gp,
+                "members": members
+            }
+
             if methods != "":
                 # if attribute class doesn't contain attributes itself, skip creation of extension class
-                extension_classes += ATTGROUP_EXTENSION_CLASS.format(**clsubstrings)
+                extension_classes += ATTGROUP_EXTENSION_CLASS.format(
+                    **clsubstrings)
 
             interfaces += ATTGROUP_INTERFACE.format(**intstrings)
 
             tplvars = {
                 "license": LICENSE.format(authors=AUTHORS),
-                "ext_classes" : extension_classes,
-                "interfaces" : interfaces
-                }
+                "ext_classes": extension_classes,
+                "interfaces": interfaces
+            }
 
             fullout = ATT_FILE.format(**tplvars)
-            
-            fmh = open(os.path.join(outdir_att, "att_{0}.cs".format(schema.cc(schema.strpatt(gp)).lower())), 'w')
-            fmh.write(fullout)
-            fmh.close()
-            lg.debug("\tCreated att_{0}.cs".format(schema.cc(schema.strpatt(gp)).lower()))
+
+            fmh = Path(outdir_att, "att_{0}.cs".format(
+                schema.cc(schema.strpatt(gp)).lower()))
+            fmh.write_text(fullout)
+            lg.debug("\tCreated att_{0}.cs".format(
+                schema.cc(schema.strpatt(gp)).lower()))
+
 
 def __create_element_classes(schema, outdir):
     lg.debug("Creating Element Classes")
 
-    outdir_el = os.path.join(outdir, "elements")
-    os.mkdir(outdir_el)
+    outdir_el = Path(outdir, "elements")
+    outdir_el.mkdir()
 
     for module, elements in sorted(schema.element_structure.items()):
-        
+
         if not elements:
             continue
 
@@ -355,39 +368,36 @@ def __create_element_classes(schema, outdir):
             ns_readonly = ""
             if len(ns_nonmei) > 0:
                 ns_strings = {
-                    "objectName" : element,
-                    "ns" : ns_nonmei[len(ns_nonmei)-1]
-                    }
+                    "objectName": element,
+                    "ns": ns_nonmei[len(ns_nonmei)-1]
+                }
                 ns_readonly += NS_DECLARATION.format(**ns_strings)
 
-            element_const = "\"{0}\"".format(element) if ns_readonly == "" else "ns_{0}, \"{0}\"".format(element)
+            element_const = "\"{0}\"".format(
+                element) if ns_readonly == "" else "ns_{0}, \"{0}\"".format(element)
 
             const_strings = {
-                "ns_decl" : ns_readonly,
-                "elementConst" : element_const,
-                "elementNameUpper" : schema.cc(element)
-                }
+                "ns_decl": ns_readonly,
+                "elementConst": element_const,
+                "elementNameUpper": schema.cc(element)
+            }
 
             class_constuctors += ELEMENT_CONSTRUCTORS.format(**const_strings)
 
-            # In the case of self-defined attributes, implementing IMeiAtt is not necessary, 
+            # In the case of self-defined attributes, implementing IMeiAtt is not necessary,
             # because used methods of XElement are already available within element class.
 
             el_docstrings = {
-                "elementName" : element,
-                "elementNameUpper" : schema.cc(element),
-                "attClassInterfaces" : at_interfaces,
-                "constructors" : class_constuctors,
-                "attribute_methods" : at_methods,
+                "elementName": element,
+                "elementNameUpper": schema.cc(element),
+                "attClassInterfaces": at_interfaces,
+                "constructors": class_constuctors,
+                "attribute_methods": at_methods,
                 "license": LICENSE.format(authors=AUTHORS),
-                }
+            }
 
             fullout += ELEMENT_FILE.format(**el_docstrings)
-            
-            fmi = open(os.path.join(outdir_el, "{0}.cs".format(schema.cc(element))), 'w')
-            fmi.write(fullout)
-            fmi.close()
+
+            fmi = Path(outdir_el, "{0}.cs".format(schema.cc(element)))
+            fmi.write_text(fullout)
             lg.debug("\tCreated {0}.cs".format(schema.cc(element)))
-
-
-
