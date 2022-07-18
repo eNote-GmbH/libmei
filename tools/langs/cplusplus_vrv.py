@@ -639,9 +639,8 @@ def __create_att_classes(schema, outdir, includes_dir):
         }
         
         fullout = CLASSES_HEAD_TEMPLATE.format(**tplvars)
-        fmh = open(Path(outdir, "atts_{0}.h".format(module.lower())), "w")
-        fmh.write(fullout)
-        fmh.close()
+        fmh = Path(outdir, "atts_{0}.h".format(module.lower()))
+        fmh.write_text(fullout)
         lg.debug("\tCreated atts_{0}.h".format(module.lower()))
         
         
@@ -936,8 +935,7 @@ def __process_include(fname, includes, includes_dir):
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
-        f = Path(includes_dir, "{0}.inc".format(fname))
-        includefile = f.read_text()
+        includefile = Path(includes_dir, "{0}.inc".format(fname)).read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
     else:

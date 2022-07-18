@@ -239,9 +239,8 @@ def __create_mixin_classes(schema, outdir):
         if "std::string" in classes:
             tplvars["includes"] = "#include <string>"
         fullout = CLASSES_HEAD_TEMPLATE.format(**tplvars)
-        fmh = open(Path(outdir, "{0}mixins.h".format(module.lower())), 'w')
-        fmh.write(fullout)
-        fmh.close()
+        fmh = Path(outdir, "{0}mixins.h".format(module.lower()))
+        fmh.write_text(fullout)
         lg.debug("\tCreated {0}mixins.h".format(module.lower()))
 
     lg.debug("Creating Mixin Implementations")
@@ -298,9 +297,8 @@ def __create_mixin_classes(schema, outdir):
             "elements": classes
         }
         fullout = CLASSES_IMPL_TEMPLATE.format(**tplvars)
-        fmi = open(Path(outdir, "{0}mixins.cpp".format(module.lower())), 'w')
-        fmi.write(fullout)
-        fmi.close()
+        fmi = Path(outdir, "{0}mixins.cpp".format(module.lower()))
+        fmi.write_text(fullout)
         lg.debug("\tCreated {0}mixins.cpp".format(module.lower()))
 
 
@@ -372,9 +370,8 @@ def __create_element_classes(schema, outdir):
             outvars["includes"] += "#include <string>\n"
 
         fullout = CLASSES_HEAD_TEMPLATE.format(**outvars)
-        fmh = open(Path(outdir, "{0}.h".format(module.lower())), 'w')
-        fmh.write(fullout)
-        fmh.close()
+        fmh = Path(outdir, "{0}.h".format(module.lower()))
+        fmh.write_text(fullout)
         lg.debug("\tCreated {0}.h".format(module.lower()))
 
     # ###########################################################################
@@ -444,9 +441,8 @@ def __create_element_classes(schema, outdir):
         }
         fullout = CLASSES_IMPL_TEMPLATE.format(**implvars)
 
-        fmi = open(Path(outdir, "{0}.cpp".format(module.lower())), 'w')
-        fmi.write(fullout)
-        fmi.close()
+        fmi = Path(outdir, "{0}.cpp".format(module.lower()))
+        fmi.write_text(fullout)
         lg.debug("\t Created {0}.cpp".format(module.lower()))
 
 
@@ -468,9 +464,7 @@ def __process_include(fname, includes, includes_dir):
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
-        f = open(Path(includes_dir, "{0}.inc".format(fname)), 'r')
-        includefile = f.read()
-        f.close()
+        includefile = Path(includes_dir, "{0}.inc".format(fname)).read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
     else:

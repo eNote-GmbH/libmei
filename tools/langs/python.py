@@ -111,8 +111,7 @@ def __process_include(fname, includes, includes_dir):
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
-        f = Path(includes_dir, "{0}.inc".format(fname))
-        includefile = f.read_text()
+        includefile = Path(includes_dir, "{0}.inc".format(fname)).read_text()
         new_methods, includes_block = __parse_includefile(includefile)
         return (new_methods, includes_block)
     else:
