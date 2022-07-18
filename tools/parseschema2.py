@@ -23,15 +23,15 @@
 
 import sys
 
-if sys.version_info < (2, 7):
-    raise Exception("requires python 2.7")
+if sys.version_info < (3, 4):
+    raise Exception("requires python 3.4")
 
 import codecs
 import logging
-import os
 import re
 import shutil
 from argparse import ArgumentParser
+from pathlib import Path
 
 from lxml import etree
 
@@ -61,7 +61,8 @@ class MeiSchema(object):
         self.active_modules = []  # the modules active in the resulting output
         self.element_structure = {}  # the element structure.
         self.attribute_group_structure = {}  # the attribute group structure
-        self.inverse_attribute_group_structure = {}  # inverted, so we can map attgroups to modules
+        # inverted, so we can map attgroups to modules
+        self.inverse_attribute_group_structure = {}
         # holding data types and data lists
         self.data_types = {}
         self.data_lists = {}
@@ -76,7 +77,8 @@ class MeiSchema(object):
 
     def get_elements(self):
         """Retrieves all defined elements from the schema."""
-        elements = [m for m in self.schema.xpath("//tei:elementSpec", namespaces=TEI_NS)]
+        elements = [m for m in self.schema.xpath(
+            "//tei:elementSpec", namespaces=TEI_NS)]
         for element in elements:
             modname = element.get("module").split(".")[-1]
 
@@ -86,7 +88,8 @@ class MeiSchema(object):
             element_name = element.get("ident")
             memberships = []
 
-            element_membership = element.xpath("./tei:classes/tei:memberOf", namespaces=TEI_NS)
+            element_membership = element.xpath(
+                "./tei:classes/tei:memberOf", namespaces=TEI_NS)
             for member in element_membership:
                 if member.get("key").split(".")[0] != "att":
                     # skip the models that this element might be a member of
@@ -98,7 +101,8 @@ class MeiSchema(object):
 
             # need a way to keep self-defined attributes:
             selfattributes = []
-            attdefs = element.xpath("./tei:attList/tei:attDef", namespaces=TEI_NS)
+            attdefs = element.xpath(
+                "./tei:attList/tei:attDef", namespaces=TEI_NS)
             if attdefs:
                 for attdef in attdefs:
                     if attdef.get("ident") == "id":
@@ -106,11 +110,13 @@ class MeiSchema(object):
                     attname = self.__process_att(attdef)
                     selfattributes.append(attname)
 
-                self.element_structure[modname][element_name].append(selfattributes)
+                self.element_structure[modname][element_name].append(
+                    selfattributes)
 
     def get_attribute_groups(self):
         """Retrieves all defined attribute classes from the schema."""
-        attribute_groups = [m for m in self.schema.xpath("//tei:classSpec[@type=$at]", at="atts", namespaces=TEI_NS)]
+        attribute_groups = [m for m in self.schema.xpath(
+            "//tei:classSpec[@type=$at]", at="atts", namespaces=TEI_NS)]
         for group in attribute_groups:
             group_name = group.get("ident")
 
@@ -118,7 +124,8 @@ class MeiSchema(object):
                 continue
 
             group_module = group.get("module").split(".")[-1]
-            attdefs = group.xpath("./tei:attList/tei:attDef", namespaces=TEI_NS)
+            attdefs = group.xpath(
+                "./tei:attList/tei:attDef", namespaces=TEI_NS)
             if not attdefs:
                 continue
 
@@ -130,7 +137,8 @@ class MeiSchema(object):
                 if attdef.get("ident") == "id":
                     continue
                 attname = self.__process_att(attdef)
-                self.attribute_group_structure[group_module][group_name].append(attname)
+                self.attribute_group_structure[group_module][group_name].append(
+                    attname)
 
     def get_data_types_and_lists(self):
 
@@ -244,7 +252,8 @@ class MeiSchema(object):
         return attname
 
     def __get_membership(self, member, resarr):
-        member_attgroup = member.xpath("//tei:classSpec[@type=$att][@ident=$nm]", att="atts", nm=member.get("key"), namespaces=TEI_NS)
+        member_attgroup = member.xpath(
+            "//tei:classSpec[@type=$att][@ident=$nm]", att="atts", nm=member.get("key"), namespaces=TEI_NS)
 
         if member_attgroup:
             member_attgroup = member_attgroup[0]
@@ -255,7 +264,8 @@ class MeiSchema(object):
             if member_attgroup.get("ident") == "att.id":
                 return
             resarr.append(member_attgroup.get("ident"))
-        m2s = member_attgroup.xpath("./tei:classes/tei:memberOf", namespaces=TEI_NS)
+        m2s = member_attgroup.xpath(
+            "./tei:classes/tei:memberOf", namespaces=TEI_NS)
 
         if not m2s:
             return
@@ -277,30 +287,42 @@ class MeiSchema(object):
 
     def get_att_desc(self, att_name: str) -> str:
         """Returns the documentation string for an attribute by name."""
-        desc = self.schema.xpath(f"//tei:attDef[@ident='{att_name}']/tei:desc/text()", namespaces=TEI_NS)
+        desc = self.schema.xpath(
+            f"//tei:attDef[@ident='{att_name}']/tei:desc/text()", namespaces=TEI_NS)
         if desc:
-            return re.sub('[\s\t]+', ' ', desc[0])  # strip extraneous whitespace
+            # strip extraneous whitespace
+            return re.sub('[\s\t]+', ' ', desc[0])
         else:
             return ""
 
     def get_elem_desc(self, elem_name: str) -> str:
         """Returns the documentation string for an element by name."""
-        desc = self.schema.xpath(f"//tei:elementSpec[@ident='{elem_name}']/tei:desc/text()", namespaces=TEI_NS)
+        desc = self.schema.xpath(
+            f"//tei:elementSpec[@ident='{elem_name}']/tei:desc/text()", namespaces=TEI_NS)
         if desc:
-            return re.sub('[\s\t]+', ' ', desc[0])  # strip extraneous whitespace
+            # strip extraneous whitespace
+            return re.sub('[\s\t]+', ' ', desc[0])
         else:
             return ""
 
 
 if __name__ == "__main__":
-    p = ArgumentParser(usage='%(prog)s [compiled | -sl] [-h] [-o OUTDIR] [-i INCLUDES] [-d] [-l [LANG [LANG ...]]]') #Custom usage message to show user [compiled] should go before all other flags 
+    # Custom usage message to show user [compiled] should go before all other flags
+    p = ArgumentParser(
+        usage='%(prog)s [compiled | -sl] [-h] [-o OUTDIR] [-i INCLUDES] [-d] [-l [LANG [LANG ...]]]')
     exclusive_group = p.add_mutually_exclusive_group()
-    exclusive_group.add_argument("compiled", help="A compiled ODD file", nargs="?") # Due to nargs="?", "compiled" will appear as optional and not positional
+    # Due to nargs="?", "compiled" will appear as optional and not positional
+    exclusive_group.add_argument(
+        "compiled", help="A compiled ODD file", nargs="?")
     p.add_argument("-o", "--outdir", default="output", help="output directory")
-    p.add_argument("-l", "--lang", default=["python"], help="Programming language or languages to output. To output multiple languages at once, list desired languages separated by a space after -l. For example: python parseschema2.py [compiled] -l python cpp", nargs="*")
-    p.add_argument("-i", "--includes", help="Parse external includes from a given directory")
-    p.add_argument("-d", "--debugging", help="Run with verbose output", action="store_true")
-    exclusive_group.add_argument("-sl", "--showlang", help="Show languages and exit.", action="store_true")
+    p.add_argument("-l", "--lang", default=[
+                   "python"], help="Programming language or languages to output. To output multiple languages at once, list desired languages separated by a space after -l. For example: python parseschema2.py [compiled] -l python cpp", nargs="*")
+    p.add_argument("-i", "--includes",
+                   help="Parse external includes from a given directory")
+    p.add_argument("-d", "--debugging",
+                   help="Run with verbose output", action="store_true")
+    exclusive_group.add_argument(
+        "-sl", "--showlang", help="Show languages and exit.", action="store_true")
 
     args = p.parse_args()
 
@@ -325,92 +347,91 @@ if __name__ == "__main__":
             print("\t{0}".format(l))
         sys.exit(0)
 
-    compiled_odd = args.compiled
+    compiled_odd = Path(args.compiled)
 
     mei_source = codecs.open(compiled_odd, 'r', 'utf-8')
     # sf = codecs.open(args.source,'r', "utf-8")
     # cf = codecs.open(args.customization, 'r', "utf-8")
-    outdir = args.outdir
+    outdir = Path(args.outdir)
 
-    if not os.path.exists(args.outdir):
-        os.mkdir(args.outdir)
+    outdir.mkdir(exist_ok=True)
 
     schema = MeiSchema(mei_source)
 
     for lang in args.lang:
         if "cpp" in lang.lower():
             import langs.cplusplus as cpp
-            output_directory = os.path.join(outdir, "cpp")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "cpp")
+            if output_directory.exists():
                 lg.debug("Removing old C++ output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             cpp.create(schema, output_directory)
             if args.includes:
                 cpp.parse_includes(output_directory, args.includes)
 
         if "csharp" in lang.lower():
             import langs.csharp as csharp
-            output_directory = os.path.join(outdir, "c-sharp")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "c-sharp")
+            if output_directory.exists():
                 lg.debug("Removing old C# output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             csharp.create(schema, output_directory)
             if args.includes:
                 csharp.parse_includes(output_directory, args.includes)
 
         if "java" in lang.lower():
             import langs.java as java
-            output_directory = os.path.join(outdir, "java")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "java")
+            if output_directory.exists():
                 lg.debug("Removing old Java output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             java.create(schema, output_directory)
             if args.includes:
                 java.parse_includes(output_directory, args.includes)
 
         if "manuscript" in lang.lower():
             import langs.manuscript as ms
-            output_directory = os.path.join(outdir, "manuscript")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "manuscript")
+            if output_directory.exists():
                 lg.debug("Removing old Manuscript output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             ms.create(schema, output_directory)
 
         if "python" in lang.lower():
             import langs.python as py
-            output_directory = os.path.join(outdir, "python")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "python")
+            if output_directory.exists():
                 lg.debug("Removing old Python output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             py.create(schema, output_directory)
             if args.includes:
                 py.parse_includes(output_directory, args.includes)
 
         if "vrv" in lang.lower():
             import langs.cplusplus_vrv as vrv
-            output_directory = os.path.join(outdir, "libmei")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "libmei")
+            if output_directory.exists():
                 lg.debug("Removing old Verovio C++ output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             if args.includes:
                 vrv.create(schema, output_directory, args.includes)
                 vrv.parse_includes(output_directory, args.includes)
             else:
                 vrv.create(schema, output_directory)
-                
+
         if "vdoc" in lang.lower():
             import langs.html_vrv as vrv
-            output_directory = os.path.join(outdir, "doc")
-            if os.path.exists(output_directory):
+            output_directory = Path(outdir, "doc")
+            if output_directory.exists():
                 lg.debug("Removing old Verovio C++ output directory")
                 shutil.rmtree(output_directory)
-            os.mkdir(output_directory)
+            output_directory.mkdir()
             vrv.create(schema, output_directory, args.includes)
 
     mei_source.close()
