@@ -513,7 +513,7 @@ def vrv_getattdefault(schema, module, gp, aname, includes_dir = ""):
     
     if attype == "int":
         if default == None:
-            default = 0
+            default = "VRV_UNSET"
         return ("{0}".format(default), "", ["StrToInt", "IntToStr"])
     elif attype == "char":
         if default == None:
