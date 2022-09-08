@@ -35,6 +35,8 @@ from pathlib import Path
 
 from lxml import etree
 
+from langs import AVAILABLE_LANGS
+
 lg = logging.getLogger('schemaparser')
 f = logging.Formatter(
     "%(levelname)s %(asctime)s On Line: %(lineno)d %(message)s")
@@ -322,7 +324,7 @@ if __name__ == "__main__":
     p.add_argument("-d", "--debugging",
                    help="Run with verbose output", action="store_true")
     exclusive_group.add_argument(
-        "-sl", "--showlang", help="Show languages and exit.", action="store_true")
+        "-sl", "--showlang", help="Show available languages and exit.", action="store_true")
 
     args = p.parse_args()
 
@@ -331,19 +333,16 @@ if __name__ == "__main__":
         print("error: You must include a compiled ODD file")
         sys.exit(1)
 
-    avail_langs = ("cpp", "csharp", "java", "manuscript", "python", "vrv")
-
     if not args.lang == "python":
         for lang in args.lang:
-            if lang.lower() not in avail_langs:
+            if lang.lower() not in AVAILABLE_LANGS:
                 p.print_usage()
-                print("error: One or more of the languages you have chosen are not supported. To check supported languages use the -sl flag")
+                print("Error: One or more of the languages you have chosen are not supported. To check supported languages use the -sl flag")
                 sys.exit(1)
 
     if args.showlang:
-        import langs
         print("Available Output Languages")
-        for l in langs.AVAILABLE_LANGS:
+        for l in AVAILABLE_LANGS:
             print("\t{0}".format(l))
         sys.exit(0)
 
