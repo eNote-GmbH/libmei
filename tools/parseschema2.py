@@ -271,9 +271,6 @@ class MeiSchema(object):
         m2s = member_attgroup.xpath(
             "./tei:classes/tei:memberOf", namespaces=TEI_NS)
 
-        if not m2s:
-            return
-
         for mship in m2s:
             self.__get_membership(mship, resarr)
 
