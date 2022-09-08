@@ -32,6 +32,7 @@ import re
 import shutil
 from argparse import ArgumentParser
 from pathlib import Path
+from typing import List
 
 from lxml import etree
 
@@ -236,7 +237,7 @@ class MeiSchema(object):
         self.active_modules = list(self.element_structure.keys())
         self.active_modules.sort()
 
-    def __process_att(self, attdef):
+    def __process_att(self, attdef: etree.Element) -> str:
         """Process attribute definition."""
         attname = ""
         attdefident = attdef.get("ident")
@@ -254,7 +255,7 @@ class MeiSchema(object):
 
         return attname
 
-    def __get_membership(self, member, resarr):
+    def __get_membership(self, member: etree.Element, resarr: List[str]) -> None:
         """Get attribute groups."""
         member_attgroup = member.xpath(
             "//tei:classSpec[@type=$att][@ident=$nm]", att="atts", nm=member.get("key"), namespaces=TEI_NS)
