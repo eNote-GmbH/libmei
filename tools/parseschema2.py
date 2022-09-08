@@ -237,6 +237,7 @@ class MeiSchema(object):
         self.active_modules.sort()
 
     def __process_att(self, attdef):
+        """Process attribute definition."""
         attname = ""
         attdefident = attdef.get("ident")
         if "-" in attdefident:
@@ -254,6 +255,7 @@ class MeiSchema(object):
         return attname
 
     def __get_membership(self, member, resarr):
+        """Get attribute groups."""
         member_attgroup = member.xpath(
             "//tei:classSpec[@type=$att][@ident=$nm]", att="atts", nm=member.get("key"), namespaces=TEI_NS)
 
