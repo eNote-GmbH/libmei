@@ -166,7 +166,7 @@ class MeiSchema(object):
                 #lg.debug("REMOVE {0}".format(data_type))
 
         compoundchoice = [m for m in self.schema.xpath(
-            "//tei:macroSpec[@type=\"dt\" and .//rng:choice]", namespaces=TEI_RNG_NS)]
+            "//tei:macroSpec[@type=\"dt\" and .//rng:choice]|//tei:dataSpec[.//rng:choice]", namespaces=TEI_RNG_NS)]
         for ct in compoundchoice:
             #lg.debug("TYPE - {0}".format(ct.get("ident")))
             data_type = ct.get("ident")
@@ -289,21 +289,21 @@ class MeiSchema(object):
 
     def get_att_desc(self, att_name: str) -> str:
         """Returns the documentation string for an attribute by name."""
-        desc = self.schema.xpath(
-            f"//tei:attDef[@ident='{att_name}']/tei:desc/text()", namespaces=TEI_NS)
-        if desc:
+        desc = self.schema.find(
+            f"//tei:attDef[@ident='{att_name}']/tei:desc", namespaces=TEI_NS)
+        if desc is not None:
             # strip extraneous whitespace
-            return re.sub('[\s\t]+', ' ', desc[0])
+            return re.sub('[\s\t]+', ' ', desc.xpath("string()"))
         else:
             return ""
 
     def get_elem_desc(self, elem_name: str) -> str:
         """Returns the documentation string for an element by name."""
-        desc = self.schema.xpath(
-            f"//tei:elementSpec[@ident='{elem_name}']/tei:desc/text()", namespaces=TEI_NS)
-        if desc:
+        desc = self.schema.find(
+            f"//tei:elementSpec[@ident='{elem_name}']/tei:desc", namespaces=TEI_NS)
+        if desc is not None:
             # strip extraneous whitespace
-            return re.sub('[\s\t]+', ' ', desc[0])
+            return re.sub('[\s\t]+', ' ', desc.xpath("string()"))
         else:
             return ""
 
