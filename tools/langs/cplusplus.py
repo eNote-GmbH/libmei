@@ -1,7 +1,6 @@
 # -- coding: utf-8 --
 import logging
 import re
-import sys
 import textwrap
 from pathlib import Path
 
@@ -165,11 +164,7 @@ def __get_docstr(text, indent=0):
         and use it for the brief. Then put the rest of the text after a blank
         line if there is text there.
     """
-    # string handling is handled differently in Python 3+
-    if sys.version_info >= (3, 0):
-        text = text.strip()
-    else:
-        text = text.strip().encode("utf-8")
+    text = text.strip()
 
     dotpos = text.find(". ")
     if dotpos > 0:
