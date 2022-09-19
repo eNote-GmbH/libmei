@@ -57,6 +57,7 @@ def create(schema, outdir):
 
 
 def __create_python_classes(schema, outdir):
+    """Create Python Modules."""
     lg.debug("Creating Python Modules")
 
     for module, elements in sorted(schema.element_structure.items()):
@@ -83,6 +84,7 @@ def __create_python_classes(schema, outdir):
 
 
 def __create_init(schema, outdir):
+    """Create init file."""
     m = []
     a = []
     p = Path(outdir, "__init__.py")
@@ -93,7 +95,8 @@ def __create_init(schema, outdir):
     p.write_text(init_string)
 
 
-def parse_includes(file_dir, includes_dir):
+def parse_includes(file_dir, includes_dir: str):
+    """Parse includes."""
     lg.debug("Parsing includes")
     # get the files in the includes directory
     includes = [f for f in Path(includes_dir).iterdir()
@@ -119,7 +122,7 @@ def __process_include(fname, includes, includes_dir):
 
 
 def __parse_includefile(contents):
-    # parse the include file for our methods.
+    """Parse the include file for our methods."""
     ret = {}
     inc = []
     reg = re.compile(

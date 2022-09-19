@@ -411,7 +411,7 @@ def vrv_converter_cc(name):
 TEI_RNG_NS = {"tei": "http://www.tei-c.org/ns/1.0",
               "rng": "http://relaxng.org/ns/structure/1.0"}
 
-def vrv_load_config(includes_dir):
+def vrv_load_config(includes_dir: str):
     """Load the vrv attribute overrides into CONFIG."""
     global CONFIG
         
@@ -469,7 +469,7 @@ def vrv_getformattedtype(type):
 def vrv_getformattedvallist(att, vallist):
     return "{0}_{1}".format(vrv_member_cc(att.replace("att.","")), vallist.upper().replace(".","").replace(":",""))
 
-def vrv_getatttype(schema, module, gp, aname, includes_dir = ""):   
+def vrv_getatttype(schema, module, gp, aname, includes_dir: str = ""):   
     """Returns the attribute type for element name, or string if not detectable."""
     
     # Look up if there is an override for this type in the current module, and return it
@@ -505,7 +505,7 @@ def vrv_getatttype(schema, module, gp, aname, includes_dir = ""):
     # Otherwise as string
     return ("std::string", "")
 
-def vrv_getattdefault(schema, module, gp, aname, includes_dir = ""):        
+def vrv_getattdefault(schema, module, gp, aname, includes_dir: str = ""):        
     """Returns the attribute default value for element name, or string if not detectable."""
     
     attype, hungarian = vrv_getatttype(schema, module, gp, aname, includes_dir)
@@ -913,7 +913,8 @@ def __create_att_classes(schema, outdir, includes_dir):
     fmi_cpp.close()
     lg.debug("\tCreated attconverter.h/cpp")
 
-def parse_includes(file_dir, includes_dir):
+def parse_includes(file_dir, includes_dir: str):
+    """Parse includes."""
     lg.debug("Parsing includes")
     # get the files in the includes directory
     includes = [f for f in Path(includes_dir).iterdir()
@@ -926,7 +927,7 @@ def parse_includes(file_dir, includes_dir):
         if methods:
             __parse_codefile(methods, inc, f.parent, f)
 
-def __process_include(fname, includes, includes_dir):
+def __process_include(fname, includes, includes_dir: str):
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))

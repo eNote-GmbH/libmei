@@ -441,7 +441,8 @@ def __create_element_classes(schema, outdir):
         lg.debug("\t Created {0}.cpp".format(module.lower()))
 
 
-def parse_includes(file_dir, includes_dir):
+def parse_includes(file_dir, includes_dir: str):
+    """Parse includes."""
     lg.debug("Parsing includes")
     # get the files in the includes directory
     includes = [f for f in Path(includes_dir).iterdir()
@@ -455,7 +456,7 @@ def parse_includes(file_dir, includes_dir):
             __parse_codefile(methods, inc, f.parent, f)
 
 
-def __process_include(fname, includes, includes_dir):
+def __process_include(fname, includes, includes_dir: str):
     new_methods, includes_block = None, None
     if "{0}.inc".format(fname) in includes:
         lg.debug("\tProcessing include for {0}".format(fname))
