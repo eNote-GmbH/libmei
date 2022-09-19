@@ -179,13 +179,15 @@ modules:
             artic.ges:
                 type: data_ARTICULATION_List
 
+    mensural:
+        att.stem.vis:
+            len:
+                default: -1.0
+
     shared:
         att.articulation:
             artic:
                 type: data_ARTICULATION_List
-        att.barLine.log:
-            form:
-                default: BARRENDITION_single
         att.curvature:
             bulge:
                 type: data_BULGE
@@ -217,10 +219,15 @@ modules:
         att.stems:
             stem.len:
                 type: double
-                default: -1
+                default: -1.0
         att.timestamp.logical:
             tstamp:
                 default: -1.0
+        att.transposition:
+            trans.diat:
+                type: int
+            trans.semi:
+                type: int
 
     frettab:
         att.note.ges.tab:
