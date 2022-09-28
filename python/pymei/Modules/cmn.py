@@ -30,6 +30,11 @@ class arpeg_(MeiElement):
         MeiElement.__init__(self, "arpeg")
     # <arpeg>
 
+class attacca_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "attacca")
+    # <attacca>
+
 class bTrem_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "bTrem")
@@ -55,6 +60,11 @@ class bend_(MeiElement):
         MeiElement.__init__(self, "bend")
     # <bend>
 
+class bracketSpan_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "bracketSpan")
+    # <bracketSpan>
+
 class breath_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "breath")
@@ -75,6 +85,11 @@ class gliss_(MeiElement):
         MeiElement.__init__(self, "gliss")
     # <gliss>
 
+class graceGrp_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "graceGrp")
+    # <graceGrp>
+
 class hairpin_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "hairpin")
@@ -89,6 +104,16 @@ class harpPedal_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "harpPedal")
     # <harpPedal>
+
+class lv_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "lv")
+    # <lv>
+
+class mNum_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "mNum")
+    # <mNum>
 
 class mRest_(MeiElement):
     def __init__(self):
@@ -134,6 +159,16 @@ class multiRpt_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "multiRpt")
     # <multiRpt>
+
+class oLayer_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "oLayer")
+    # <oLayer>
+
+class oStaff_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "oStaff")
+    # <oStaff>
 
 class octave_(MeiElement):
     def __init__(self):

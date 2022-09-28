@@ -25,13 +25,18 @@
 from pymei import MeiElement
 
 
-class lyrics_(MeiElement):
+class refrain_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "lyrics")
-    # <lyrics>
+        MeiElement.__init__(self, "refrain")
+    # <refrain>
 
 class verse_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "verse")
     # <verse>
+
+class volta_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "volta")
+    # <volta>
 

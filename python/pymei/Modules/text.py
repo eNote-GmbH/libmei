@@ -25,35 +25,35 @@
 from pymei import MeiElement
 
 
+class argument_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "argument")
+    # <argument>
+
 class back_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "back")
     # <back>
 
-class div_(MeiElement):
+class epigraph_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "div")
-    # <div>
+        MeiElement.__init__(self, "epigraph")
+    # <epigraph>
 
 class front_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "front")
     # <front>
 
-class head_(MeiElement):
+class imprimatur_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "head")
-    # <head>
+        MeiElement.__init__(self, "imprimatur")
+    # <imprimatur>
 
 class l_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "l")
     # <l>
-
-class lg_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "lg")
-    # <lg>
 
 class li_(MeiElement):
     def __init__(self):
@@ -65,8 +65,18 @@ class list_(MeiElement):
         MeiElement.__init__(self, "list")
     # <list>
 
+class q_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "q")
+    # <q>
+
 class quote_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "quote")
     # <quote>
+
+class seg_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "seg")
+    # <seg>
 

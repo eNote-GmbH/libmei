@@ -25,28 +25,13 @@
 from pymei import MeiElement
 
 
-class ligature_(MeiElement):
+class fing_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "ligature")
-    # <ligature>
+        MeiElement.__init__(self, "fing")
+    # <fing>
 
-class mensur_(MeiElement):
+class fingGrp_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "mensur")
-    # <mensur>
-
-class plica_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "plica")
-    # <plica>
-
-class proport_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "proport")
-    # <proport>
-
-class stem_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "stem")
-    # <stem>
+        MeiElement.__init__(self, "fingGrp")
+    # <fingGrp>
 

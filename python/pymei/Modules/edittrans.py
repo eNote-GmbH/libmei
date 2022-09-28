@@ -45,6 +45,11 @@ class corr_(MeiElement):
         MeiElement.__init__(self, "corr")
     # <corr>
 
+class cpMark_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "cpMark")
+    # <cpMark>
+
 class damage_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "damage")
@@ -69,6 +74,11 @@ class handShift_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "handShift")
     # <handShift>
+
+class metaMark_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "metaMark")
+    # <metaMark>
 
 class orig_(MeiElement):
     def __init__(self):

@@ -25,13 +25,13 @@
 from pymei import MeiElement
 
 
-class timeline_(MeiElement):
+class sp_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "timeline")
-    # <timeline>
+        MeiElement.__init__(self, "sp")
+    # <sp>
 
-class when_(MeiElement):
+class stageDir_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "when")
-    # <when>
+        MeiElement.__init__(self, "stageDir")
+    # <stageDir>
 

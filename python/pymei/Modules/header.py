@@ -30,10 +30,10 @@ class accessRestrict_(MeiElement):
         MeiElement.__init__(self, "accessRestrict")
     # <accessRestrict>
 
-class acqSource_(MeiElement):
+class acquisition_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "acqSource")
-    # <acqSource>
+        MeiElement.__init__(self, "acquisition")
+    # <acquisition>
 
 class altId_(MeiElement):
     def __init__(self):
@@ -50,6 +50,11 @@ class application_(MeiElement):
         MeiElement.__init__(self, "application")
     # <application>
 
+class attUsage_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "attUsage")
+    # <attUsage>
+
 class audience_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "audience")
@@ -59,6 +64,16 @@ class availability_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "availability")
     # <availability>
+
+class bifolium_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "bifolium")
+    # <bifolium>
+
+class byline_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "byline")
+    # <byline>
 
 class captureMode_(MeiElement):
     def __init__(self):
@@ -70,6 +85,16 @@ class carrierForm_(MeiElement):
         MeiElement.__init__(self, "carrierForm")
     # <carrierForm>
 
+class catRel_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "catRel")
+    # <catRel>
+
+class category_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "category")
+    # <category>
+
 class change_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "change")
@@ -80,15 +105,20 @@ class changeDesc_(MeiElement):
         MeiElement.__init__(self, "changeDesc")
     # <changeDesc>
 
-class classCode_(MeiElement):
+class classDecls_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "classCode")
-    # <classCode>
+        MeiElement.__init__(self, "classDecls")
+    # <classDecls>
 
 class classification_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "classification")
     # <classification>
+
+class componentList_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "componentList")
+    # <componentList>
 
 class condition_(MeiElement):
     def __init__(self):
@@ -115,10 +145,20 @@ class correction_(MeiElement):
         MeiElement.__init__(self, "correction")
     # <correction>
 
-class dimensions_(MeiElement):
+class cutout_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "dimensions")
-    # <dimensions>
+        MeiElement.__init__(self, "cutout")
+    # <cutout>
+
+class dedication_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "dedication")
+    # <dedication>
+
+class domainsDecl_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "domainsDecl")
+    # <domainsDecl>
 
 class editionStmt_(MeiElement):
     def __init__(self):
@@ -135,25 +175,15 @@ class encodingDesc_(MeiElement):
         MeiElement.__init__(self, "encodingDesc")
     # <encodingDesc>
 
-class ensemble_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "ensemble")
-    # <ensemble>
-
-class event_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "event")
-    # <event>
-
-class eventList_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "eventList")
-    # <eventList>
-
 class exhibHist_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "exhibHist")
     # <exhibHist>
+
+class extMeta_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "extMeta")
+    # <extMeta>
 
 class fileChar_(MeiElement):
     def __init__(self):
@@ -165,10 +195,15 @@ class fileDesc_(MeiElement):
         MeiElement.__init__(self, "fileDesc")
     # <fileDesc>
 
-class fingerprint_(MeiElement):
+class foliaDesc_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "fingerprint")
-    # <fingerprint>
+        MeiElement.__init__(self, "foliaDesc")
+    # <foliaDesc>
+
+class folium_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "folium")
+    # <folium>
 
 class hand_(MeiElement):
     def __init__(self):
@@ -199,21 +234,6 @@ class inscription_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "inscription")
     # <inscription>
-
-class instrVoice_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "instrVoice")
-    # <instrVoice>
-
-class instrVoiceGrp_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "instrVoiceGrp")
-    # <instrVoiceGrp>
-
-class instrumentation_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "instrumentation")
-    # <instrumentation>
 
 class interpretation_(MeiElement):
     def __init__(self):
@@ -250,6 +270,11 @@ class meter_(MeiElement):
         MeiElement.__init__(self, "meter")
     # <meter>
 
+class namespace_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "namespace")
+    # <namespace>
+
 class normalization_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "normalization")
@@ -265,10 +290,30 @@ class otherChar_(MeiElement):
         MeiElement.__init__(self, "otherChar")
     # <otherChar>
 
+class patch_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "patch")
+    # <patch>
+
+class perfDuration_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "perfDuration")
+    # <perfDuration>
+
 class perfMedium_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "perfMedium")
     # <perfMedium>
+
+class perfRes_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "perfRes")
+    # <perfRes>
+
+class perfResList_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "perfResList")
+    # <perfResList>
 
 class physDesc_(MeiElement):
     def __init__(self):
@@ -365,15 +410,20 @@ class sysReq_(MeiElement):
         MeiElement.__init__(self, "sysReq")
     # <sysReq>
 
-class tapeConfig_(MeiElement):
+class tagUsage_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "tapeConfig")
-    # <tapeConfig>
+        MeiElement.__init__(self, "tagUsage")
+    # <tagUsage>
 
-class term_(MeiElement):
+class tagsDecl_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "term")
-    # <term>
+        MeiElement.__init__(self, "tagsDecl")
+    # <tagsDecl>
+
+class taxonomy_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "taxonomy")
+    # <taxonomy>
 
 class termList_(MeiElement):
     def __init__(self):
@@ -384,6 +434,11 @@ class titleStmt_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "titleStmt")
     # <titleStmt>
+
+class trackConfig_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "trackConfig")
+    # <trackConfig>
 
 class treatHist_(MeiElement):
     def __init__(self):
@@ -415,8 +470,8 @@ class work_(MeiElement):
         MeiElement.__init__(self, "work")
     # <work>
 
-class workDesc_(MeiElement):
+class workList_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "workDesc")
-    # <workDesc>
+        MeiElement.__init__(self, "workList")
+    # <workList>
 

@@ -45,6 +45,21 @@ class address_(MeiElement):
         MeiElement.__init__(self, "address")
     # <address>
 
+class ambNote_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "ambNote")
+    # <ambNote>
+
+class ambitus_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "ambitus")
+    # <ambitus>
+
+class analytic_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "analytic")
+    # <analytic>
+
 class annot_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "annot")
@@ -85,10 +100,20 @@ class biblScope_(MeiElement):
         MeiElement.__init__(self, "biblScope")
     # <biblScope>
 
+class biblStruct_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "biblStruct")
+    # <biblStruct>
+
 class body_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "body")
     # <body>
+
+class caesura_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "caesura")
+    # <caesura>
 
 class caption_(MeiElement):
     def __init__(self):
@@ -110,6 +135,11 @@ class castList_(MeiElement):
         MeiElement.__init__(self, "castList")
     # <castList>
 
+class cb_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "cb")
+    # <cb>
+
 class chord_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "chord")
@@ -125,10 +155,20 @@ class clefGrp_(MeiElement):
         MeiElement.__init__(self, "clefGrp")
     # <clefGrp>
 
+class colLayout_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "colLayout")
+    # <colLayout>
+
 class composer_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "composer")
     # <composer>
+
+class contributor_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "contributor")
+    # <contributor>
 
 class creation_(MeiElement):
     def __init__(self):
@@ -145,6 +185,31 @@ class date_(MeiElement):
         MeiElement.__init__(self, "date")
     # <date>
 
+class dedicatee_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "dedicatee")
+    # <dedicatee>
+
+class depth_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "depth")
+    # <depth>
+
+class desc_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "desc")
+    # <desc>
+
+class dim_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "dim")
+    # <dim>
+
+class dimensions_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "dimensions")
+    # <dimensions>
+
 class dir_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "dir")
@@ -154,6 +219,11 @@ class distributor_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "distributor")
     # <distributor>
+
+class div_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "div")
+    # <div>
 
 class dot_(MeiElement):
     def __init__(self):
@@ -180,6 +250,16 @@ class ending_(MeiElement):
         MeiElement.__init__(self, "ending")
     # <ending>
 
+class event_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "event")
+    # <event>
+
+class eventList_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "eventList")
+    # <eventList>
+
 class expansion_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "expansion")
@@ -195,11 +275,6 @@ class funder_(MeiElement):
         MeiElement.__init__(self, "funder")
     # <funder>
 
-class fw_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "fw")
-    # <fw>
-
 class genre_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "genre")
@@ -214,6 +289,16 @@ class grpSym_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "grpSym")
     # <grpSym>
+
+class head_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "head")
+    # <head>
+
+class height_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "height")
+    # <height>
 
 class identifier_(MeiElement):
     def __init__(self):
@@ -245,6 +330,11 @@ class label_(MeiElement):
         MeiElement.__init__(self, "label")
     # <label>
 
+class labelAbbr_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "labelAbbr")
+    # <labelAbbr>
+
 class layer_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "layer")
@@ -259,6 +349,11 @@ class lb_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "lb")
     # <lb>
+
+class lg_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "lg")
+    # <lg>
 
 class librettist_(MeiElement):
     def __init__(self):
@@ -280,6 +375,11 @@ class mei_(MeiElement):
         MeiElement.__init__(self, "mei")
     # <mei>
 
+class monogr_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "monogr")
+    # <monogr>
+
 class music_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "music")
@@ -299,6 +399,11 @@ class num_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "num")
     # <num>
+
+class ornam_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "ornam")
+    # <ornam>
 
 class p_(MeiElement):
     def __init__(self):
@@ -380,6 +485,16 @@ class relatedItem_(MeiElement):
         MeiElement.__init__(self, "relatedItem")
     # <relatedItem>
 
+class relation_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "relation")
+    # <relation>
+
+class relationList_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "relationList")
+    # <relationList>
+
 class rend_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "rend")
@@ -445,6 +560,11 @@ class space_(MeiElement):
         MeiElement.__init__(self, "space")
     # <space>
 
+class speaker_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "speaker")
+    # <speaker>
+
 class sponsor_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "sponsor")
@@ -475,10 +595,20 @@ class syl_(MeiElement):
         MeiElement.__init__(self, "syl")
     # <syl>
 
+class symbol_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "symbol")
+    # <symbol>
+
 class tempo_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "tempo")
     # <tempo>
+
+class term_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "term")
+    # <term>
 
 class textLang_(MeiElement):
     def __init__(self):
@@ -494,4 +624,14 @@ class titlePage_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "titlePage")
     # <titlePage>
+
+class titlePart_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "titlePart")
+    # <titlePart>
+
+class width_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "width")
+    # <width>
 

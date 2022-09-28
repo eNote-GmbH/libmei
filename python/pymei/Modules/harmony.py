@@ -25,11 +25,6 @@
 from pymei import MeiElement
 
 
-class barre_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "barre")
-    # <barre>
-
 class chordDef_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "chordDef")

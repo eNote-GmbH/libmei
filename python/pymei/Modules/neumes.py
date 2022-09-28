@@ -25,18 +25,63 @@
 from pymei import MeiElement
 
 
-class ineume_(MeiElement):
+class divLine_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "ineume")
-    # <ineume>
+        MeiElement.__init__(self, "divLine")
+    # <divLine>
+
+class episema_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "episema")
+    # <episema>
+
+class hispanTick_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "hispanTick")
+    # <hispanTick>
+
+class liquescent_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "liquescent")
+    # <liquescent>
+
+class nc_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "nc")
+    # <nc>
+
+class ncGrp_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "ncGrp")
+    # <ncGrp>
+
+class neume_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "neume")
+    # <neume>
+
+class oriscus_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "oriscus")
+    # <oriscus>
+
+class quilisma_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "quilisma")
+    # <quilisma>
+
+class signifLet_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "signifLet")
+    # <signifLet>
+
+class strophicus_(MeiElement):
+    def __init__(self):
+        MeiElement.__init__(self, "strophicus")
+    # <strophicus>
 
 class syllable_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "syllable")
     # <syllable>
-
-class uneume_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "uneume")
-    # <uneume>
 

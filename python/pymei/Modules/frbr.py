@@ -25,11 +25,6 @@
 from pymei import MeiElement
 
 
-class componentGrp_(MeiElement):
-    def __init__(self):
-        MeiElement.__init__(self, "componentGrp")
-    # <componentGrp>
-
 class expression_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "expression")
@@ -50,13 +45,13 @@ class itemList_(MeiElement):
         MeiElement.__init__(self, "itemList")
     # <itemList>
 
-class relation_(MeiElement):
+class manifestation_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "relation")
-    # <relation>
+        MeiElement.__init__(self, "manifestation")
+    # <manifestation>
 
-class relationList_(MeiElement):
+class manifestationList_(MeiElement):
     def __init__(self):
-        MeiElement.__init__(self, "relationList")
-    # <relationList>
+        MeiElement.__init__(self, "manifestationList")
+    # <manifestationList>
 
