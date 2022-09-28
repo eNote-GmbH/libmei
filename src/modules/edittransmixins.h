@@ -31,11 +31,11 @@
 #include <string>
 
 namespace mei {
-class AgentidentMixIn {
+class AgentIdentMixIn {
     public:
-        explicit AgentidentMixIn(MeiElement *b);
-        virtual ~AgentidentMixIn();
-        /** \brief signifies the causative agent of damage, illegibility, or other loss of original
+        explicit AgentIdentMixIn(MeiElement *b);
+        virtual ~AgentIdentMixIn();
+        /** \brief Signifies the causative agent of damage, illegibility, or other loss of original
          *  text.
          */
         MeiAttribute* getAgent();
@@ -49,54 +49,11 @@ class AgentidentMixIn {
         MeiElement *b;
 };
 
-class EditMixIn {
+class ReasonIdentMixIn {
     public:
-        explicit EditMixIn(MeiElement *b);
-        virtual ~EditMixIn();
-        /** \brief signifies the degree of certainty or precision associated with a feature.
-         */
-        MeiAttribute* getCert();
-        void setCert(std::string _cert);
-        bool hasCert();
-        void removeCert();
-        /** \brief indicates the nature of the evidence supporting the reliability or accuracy of
-         *  the intervention or interpretation.
-         * 
-         *  Suggested values include: 'internal', 'external', 'conjecture'.
-         */
-        MeiAttribute* getEvidence();
-        void setEvidence(std::string _evidence);
-        bool hasEvidence();
-        void removeEvidence();
-
-/* include <evidencemixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class ExtentMixIn {
-    public:
-        explicit ExtentMixIn(MeiElement *b);
-        virtual ~ExtentMixIn();
-        /** \brief indicates the extent of damage or omission.
-         */
-        MeiAttribute* getExtent();
-        void setExtent(std::string _extent);
-        bool hasExtent();
-        void removeExtent();
-
-/* include <extentmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class ReasonidentMixIn {
-    public:
-        explicit ReasonidentMixIn(MeiElement *b);
-        virtual ~ReasonidentMixIn();
-        /** \brief holds a short phrase describing the reason for missing textual material (gap),
+        explicit ReasonIdentMixIn(MeiElement *b);
+        virtual ~ReasonIdentMixIn();
+        /** \brief Holds a short phrase describing the reason for missing textual material (gap),
          *  why material is supplied (supplied), or why transcription is difficult
          *  (unclear).
          */
@@ -110,5 +67,5 @@ class ReasonidentMixIn {
     private:
         MeiElement *b;
 };
-}
-#endif  // EDITTRANSMIXIN_H_
+} // namespace mei
+#endif // EDITTRANSMIXIN_H_

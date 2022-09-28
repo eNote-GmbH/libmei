@@ -33,19 +33,25 @@
 
 
 namespace mei {
-/** \brief Contains a representation of some written source in the form of a set of images
+/** \brief Contains a representation of a written source in the form of a set of images
  *  rather than as transcribed or encoded text.
  */
 class MEI_EXPORT Facsimile : public MeiElement {
     public:
         Facsimile();
-        Facsimile(const Facsimile& other);
+        Facsimile(const Facsimile &other);
         virtual ~Facsimile();
 
 /* include <facsimile> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
         REGISTER_DECLARATION(Facsimile);
@@ -58,16 +64,22 @@ class MEI_EXPORT Facsimile : public MeiElement {
 class MEI_EXPORT Surface : public MeiElement {
     public:
         Surface();
-        Surface(const Surface& other);
+        Surface(const Surface &other);
         virtual ~Surface();
 
 /* include <surface> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         CoordinatedMixIn    m_Coordinated;
-        DatapointingMixIn    m_Datapointing;
-        DeclaringMixIn    m_Declaring;
-        StartidMixIn    m_Startid;
+        DataPointingMixIn    m_DataPointing;
+        MetadataPointingMixIn    m_MetadataPointing;
+        StartIdMixIn    m_StartId;
 
     private:
         REGISTER_DECLARATION(Surface);
@@ -78,18 +90,23 @@ class MEI_EXPORT Surface : public MeiElement {
 class MEI_EXPORT Zone : public MeiElement {
     public:
         Zone();
-        Zone(const Zone& other);
+        Zone(const Zone &other);
         virtual ~Zone();
 
 /* include <zone> */
 
-        CommonMixIn    m_Common;
-        CoordinatedMixIn    m_Coordinated;
-        DatapointingMixIn    m_Datapointing;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        CoordinatedMixIn    m_Coordinated;
+        DataPointingMixIn    m_DataPointing;
 
     private:
         REGISTER_DECLARATION(Zone);
 };
-}
-#endif  // FACSIMILE_H_
+} // namespace mei
+#endif // FACSIMILE_H_

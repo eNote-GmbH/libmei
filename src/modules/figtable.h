@@ -29,26 +29,34 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
 #include "facsimilemixins.h"
 #include "figtablemixins.h"
+#include "sharedmixins.h"
 #include <string>
 
 
 namespace mei {
-/** \brief (figure) – groups elements representing or containing graphic information such
+/** \brief (figure) – Groups elements representing or containing graphic information such
  *  as an illustration or figure.
  */
 class MEI_EXPORT Fig : public MeiElement {
     public:
         Fig();
-        Fig(const Fig& other);
+        Fig(const Fig &other);
         virtual ~Fig();
 
 /* include <fig> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
+        HorizontalAlignMixIn    m_HorizontalAlign;
+        VerticalAlignMixIn    m_VerticalAlign;
         XyMixIn    m_Xy;
 
     private:
@@ -62,42 +70,63 @@ class MEI_EXPORT Fig : public MeiElement {
 class MEI_EXPORT FigDesc : public MeiElement {
     public:
         FigDesc();
-        FigDesc(const FigDesc& other);
+        FigDesc(const FigDesc &other);
         virtual ~FigDesc();
 
 /* include <figDesc> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(FigDesc);
 };
 
-/** \brief Indicates the location of an inline graphic, illustration, or figure.
+/** \brief Indicates the location of an inline graphic.
  */
 class MEI_EXPORT Graphic : public MeiElement {
     public:
         Graphic();
-        Graphic(const Graphic& other);
+        Graphic(const Graphic &other);
         virtual ~Graphic();
-        /** \brief measurement of the vertical dimension of an image.
+        /** \brief Indicates the upper-left corner x coordinate.
          */
-        MeiAttribute* getHeight();
-        void setHeight(std::string _height);
-        bool hasHeight();
-        void removeHeight();
+        MeiAttribute* getUlx();
+        void setUlx(std::string _ulx);
+        bool hasUlx();
+        void removeUlx();
+        /** \brief Indicates the upper-left corner y coordinate.
+         */
+        MeiAttribute* getUly();
+        void setUly(std::string _uly);
+        bool hasUly();
+        void removeUly();
 
 /* include <graphic> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
-        InternetmediaMixIn    m_Internetmedia;
-        FacsimileMixIn    m_Facsimile;
-        PointingMixIn    m_Pointing;
-        MeasurementMixIn    m_Measurement;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        HeightMixIn    m_Height;
         WidthMixIn    m_Width;
+        InternetMediaMixIn    m_InternetMedia;
+        FacsimileMixIn    m_Facsimile;
+        MetadataPointingMixIn    m_MetadataPointing;
+        PointingMixIn    m_Pointing;
+        StartIdMixIn    m_StartId;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
 
     private:
         REGISTER_DECLARATION(Graphic);
@@ -108,12 +137,18 @@ class MEI_EXPORT Graphic : public MeiElement {
 class MEI_EXPORT Table : public MeiElement {
     public:
         Table();
-        Table(const Table& other);
+        Table(const Table &other);
         virtual ~Table();
 
 /* include <table> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
         XyMixIn    m_Xy;
@@ -128,12 +163,18 @@ class MEI_EXPORT Table : public MeiElement {
 class MEI_EXPORT Td : public MeiElement {
     public:
         Td();
-        Td(const Td& other);
+        Td(const Td &other);
         virtual ~Td();
 
 /* include <td> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
         XyMixIn    m_Xy;
@@ -149,12 +190,18 @@ class MEI_EXPORT Td : public MeiElement {
 class MEI_EXPORT Th : public MeiElement {
     public:
         Th();
-        Th(const Th& other);
+        Th(const Th &other);
         virtual ~Th();
 
 /* include <th> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
         XyMixIn    m_Xy;
@@ -165,17 +212,23 @@ class MEI_EXPORT Th : public MeiElement {
 };
 
 /** \brief (table row) – A formatting element that contains one or more cells (intersection
- *  of a row and a column) in a <table>.
+ *  of a row and a column) in a table.
  */
 class MEI_EXPORT Tr : public MeiElement {
     public:
         Tr();
-        Tr(const Tr& other);
+        Tr(const Tr &other);
         virtual ~Tr();
 
 /* include <tr> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
         XyMixIn    m_Xy;
@@ -183,5 +236,5 @@ class MEI_EXPORT Tr : public MeiElement {
     private:
         REGISTER_DECLARATION(Tr);
 };
-}
-#endif  // FIGTABLE_H_
+} // namespace mei
+#endif // FIGTABLE_H_

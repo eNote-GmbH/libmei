@@ -21,8 +21,8 @@
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LYRICSMIXIN_H_
-#define LYRICSMIXIN_H_
+#ifndef EXTERNALSYMBOLSMIXIN_H_
+#define EXTERNALSYMBOLSMIXIN_H_
 
 #include "meielement.h"
 #include "exceptions.h"
@@ -31,32 +31,43 @@
 #include <string>
 
 namespace mei {
-class VerseLogMixIn {
+class ExtSymMixIn {
     public:
-        explicit VerseLogMixIn(MeiElement *b);
-        virtual ~VerseLogMixIn();
-        /** \brief used to indicate a common, usually centered, refrain (Mup User's Guide, p.
-         * 
-         *  44).
+        explicit ExtSymMixIn(MeiElement *b);
+        virtual ~ExtSymMixIn();
+        /** \brief A name or label associated with the controlled vocabulary from which the value
+         *  of glyph.name or glyph.num is taken.
          */
-        MeiAttribute* getRefrain();
-        void setRefrain(std::string _refrain);
-        bool hasRefrain();
-        void removeRefrain();
-        /** \brief used to specify a rhythm for the lyric syllables that differs from that of the
-         *  notes on the staff, e.g.
-         * 
-         *  '4,4,4,4' when the rhythm of the notes is '4.,8,4.,8'.
+        MeiAttribute* getGlyphAuth();
+        void setGlyphAuth(std::string _glyphauth);
+        bool hasGlyphAuth();
+        void removeGlyphAuth();
+        /** \brief Glyph name.
          */
-        MeiAttribute* getRhythm();
-        void setRhythm(std::string _rhythm);
-        bool hasRhythm();
-        void removeRhythm();
+        MeiAttribute* getGlyphName();
+        void setGlyphName(std::string _glyphname);
+        bool hasGlyphName();
+        void removeGlyphName();
+        /** \brief Numeric glyph reference in hexadecimal notation, e.g., "#xE000" or "U+E000".
+         * 
+         *  N.B. SMuFL version 1.18 uses the range U+E000 - U+ECBF.
+         */
+        MeiAttribute* getGlyphNum();
+        void setGlyphNum(std::string _glyphnum);
+        bool hasGlyphNum();
+        void removeGlyphNum();
+        /** \brief The web-accessible location of the controlled vocabulary from which the value of
+         *  glyph.name or glyph.num is taken.
+         */
+        MeiAttribute* getGlyphUri();
+        void setGlyphUri(std::string _glyphuri);
+        bool hasGlyphUri();
+        void removeGlyphUri();
 
-/* include <rhythmmixin> */
+/* include <glyph.urimixin> */
 
     private:
         MeiElement *b;
 };
-}
-#endif  // LYRICSMIXIN_H_
+} // namespace mei
+#endif // EXTERNALSYMBOLSMIXIN_H_

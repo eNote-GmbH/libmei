@@ -7,16 +7,32 @@ using mei::MeiAttribute;
 
 mei::AccessRestrict::AccessRestrict() :
     MeiElement("accessRestrict"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::AccessRestrict, "accessRestrict");
 mei::AccessRestrict::~AccessRestrict() {}
-mei::AccessRestrict::AccessRestrict(const AccessRestrict& other) :
+mei::AccessRestrict::AccessRestrict(const AccessRestrict &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -24,39 +40,63 @@ mei::AccessRestrict::AccessRestrict(const AccessRestrict& other) :
 
 /* include <accessRestrict> */
 
-mei::AcqSource::AcqSource() :
-    MeiElement("acqSource"),
+mei::Acquisition::Acquisition() :
+    MeiElement("acquisition"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
-REGISTER_DEFINITION(mei::AcqSource, "acqSource");
-mei::AcqSource::~AcqSource() {}
-mei::AcqSource::AcqSource(const AcqSource& other) :
+REGISTER_DEFINITION(mei::Acquisition, "acquisition");
+mei::Acquisition::~Acquisition() {}
+mei::Acquisition::Acquisition(const Acquisition &other) :
     MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
 
-/* include <acqSource> */
+/* include <acquisition> */
 
 mei::AltId::AltId() :
     MeiElement("altId"),
-    m_Bibl(this),
-    m_Common(this),
-    m_Typed(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::AltId, "altId");
 mei::AltId::~AltId() {}
-mei::AltId::AltId(const AltId& other) :
+mei::AltId::AltId(const AltId &other) :
     MeiElement(other),
-    m_Bibl(this),
-    m_Common(this),
-    m_Typed(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 
@@ -64,14 +104,26 @@ mei::AltId::AltId(const AltId& other) :
 
 mei::AppInfo::AppInfo() :
     MeiElement("appInfo"),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 REGISTER_DEFINITION(mei::AppInfo, "appInfo");
 mei::AppInfo::~AppInfo() {}
-mei::AppInfo::AppInfo(const AppInfo& other) :
+mei::AppInfo::AppInfo(const AppInfo &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
@@ -79,18 +131,28 @@ mei::AppInfo::AppInfo(const AppInfo& other) :
 
 mei::Application::Application() :
     MeiElement("application"),
-    m_Common(this),
-    m_Datable(this),
-    m_Typed(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Datable(this)
 {
 }
 REGISTER_DEFINITION(mei::Application, "application");
 mei::Application::~Application() {}
-mei::Application::Application(const Application& other) :
+mei::Application::Application(const Application &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Datable(this),
-    m_Typed(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Datable(this)
 {
 }
 
@@ -115,20 +177,103 @@ void mei::Application::removeVersion() {
 };
 /* include <application> */
 
+mei::AttUsage::AttUsage() :
+    MeiElement("attUsage"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+REGISTER_DEFINITION(mei::AttUsage, "attUsage");
+mei::AttUsage::~AttUsage() {}
+mei::AttUsage::AttUsage(const AttUsage &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+
+MeiAttribute* mei::AttUsage::getName() {
+    if (!hasAttribute("name")) {
+        return NULL;
+    }
+    return getAttribute("name");
+};
+
+void mei::AttUsage::setName(std::string _name) {
+    MeiAttribute *a = new MeiAttribute("name", _name);
+    addAttribute(a);
+};
+
+bool mei::AttUsage::hasName() {
+    return hasAttribute("name");
+};
+
+void mei::AttUsage::removeName() {
+    removeAttribute("name");
+};
+MeiAttribute* mei::AttUsage::getContext() {
+    if (!hasAttribute("context")) {
+        return NULL;
+    }
+    return getAttribute("context");
+};
+
+void mei::AttUsage::setContext(std::string _context) {
+    MeiAttribute *a = new MeiAttribute("context", _context);
+    addAttribute(a);
+};
+
+bool mei::AttUsage::hasContext() {
+    return hasAttribute("context");
+};
+
+void mei::AttUsage::removeContext() {
+    removeAttribute("context");
+};
+/* include <attUsage> */
+
 mei::Audience::Audience() :
     MeiElement("audience"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Audience, "audience");
 mei::Audience::~Audience() {}
-mei::Audience::Audience(const Audience& other) :
+mei::Audience::Audience(const Audience &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -136,37 +281,133 @@ mei::Audience::Audience(const Audience& other) :
 
 mei::Availability::Availability() :
     MeiElement("availability"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 REGISTER_DEFINITION(mei::Availability, "availability");
 mei::Availability::~Availability() {}
-mei::Availability::Availability(const Availability& other) :
+mei::Availability::Availability(const Availability &other) :
     MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 
 /* include <availability> */
 
+mei::Bifolium::Bifolium() :
+    MeiElement("bifolium"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Measurement(this),
+    m_BifoliumSurfaces(this)
+{
+}
+REGISTER_DEFINITION(mei::Bifolium, "bifolium");
+mei::Bifolium::~Bifolium() {}
+mei::Bifolium::Bifolium(const Bifolium &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Measurement(this),
+    m_BifoliumSurfaces(this)
+{
+}
+
+/* include <bifolium> */
+
+mei::Byline::Byline() :
+    MeiElement("byline"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::Byline, "byline");
+mei::Byline::~Byline() {}
+mei::Byline::Byline(const Byline &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+
+/* include <byline> */
+
 mei::CaptureMode::CaptureMode() :
     MeiElement("captureMode"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::CaptureMode, "captureMode");
 mei::CaptureMode::~CaptureMode() {}
-mei::CaptureMode::CaptureMode(const CaptureMode& other) :
+mei::CaptureMode::CaptureMode(const CaptureMode &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -174,39 +415,148 @@ mei::CaptureMode::CaptureMode(const CaptureMode& other) :
 
 mei::CarrierForm::CarrierForm() :
     MeiElement("carrierForm"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::CarrierForm, "carrierForm");
 mei::CarrierForm::~CarrierForm() {}
-mei::CarrierForm::CarrierForm(const CarrierForm& other) :
+mei::CarrierForm::CarrierForm(const CarrierForm &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
 /* include <carrierForm> */
 
+mei::CatRel::CatRel() :
+    MeiElement("catRel"),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Basic(this),
+    m_Bibl(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this)
+{
+}
+REGISTER_DEFINITION(mei::CatRel, "catRel");
+mei::CatRel::~CatRel() {}
+mei::CatRel::CatRel(const CatRel &other) :
+    MeiElement(other),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Basic(this),
+    m_Bibl(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this)
+{
+}
+
+MeiAttribute* mei::CatRel::getType() {
+    if (!hasAttribute("type")) {
+        return NULL;
+    }
+    return getAttribute("type");
+};
+
+void mei::CatRel::setType(std::string _type) {
+    MeiAttribute *a = new MeiAttribute("type", _type);
+    addAttribute(a);
+};
+
+bool mei::CatRel::hasType() {
+    return hasAttribute("type");
+};
+
+void mei::CatRel::removeType() {
+    removeAttribute("type");
+};
+/* include <catRel> */
+
+mei::Category::Category() :
+    MeiElement("category"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this)
+{
+}
+REGISTER_DEFINITION(mei::Category, "category");
+mei::Category::~Category() {}
+mei::Category::Category(const Category &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this)
+{
+}
+
+/* include <category> */
+
 mei::Change::Change() :
     MeiElement("change"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datable(this),
-    m_Responsibility(this)
+    m_Datable(this)
 {
 }
 REGISTER_DEFINITION(mei::Change, "change");
 mei::Change::~Change() {}
-mei::Change::Change(const Change& other) :
+mei::Change::Change(const Change &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datable(this),
-    m_Responsibility(this)
+    m_Datable(this)
 {
 }
 
@@ -214,16 +564,28 @@ mei::Change::Change(const Change& other) :
 
 mei::ChangeDesc::ChangeDesc() :
     MeiElement("changeDesc"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::ChangeDesc, "changeDesc");
 mei::ChangeDesc::~ChangeDesc() {}
-mei::ChangeDesc::ChangeDesc(const ChangeDesc& other) :
+mei::ChangeDesc::ChangeDesc(const ChangeDesc &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -231,56 +593,117 @@ mei::ChangeDesc::ChangeDesc(const ChangeDesc& other) :
 
 /* include <changeDesc> */
 
-mei::ClassCode::ClassCode() :
-    MeiElement("classCode"),
-    m_Common(this),
-    m_Authorized(this),
+mei::ClassDecls::ClassDecls() :
+    MeiElement("classDecls"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
-REGISTER_DEFINITION(mei::ClassCode, "classCode");
-mei::ClassCode::~ClassCode() {}
-mei::ClassCode::ClassCode(const ClassCode& other) :
+REGISTER_DEFINITION(mei::ClassDecls, "classDecls");
+mei::ClassDecls::~ClassDecls() {}
+mei::ClassDecls::ClassDecls(const ClassDecls &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 
-/* include <classCode> */
+/* include <classDecls> */
 
 mei::Classification::Classification() :
     MeiElement("classification"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 REGISTER_DEFINITION(mei::Classification, "classification");
 mei::Classification::~Classification() {}
-mei::Classification::Classification(const Classification& other) :
+mei::Classification::Classification(const Classification &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 
 /* include <classification> */
 
+mei::ComponentList::ComponentList() :
+    MeiElement("componentList"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
+{
+}
+REGISTER_DEFINITION(mei::ComponentList, "componentList");
+mei::ComponentList::~ComponentList() {}
+mei::ComponentList::ComponentList(const ComponentList &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
+{
+}
+
+/* include <componentList> */
+
 mei::Condition::Condition() :
     MeiElement("condition"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Condition, "condition");
 mei::Condition::~Condition() {}
-mei::Condition::Condition(const Condition& other) :
+mei::Condition::Condition(const Condition &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -290,16 +713,30 @@ mei::Condition::Condition(const Condition& other) :
 
 mei::ContentItem::ContentItem() :
     MeiElement("contentItem"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this)
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::ContentItem, "contentItem");
 mei::ContentItem::~ContentItem() {}
-mei::ContentItem::ContentItem(const ContentItem& other) :
+mei::ContentItem::ContentItem(const ContentItem &other) :
     MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Common(this)
+    m_Lang(this)
 {
 }
 
@@ -307,16 +744,28 @@ mei::ContentItem::ContentItem(const ContentItem& other) :
 
 mei::Contents::Contents() :
     MeiElement("contents"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Pointing(this)
 {
 }
 REGISTER_DEFINITION(mei::Contents, "contents");
 mei::Contents::~Contents() {}
-mei::Contents::Contents(const Contents& other) :
+mei::Contents::Contents(const Contents &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Pointing(this)
 {
@@ -326,18 +775,34 @@ mei::Contents::Contents(const Contents& other) :
 
 mei::Context::Context() :
     MeiElement("context"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Context, "context");
 mei::Context::~Context() {}
-mei::Context::Context(const Context& other) :
+mei::Context::Context(const Context &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -345,22 +810,34 @@ mei::Context::Context(const Context& other) :
 
 mei::Correction::Correction() :
     MeiElement("correction"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this),
-    m_Regularmethod(this)
+    m_RegularMethod(this)
 {
 }
 REGISTER_DEFINITION(mei::Correction, "correction");
 mei::Correction::~Correction() {}
-mei::Correction::Correction(const Correction& other) :
+mei::Correction::Correction(const Correction &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this),
-    m_Regularmethod(this)
+    m_RegularMethod(this)
 {
 }
 
@@ -385,37 +862,232 @@ void mei::Correction::removeCorrlevel() {
 };
 /* include <correction> */
 
-mei::Dimensions::Dimensions() :
-    MeiElement("dimensions"),
-    m_Common(this),
-    m_Bibl(this),
-    m_Measurement(this)
+mei::Cutout::Cutout() :
+    MeiElement("cutout"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Evidence(this),
+    m_Measurement(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_Xy(this)
 {
 }
-REGISTER_DEFINITION(mei::Dimensions, "dimensions");
-mei::Dimensions::~Dimensions() {}
-mei::Dimensions::Dimensions(const Dimensions& other) :
+REGISTER_DEFINITION(mei::Cutout, "cutout");
+mei::Cutout::~Cutout() {}
+mei::Cutout::Cutout(const Cutout &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this),
-    m_Measurement(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Evidence(this),
+    m_Measurement(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_Xy(this)
 {
 }
 
-/* include <dimensions> */
+MeiAttribute* mei::Cutout::getRemovedFrom() {
+    if (!hasAttribute("removed.from")) {
+        return NULL;
+    }
+    return getAttribute("removed.from");
+};
+
+void mei::Cutout::setRemovedFrom(std::string _removedfrom) {
+    MeiAttribute *a = new MeiAttribute("removed.from", _removedfrom);
+    addAttribute(a);
+};
+
+bool mei::Cutout::hasRemovedFrom() {
+    return hasAttribute("removed.from");
+};
+
+void mei::Cutout::removeRemovedFrom() {
+    removeAttribute("removed.from");
+};
+MeiAttribute* mei::Cutout::getRemovedBy() {
+    if (!hasAttribute("removed.by")) {
+        return NULL;
+    }
+    return getAttribute("removed.by");
+};
+
+void mei::Cutout::setRemovedBy(std::string _removedby) {
+    MeiAttribute *a = new MeiAttribute("removed.by", _removedby);
+    addAttribute(a);
+};
+
+bool mei::Cutout::hasRemovedBy() {
+    return hasAttribute("removed.by");
+};
+
+void mei::Cutout::removeRemovedBy() {
+    removeAttribute("removed.by");
+};
+/* include <cutout> */
+
+mei::Dedication::Dedication() :
+    MeiElement("dedication"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::Dedication, "dedication");
+mei::Dedication::~Dedication() {}
+mei::Dedication::Dedication(const Dedication &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+
+/* include <dedication> */
+
+mei::DomainsDecl::DomainsDecl() :
+    MeiElement("domainsDecl"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+REGISTER_DEFINITION(mei::DomainsDecl, "domainsDecl");
+mei::DomainsDecl::~DomainsDecl() {}
+mei::DomainsDecl::DomainsDecl(const DomainsDecl &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+
+MeiAttribute* mei::DomainsDecl::getAnl() {
+    if (!hasAttribute("anl")) {
+        return NULL;
+    }
+    return getAttribute("anl");
+};
+
+void mei::DomainsDecl::setAnl(std::string _anl) {
+    MeiAttribute *a = new MeiAttribute("anl", _anl);
+    addAttribute(a);
+};
+
+bool mei::DomainsDecl::hasAnl() {
+    return hasAttribute("anl");
+};
+
+void mei::DomainsDecl::removeAnl() {
+    removeAttribute("anl");
+};
+MeiAttribute* mei::DomainsDecl::getGes() {
+    if (!hasAttribute("ges")) {
+        return NULL;
+    }
+    return getAttribute("ges");
+};
+
+void mei::DomainsDecl::setGes(std::string _ges) {
+    MeiAttribute *a = new MeiAttribute("ges", _ges);
+    addAttribute(a);
+};
+
+bool mei::DomainsDecl::hasGes() {
+    return hasAttribute("ges");
+};
+
+void mei::DomainsDecl::removeGes() {
+    removeAttribute("ges");
+};
+MeiAttribute* mei::DomainsDecl::getVis() {
+    if (!hasAttribute("vis")) {
+        return NULL;
+    }
+    return getAttribute("vis");
+};
+
+void mei::DomainsDecl::setVis(std::string _vis) {
+    MeiAttribute *a = new MeiAttribute("vis", _vis);
+    addAttribute(a);
+};
+
+bool mei::DomainsDecl::hasVis() {
+    return hasAttribute("vis");
+};
+
+void mei::DomainsDecl::removeVis() {
+    removeAttribute("vis");
+};
+/* include <domainsDecl> */
 
 mei::EditionStmt::EditionStmt() :
     MeiElement("editionStmt"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::EditionStmt, "editionStmt");
 mei::EditionStmt::~EditionStmt() {}
-mei::EditionStmt::EditionStmt(const EditionStmt& other) :
+mei::EditionStmt::EditionStmt(const EditionStmt &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -425,19 +1097,31 @@ mei::EditionStmt::EditionStmt(const EditionStmt& other) :
 
 mei::EditorialDecl::EditorialDecl() :
     MeiElement("editorialDecl"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::EditorialDecl, "editorialDecl");
 mei::EditorialDecl::~EditorialDecl() {}
-mei::EditorialDecl::EditorialDecl(const EditorialDecl& other) :
+mei::EditorialDecl::EditorialDecl(const EditorialDecl &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -446,121 +1130,123 @@ mei::EditorialDecl::EditorialDecl(const EditorialDecl& other) :
 
 mei::EncodingDesc::EncodingDesc() :
     MeiElement("encodingDesc"),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::EncodingDesc, "encodingDesc");
 mei::EncodingDesc::~EncodingDesc() {}
-mei::EncodingDesc::EncodingDesc(const EncodingDesc& other) :
+mei::EncodingDesc::EncodingDesc(const EncodingDesc &other) :
     MeiElement(other),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 
 /* include <encodingDesc> */
 
-mei::Ensemble::Ensemble() :
-    MeiElement("ensemble"),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-REGISTER_DEFINITION(mei::Ensemble, "ensemble");
-mei::Ensemble::~Ensemble() {}
-mei::Ensemble::Ensemble(const Ensemble& other) :
-    MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-
-/* include <ensemble> */
-
-mei::Event::Event() :
-    MeiElement("event"),
-    m_Bibl(this),
-    m_Calendared(this),
-    m_Common(this),
-    m_Datable(this),
-    m_Edit(this),
-    m_Responsibility(this),
-    m_Source(this),
-    m_Lang(this)
-{
-}
-REGISTER_DEFINITION(mei::Event, "event");
-mei::Event::~Event() {}
-mei::Event::Event(const Event& other) :
-    MeiElement(other),
-    m_Bibl(this),
-    m_Calendared(this),
-    m_Common(this),
-    m_Datable(this),
-    m_Edit(this),
-    m_Responsibility(this),
-    m_Source(this),
-    m_Lang(this)
-{
-}
-
-/* include <event> */
-
-mei::EventList::EventList() :
-    MeiElement("eventList"),
-    m_Bibl(this),
-    m_Common(this),
-    m_Typed(this)
-{
-}
-REGISTER_DEFINITION(mei::EventList, "eventList");
-mei::EventList::~EventList() {}
-mei::EventList::EventList(const EventList& other) :
-    MeiElement(other),
-    m_Bibl(this),
-    m_Common(this),
-    m_Typed(this)
-{
-}
-
-/* include <eventList> */
-
 mei::ExhibHist::ExhibHist() :
     MeiElement("exhibHist"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::ExhibHist, "exhibHist");
 mei::ExhibHist::~ExhibHist() {}
-mei::ExhibHist::ExhibHist(const ExhibHist& other) :
+mei::ExhibHist::ExhibHist(const ExhibHist &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
 
 /* include <exhibHist> */
 
+mei::ExtMeta::ExtMeta() :
+    MeiElement("extMeta"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Whitespace(this)
+{
+}
+REGISTER_DEFINITION(mei::ExtMeta, "extMeta");
+mei::ExtMeta::~ExtMeta() {}
+mei::ExtMeta::ExtMeta(const ExtMeta &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Whitespace(this)
+{
+}
+
+/* include <extMeta> */
+
 mei::FileChar::FileChar() :
     MeiElement("fileChar"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::FileChar, "fileChar");
 mei::FileChar::~FileChar() {}
-mei::FileChar::FileChar(const FileChar& other) :
+mei::FileChar::FileChar(const FileChar &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -568,58 +1254,125 @@ mei::FileChar::FileChar(const FileChar& other) :
 
 mei::FileDesc::FileDesc() :
     MeiElement("fileDesc"),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::FileDesc, "fileDesc");
 mei::FileDesc::~FileDesc() {}
-mei::FileDesc::FileDesc(const FileDesc& other) :
+mei::FileDesc::FileDesc(const FileDesc &other) :
     MeiElement(other),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 
 /* include <fileDesc> */
 
-mei::Fingerprint::Fingerprint() :
-    MeiElement("fingerprint"),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this)
+mei::FoliaDesc::FoliaDesc() :
+    MeiElement("foliaDesc"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
-REGISTER_DEFINITION(mei::Fingerprint, "fingerprint");
-mei::Fingerprint::~Fingerprint() {}
-mei::Fingerprint::Fingerprint(const Fingerprint& other) :
+REGISTER_DEFINITION(mei::FoliaDesc, "foliaDesc");
+mei::FoliaDesc::~FoliaDesc() {}
+mei::FoliaDesc::FoliaDesc(const FoliaDesc &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
-/* include <fingerprint> */
+/* include <foliaDesc> */
+
+mei::Folium::Folium() :
+    MeiElement("folium"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Measurement(this),
+    m_FoliumSurfaces(this)
+{
+}
+REGISTER_DEFINITION(mei::Folium, "folium");
+mei::Folium::~Folium() {}
+mei::Folium::Folium(const Folium &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Height(this),
+    m_Width(this),
+    m_Measurement(this),
+    m_FoliumSurfaces(this)
+{
+}
+
+/* include <folium> */
 
 mei::Hand::Hand() :
     MeiElement("hand"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Evidence(this),
     m_Lang(this),
-    m_Medium(this),
-    m_Responsibility(this)
+    m_Medium(this)
 {
 }
 REGISTER_DEFINITION(mei::Hand, "hand");
 mei::Hand::~Hand() {}
-mei::Hand::Hand(const Hand& other) :
+mei::Hand::Hand(const Hand &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Evidence(this),
     m_Lang(this),
-    m_Medium(this),
-    m_Responsibility(this)
+    m_Medium(this)
 {
 }
 
@@ -646,15 +1399,27 @@ void mei::Hand::removeInitial() {
 
 mei::HandList::HandList() :
     MeiElement("handList"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::HandList, "handList");
 mei::HandList::~HandList() {}
-mei::HandList::HandList(const HandList& other) :
+mei::HandList::HandList(const HandList &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -663,15 +1428,27 @@ mei::HandList::HandList(const HandList& other) :
 
 mei::History::History() :
     MeiElement("history"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::History, "history");
 mei::History::~History() {}
-mei::History::History(const History& other) :
+mei::History::History(const History &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -680,20 +1457,32 @@ mei::History::History(const History& other) :
 
 mei::IncipCode::IncipCode() :
     MeiElement("incipCode"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Internetmedia(this),
+    m_InternetMedia(this),
     m_Pointing(this),
     m_Whitespace(this)
 {
 }
 REGISTER_DEFINITION(mei::IncipCode, "incipCode");
 mei::IncipCode::~IncipCode() {}
-mei::IncipCode::IncipCode(const IncipCode& other) :
+mei::IncipCode::IncipCode(const IncipCode &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Internetmedia(this),
+    m_InternetMedia(this),
     m_Pointing(this),
     m_Whitespace(this)
 {
@@ -722,22 +1511,34 @@ void mei::IncipCode::removeForm() {
 
 mei::IncipText::IncipText() :
     MeiElement("incipText"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this),
     m_Pointing(this),
-    m_Internetmedia(this)
+    m_InternetMedia(this)
 {
 }
 REGISTER_DEFINITION(mei::IncipText, "incipText");
 mei::IncipText::~IncipText() {}
-mei::IncipText::IncipText(const IncipText& other) :
+mei::IncipText::IncipText(const IncipText &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this),
     m_Pointing(this),
-    m_Internetmedia(this)
+    m_InternetMedia(this)
 {
 }
 
@@ -745,16 +1546,28 @@ mei::IncipText::IncipText(const IncipText& other) :
 
 mei::Inscription::Inscription() :
     MeiElement("inscription"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Inscription, "inscription");
 mei::Inscription::~Inscription() {}
-mei::Inscription::Inscription(const Inscription& other) :
+mei::Inscription::Inscription(const Inscription &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -762,120 +1575,33 @@ mei::Inscription::Inscription(const Inscription& other) :
 
 /* include <inscription> */
 
-mei::InstrVoice::InstrVoice() :
-    MeiElement("instrVoice"),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-REGISTER_DEFINITION(mei::InstrVoice, "instrVoice");
-mei::InstrVoice::~InstrVoice() {}
-mei::InstrVoice::InstrVoice(const InstrVoice& other) :
-    MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-
-MeiAttribute* mei::InstrVoice::getCount() {
-    if (!hasAttribute("count")) {
-        return NULL;
-    }
-    return getAttribute("count");
-};
-
-void mei::InstrVoice::setCount(std::string _count) {
-    MeiAttribute *a = new MeiAttribute("count", _count);
-    addAttribute(a);
-};
-
-bool mei::InstrVoice::hasCount() {
-    return hasAttribute("count");
-};
-
-void mei::InstrVoice::removeCount() {
-    removeAttribute("count");
-};
-MeiAttribute* mei::InstrVoice::getSolo() {
-    if (!hasAttribute("solo")) {
-        return NULL;
-    }
-    return getAttribute("solo");
-};
-
-void mei::InstrVoice::setSolo(std::string _solo) {
-    MeiAttribute *a = new MeiAttribute("solo", _solo);
-    addAttribute(a);
-};
-
-bool mei::InstrVoice::hasSolo() {
-    return hasAttribute("solo");
-};
-
-void mei::InstrVoice::removeSolo() {
-    removeAttribute("solo");
-};
-/* include <instrVoice> */
-
-mei::InstrVoiceGrp::InstrVoiceGrp() :
-    MeiElement("instrVoiceGrp"),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-REGISTER_DEFINITION(mei::InstrVoiceGrp, "instrVoiceGrp");
-mei::InstrVoiceGrp::~InstrVoiceGrp() {}
-mei::InstrVoiceGrp::InstrVoiceGrp(const InstrVoiceGrp& other) :
-    MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
-    m_Bibl(this),
-    m_Coded(this)
-{
-}
-
-/* include <instrVoiceGrp> */
-
-mei::Instrumentation::Instrumentation() :
-    MeiElement("instrumentation"),
-    m_Common(this),
-    m_Bibl(this),
-    m_Authorized(this)
-{
-}
-REGISTER_DEFINITION(mei::Instrumentation, "instrumentation");
-mei::Instrumentation::~Instrumentation() {}
-mei::Instrumentation::Instrumentation(const Instrumentation& other) :
-    MeiElement(other),
-    m_Common(this),
-    m_Bibl(this),
-    m_Authorized(this)
-{
-}
-
-/* include <instrumentation> */
-
 mei::Interpretation::Interpretation() :
     MeiElement("interpretation"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Interpretation, "interpretation");
 mei::Interpretation::~Interpretation() {}
-mei::Interpretation::Interpretation(const Interpretation& other) :
+mei::Interpretation::Interpretation(const Interpretation &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -884,41 +1610,82 @@ mei::Interpretation::Interpretation(const Interpretation& other) :
 
 mei::Key::Key() :
     MeiElement("key"),
-    m_Common(this),
-    m_Bibl(this),
-    m_KeySigLog(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Accidental(this),
+    m_Bibl(this),
     m_Pitch(this)
 {
 }
 REGISTER_DEFINITION(mei::Key, "key");
 mei::Key::~Key() {}
-mei::Key::Key(const Key& other) :
+mei::Key::Key(const Key &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this),
-    m_KeySigLog(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Accidental(this),
+    m_Bibl(this),
     m_Pitch(this)
 {
 }
 
+MeiAttribute* mei::Key::getMode() {
+    if (!hasAttribute("mode")) {
+        return NULL;
+    }
+    return getAttribute("mode");
+};
+
+void mei::Key::setMode(std::string _mode) {
+    MeiAttribute *a = new MeiAttribute("mode", _mode);
+    addAttribute(a);
+};
+
+bool mei::Key::hasMode() {
+    return hasAttribute("mode");
+};
+
+void mei::Key::removeMode() {
+    removeAttribute("mode");
+};
 /* include <key> */
 
 mei::LangUsage::LangUsage() :
     MeiElement("langUsage"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 REGISTER_DEFINITION(mei::LangUsage, "langUsage");
 mei::LangUsage::~LangUsage() {}
-mei::LangUsage::LangUsage(const LangUsage& other) :
+mei::LangUsage::LangUsage(const LangUsage &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this)
+    m_DataPointing(this)
 {
 }
 
@@ -926,18 +1693,34 @@ mei::LangUsage::LangUsage(const LangUsage& other) :
 
 mei::Language::Language() :
     MeiElement("language"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Authorized(this)
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Language, "language");
 mei::Language::~Language() {}
-mei::Language::Language(const Language& other) :
+mei::Language::Language(const Language &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Authorized(this)
+    m_Lang(this)
 {
 }
 
@@ -945,20 +1728,24 @@ mei::Language::Language(const Language& other) :
 
 mei::MeiHead::MeiHead() :
     MeiElement("meiHead"),
+    m_Basic(this),
     m_Bibl(this),
-    m_Common(this),
+    m_Labelled(this),
     m_Lang(this),
-    m_Meiversion(this)
+    m_MeiVersion(this),
+    m_Responsibility(this)
 {
 }
 REGISTER_DEFINITION(mei::MeiHead, "meiHead");
 mei::MeiHead::~MeiHead() {}
-mei::MeiHead::MeiHead(const MeiHead& other) :
+mei::MeiHead::MeiHead(const MeiHead &other) :
     MeiElement(other),
+    m_Basic(this),
     m_Bibl(this),
-    m_Common(this),
+    m_Labelled(this),
     m_Lang(this),
-    m_Meiversion(this)
+    m_MeiVersion(this),
+    m_Responsibility(this)
 {
 }
 
@@ -985,24 +1772,48 @@ void mei::MeiHead::removeType() {
 
 mei::Mensuration::Mensuration() :
     MeiElement("mensuration"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_MensurLog(this),
+    m_Lang(this),
     m_DurationRatio(this),
-    m_Slashcount(this),
-    m_MensuralShared(this)
+    m_MensuralShared(this),
+    m_MensurVis(this),
+    m_AltSym(this),
+    m_Color(this),
+    m_ExtSym(this),
+    m_StaffLoc(this),
+    m_Typography(this),
+    m_SlashCount(this)
 {
 }
 REGISTER_DEFINITION(mei::Mensuration, "mensuration");
 mei::Mensuration::~Mensuration() {}
-mei::Mensuration::Mensuration(const Mensuration& other) :
+mei::Mensuration::Mensuration(const Mensuration &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_MensurLog(this),
+    m_Lang(this),
     m_DurationRatio(this),
-    m_Slashcount(this),
-    m_MensuralShared(this)
+    m_MensuralShared(this),
+    m_MensurVis(this),
+    m_AltSym(this),
+    m_Color(this),
+    m_ExtSym(this),
+    m_StaffLoc(this),
+    m_Typography(this),
+    m_SlashCount(this)
 {
 }
 
@@ -1010,41 +1821,134 @@ mei::Mensuration::Mensuration(const Mensuration& other) :
 
 mei::Meter::Meter() :
     MeiElement("meter"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Lang(this),
     m_MeterSigLog(this)
 {
 }
 REGISTER_DEFINITION(mei::Meter, "meter");
 mei::Meter::~Meter() {}
-mei::Meter::Meter(const Meter& other) :
+mei::Meter::Meter(const Meter &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Lang(this),
     m_MeterSigLog(this)
 {
 }
 
 /* include <meter> */
 
+mei::Namespace::Namespace() :
+    MeiElement("namespace"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+REGISTER_DEFINITION(mei::Namespace, "namespace");
+mei::Namespace::~Namespace() {}
+mei::Namespace::Namespace(const Namespace &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+
+MeiAttribute* mei::Namespace::getName() {
+    if (!hasAttribute("name")) {
+        return NULL;
+    }
+    return getAttribute("name");
+};
+
+void mei::Namespace::setName(std::string _name) {
+    MeiAttribute *a = new MeiAttribute("name", _name);
+    addAttribute(a);
+};
+
+bool mei::Namespace::hasName() {
+    return hasAttribute("name");
+};
+
+void mei::Namespace::removeName() {
+    removeAttribute("name");
+};
+MeiAttribute* mei::Namespace::getPrefix() {
+    if (!hasAttribute("prefix")) {
+        return NULL;
+    }
+    return getAttribute("prefix");
+};
+
+void mei::Namespace::setPrefix(std::string _prefix) {
+    MeiAttribute *a = new MeiAttribute("prefix", _prefix);
+    addAttribute(a);
+};
+
+bool mei::Namespace::hasPrefix() {
+    return hasAttribute("prefix");
+};
+
+void mei::Namespace::removePrefix() {
+    removeAttribute("prefix");
+};
+/* include <namespace> */
+
 mei::Normalization::Normalization() :
     MeiElement("normalization"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this),
-    m_Regularmethod(this)
+    m_RegularMethod(this)
 {
 }
 REGISTER_DEFINITION(mei::Normalization, "normalization");
 mei::Normalization::~Normalization() {}
-mei::Normalization::Normalization(const Normalization& other) :
+mei::Normalization::Normalization(const Normalization &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this),
-    m_Regularmethod(this)
+    m_RegularMethod(this)
 {
 }
 
@@ -1052,15 +1956,27 @@ mei::Normalization::Normalization(const Normalization& other) :
 
 mei::NotesStmt::NotesStmt() :
     MeiElement("notesStmt"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::NotesStmt, "notesStmt");
 mei::NotesStmt::~NotesStmt() {}
-mei::NotesStmt::NotesStmt(const NotesStmt& other) :
+mei::NotesStmt::NotesStmt(const NotesStmt &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -1069,51 +1985,357 @@ mei::NotesStmt::NotesStmt(const NotesStmt& other) :
 
 mei::OtherChar::OtherChar() :
     MeiElement("otherChar"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::OtherChar, "otherChar");
 mei::OtherChar::~OtherChar() {}
-mei::OtherChar::OtherChar(const OtherChar& other) :
+mei::OtherChar::OtherChar(const OtherChar &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
 /* include <otherChar> */
 
+mei::Patch::Patch() :
+    MeiElement("patch"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Evidence(this),
+    m_Measurement(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_Xy(this)
+{
+}
+REGISTER_DEFINITION(mei::Patch, "patch");
+mei::Patch::~Patch() {}
+mei::Patch::Patch(const Patch &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Evidence(this),
+    m_Measurement(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_Xy(this)
+{
+}
+
+MeiAttribute* mei::Patch::getAttachedTo() {
+    if (!hasAttribute("attached.to")) {
+        return NULL;
+    }
+    return getAttribute("attached.to");
+};
+
+void mei::Patch::setAttachedTo(std::string _attachedto) {
+    MeiAttribute *a = new MeiAttribute("attached.to", _attachedto);
+    addAttribute(a);
+};
+
+bool mei::Patch::hasAttachedTo() {
+    return hasAttribute("attached.to");
+};
+
+void mei::Patch::removeAttachedTo() {
+    removeAttribute("attached.to");
+};
+MeiAttribute* mei::Patch::getAttachedBy() {
+    if (!hasAttribute("attached.by")) {
+        return NULL;
+    }
+    return getAttribute("attached.by");
+};
+
+void mei::Patch::setAttachedBy(std::string _attachedby) {
+    MeiAttribute *a = new MeiAttribute("attached.by", _attachedby);
+    addAttribute(a);
+};
+
+bool mei::Patch::hasAttachedBy() {
+    return hasAttribute("attached.by");
+};
+
+void mei::Patch::removeAttachedBy() {
+    removeAttribute("attached.by");
+};
+/* include <patch> */
+
+mei::PerfDuration::PerfDuration() :
+    MeiElement("perfDuration"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::PerfDuration, "perfDuration");
+mei::PerfDuration::~PerfDuration() {}
+mei::PerfDuration::PerfDuration(const PerfDuration &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Facsimile(this),
+    m_Lang(this)
+{
+}
+
+MeiAttribute* mei::PerfDuration::getIsodur() {
+    if (!hasAttribute("isodur")) {
+        return NULL;
+    }
+    return getAttribute("isodur");
+};
+
+void mei::PerfDuration::setIsodur(std::string _isodur) {
+    MeiAttribute *a = new MeiAttribute("isodur", _isodur);
+    addAttribute(a);
+};
+
+bool mei::PerfDuration::hasIsodur() {
+    return hasAttribute("isodur");
+};
+
+void mei::PerfDuration::removeIsodur() {
+    removeAttribute("isodur");
+};
+/* include <perfDuration> */
+
 mei::PerfMedium::PerfMedium() :
     MeiElement("perfMedium"),
-    m_Common(this),
-    m_Bibl(this),
-    m_Authorized(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::PerfMedium, "perfMedium");
 mei::PerfMedium::~PerfMedium() {}
-mei::PerfMedium::PerfMedium(const PerfMedium& other) :
+mei::PerfMedium::PerfMedium(const PerfMedium &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this),
-    m_Authorized(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this)
 {
 }
 
 /* include <perfMedium> */
 
+mei::PerfRes::PerfRes() :
+    MeiElement("perfRes"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::PerfRes, "perfRes");
+mei::PerfRes::~PerfRes() {}
+mei::PerfRes::PerfRes(const PerfRes &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Lang(this)
+{
+}
+
+MeiAttribute* mei::PerfRes::getCount() {
+    if (!hasAttribute("count")) {
+        return NULL;
+    }
+    return getAttribute("count");
+};
+
+void mei::PerfRes::setCount(std::string _count) {
+    MeiAttribute *a = new MeiAttribute("count", _count);
+    addAttribute(a);
+};
+
+bool mei::PerfRes::hasCount() {
+    return hasAttribute("count");
+};
+
+void mei::PerfRes::removeCount() {
+    removeAttribute("count");
+};
+MeiAttribute* mei::PerfRes::getSolo() {
+    if (!hasAttribute("solo")) {
+        return NULL;
+    }
+    return getAttribute("solo");
+};
+
+void mei::PerfRes::setSolo(std::string _solo) {
+    MeiAttribute *a = new MeiAttribute("solo", _solo);
+    addAttribute(a);
+};
+
+bool mei::PerfRes::hasSolo() {
+    return hasAttribute("solo");
+};
+
+void mei::PerfRes::removeSolo() {
+    removeAttribute("solo");
+};
+/* include <perfRes> */
+
+mei::PerfResList::PerfResList() :
+    MeiElement("perfResList"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::PerfResList, "perfResList");
+mei::PerfResList::~PerfResList() {}
+mei::PerfResList::PerfResList(const PerfResList &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Lang(this)
+{
+}
+
+MeiAttribute* mei::PerfResList::getCount() {
+    if (!hasAttribute("count")) {
+        return NULL;
+    }
+    return getAttribute("count");
+};
+
+void mei::PerfResList::setCount(std::string _count) {
+    MeiAttribute *a = new MeiAttribute("count", _count);
+    addAttribute(a);
+};
+
+bool mei::PerfResList::hasCount() {
+    return hasAttribute("count");
+};
+
+void mei::PerfResList::removeCount() {
+    removeAttribute("count");
+};
+/* include <perfResList> */
+
 mei::PhysDesc::PhysDesc() :
     MeiElement("physDesc"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::PhysDesc, "physDesc");
 mei::PhysDesc::~PhysDesc() {}
-mei::PhysDesc::PhysDesc(const PhysDesc& other) :
+mei::PhysDesc::PhysDesc(const PhysDesc &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -1122,19 +2344,33 @@ mei::PhysDesc::PhysDesc(const PhysDesc& other) :
 
 mei::PhysMedium::PhysMedium() :
     MeiElement("physMedium"),
-    m_Common(this),
-    m_Bibl(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::PhysMedium, "physMedium");
 mei::PhysMedium::~PhysMedium() {}
-mei::PhysMedium::PhysMedium(const PhysMedium& other) :
+mei::PhysMedium::PhysMedium(const PhysMedium &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
     m_Lang(this)
 {
 }
@@ -1143,18 +2379,32 @@ mei::PhysMedium::PhysMedium(const PhysMedium& other) :
 
 mei::PlateNum::PlateNum() :
     MeiElement("plateNum"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Facsimile(this)
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::PlateNum, "plateNum");
 mei::PlateNum::~PlateNum() {}
-mei::PlateNum::PlateNum(const PlateNum& other) :
+mei::PlateNum::PlateNum(const PlateNum &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Facsimile(this)
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 
@@ -1162,16 +2412,30 @@ mei::PlateNum::PlateNum(const PlateNum& other) :
 
 mei::PlayingSpeed::PlayingSpeed() :
     MeiElement("playingSpeed"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::PlayingSpeed, "playingSpeed");
 mei::PlayingSpeed::~PlayingSpeed() {}
-mei::PlayingSpeed::PlayingSpeed(const PlayingSpeed& other) :
+mei::PlayingSpeed::PlayingSpeed(const PlayingSpeed &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -1179,38 +2443,100 @@ mei::PlayingSpeed::PlayingSpeed(const PlayingSpeed& other) :
 
 mei::Price::Price() :
     MeiElement("price"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Measurement(this)
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Price, "price");
 mei::Price::~Price() {}
-mei::Price::Price(const Price& other) :
+mei::Price::Price(const Price &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Measurement(this)
+    m_Lang(this)
 {
 }
 
+MeiAttribute* mei::Price::getAmount() {
+    if (!hasAttribute("amount")) {
+        return NULL;
+    }
+    return getAttribute("amount");
+};
+
+void mei::Price::setAmount(std::string _amount) {
+    MeiAttribute *a = new MeiAttribute("amount", _amount);
+    addAttribute(a);
+};
+
+bool mei::Price::hasAmount() {
+    return hasAttribute("amount");
+};
+
+void mei::Price::removeAmount() {
+    removeAttribute("amount");
+};
+MeiAttribute* mei::Price::getCurrency() {
+    if (!hasAttribute("currency")) {
+        return NULL;
+    }
+    return getAttribute("currency");
+};
+
+void mei::Price::setCurrency(std::string _currency) {
+    MeiAttribute *a = new MeiAttribute("currency", _currency);
+    addAttribute(a);
+};
+
+bool mei::Price::hasCurrency() {
+    return hasAttribute("currency");
+};
+
+void mei::Price::removeCurrency() {
+    removeAttribute("currency");
+};
 /* include <price> */
 
 mei::ProjectDesc::ProjectDesc() :
     MeiElement("projectDesc"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::ProjectDesc, "projectDesc");
 mei::ProjectDesc::~ProjectDesc() {}
-mei::ProjectDesc::ProjectDesc(const ProjectDesc& other) :
+mei::ProjectDesc::ProjectDesc(const ProjectDesc &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -1219,17 +2545,31 @@ mei::ProjectDesc::ProjectDesc(const ProjectDesc& other) :
 
 mei::Provenance::Provenance() :
     MeiElement("provenance"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Provenance, "provenance");
 mei::Provenance::~Provenance() {}
-mei::Provenance::Provenance(const Provenance& other) :
+mei::Provenance::Provenance(const Provenance &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
+    m_Datable(this),
     m_Lang(this)
 {
 }
@@ -1238,15 +2578,27 @@ mei::Provenance::Provenance(const Provenance& other) :
 
 mei::PubStmt::PubStmt() :
     MeiElement("pubStmt"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::PubStmt, "pubStmt");
 mei::PubStmt::~PubStmt() {}
-mei::PubStmt::PubStmt(const PubStmt& other) :
+mei::PubStmt::PubStmt(const PubStmt &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -1255,15 +2607,27 @@ mei::PubStmt::PubStmt(const PubStmt& other) :
 
 mei::RevisionDesc::RevisionDesc() :
     MeiElement("revisionDesc"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::RevisionDesc, "revisionDesc");
 mei::RevisionDesc::~RevisionDesc() {}
-mei::RevisionDesc::RevisionDesc(const RevisionDesc& other) :
+mei::RevisionDesc::RevisionDesc(const RevisionDesc &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -1272,19 +2636,31 @@ mei::RevisionDesc::RevisionDesc(const RevisionDesc& other) :
 
 mei::SamplingDecl::SamplingDecl() :
     MeiElement("samplingDecl"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::SamplingDecl, "samplingDecl");
 mei::SamplingDecl::~SamplingDecl() {}
-mei::SamplingDecl::SamplingDecl(const SamplingDecl& other) :
+mei::SamplingDecl::SamplingDecl(const SamplingDecl &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -1293,18 +2669,34 @@ mei::SamplingDecl::SamplingDecl(const SamplingDecl& other) :
 
 mei::ScoreFormat::ScoreFormat() :
     MeiElement("scoreFormat"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::ScoreFormat, "scoreFormat");
 mei::ScoreFormat::~ScoreFormat() {}
-mei::ScoreFormat::ScoreFormat(const ScoreFormat& other) :
+mei::ScoreFormat::ScoreFormat(const ScoreFormat &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -1312,19 +2704,31 @@ mei::ScoreFormat::ScoreFormat(const ScoreFormat& other) :
 
 mei::Segmentation::Segmentation() :
     MeiElement("segmentation"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Segmentation, "segmentation");
 mei::Segmentation::~Segmentation() {}
-mei::Segmentation::Segmentation(const Segmentation& other) :
+mei::Segmentation::Segmentation(const Segmentation &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -1333,15 +2737,27 @@ mei::Segmentation::Segmentation(const Segmentation& other) :
 
 mei::SeriesStmt::SeriesStmt() :
     MeiElement("seriesStmt"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::SeriesStmt, "seriesStmt");
 mei::SeriesStmt::~SeriesStmt() {}
-mei::SeriesStmt::SeriesStmt(const SeriesStmt& other) :
+mei::SeriesStmt::SeriesStmt(const SeriesStmt &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
@@ -1350,39 +2766,96 @@ mei::SeriesStmt::SeriesStmt(const SeriesStmt& other) :
 
 mei::SoundChan::SoundChan() :
     MeiElement("soundChan"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::SoundChan, "soundChan");
 mei::SoundChan::~SoundChan() {}
-mei::SoundChan::SoundChan(const SoundChan& other) :
+mei::SoundChan::SoundChan(const SoundChan &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
+MeiAttribute* mei::SoundChan::getNum() {
+    if (!hasAttribute("num")) {
+        return NULL;
+    }
+    return getAttribute("num");
+};
+
+void mei::SoundChan::setNum(std::string _num) {
+    MeiAttribute *a = new MeiAttribute("num", _num);
+    addAttribute(a);
+};
+
+bool mei::SoundChan::hasNum() {
+    return hasAttribute("num");
+};
+
+void mei::SoundChan::removeNum() {
+    removeAttribute("num");
+};
 /* include <soundChan> */
 
 mei::Source::Source() :
     MeiElement("source"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Datapointing(this),
-    m_Pointing(this)
+    m_ComponentType(this),
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_RecordType(this),
+    m_TargetEval(this)
 {
 }
 REGISTER_DEFINITION(mei::Source, "source");
 mei::Source::~Source() {}
-mei::Source::Source(const Source& other) :
+mei::Source::Source(const Source &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Datapointing(this),
-    m_Pointing(this)
+    m_ComponentType(this),
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_RecordType(this),
+    m_TargetEval(this)
 {
 }
 
@@ -1390,14 +2863,26 @@ mei::Source::Source(const Source& other) :
 
 mei::SourceDesc::SourceDesc() :
     MeiElement("sourceDesc"),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 REGISTER_DEFINITION(mei::SourceDesc, "sourceDesc");
 mei::SourceDesc::~SourceDesc() {}
-mei::SourceDesc::SourceDesc(const SourceDesc& other) :
+mei::SourceDesc::SourceDesc(const SourceDesc &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
@@ -1405,18 +2890,34 @@ mei::SourceDesc::SourceDesc(const SourceDesc& other) :
 
 mei::SpecRepro::SpecRepro() :
     MeiElement("specRepro"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::SpecRepro, "specRepro");
 mei::SpecRepro::~SpecRepro() {}
-mei::SpecRepro::SpecRepro(const SpecRepro& other) :
+mei::SpecRepro::SpecRepro(const SpecRepro &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Authorized(this),
-    m_Bibl(this)
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -1424,19 +2925,31 @@ mei::SpecRepro::SpecRepro(const SpecRepro& other) :
 
 mei::StdVals::StdVals() :
     MeiElement("stdVals"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::StdVals, "stdVals");
 mei::StdVals::~StdVals() {}
-mei::StdVals::StdVals(const StdVals& other) :
+mei::StdVals::StdVals(const StdVals &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Datapointing(this),
+    m_DataPointing(this),
     m_Lang(this)
 {
 }
@@ -1445,16 +2958,28 @@ mei::StdVals::StdVals(const StdVals& other) :
 
 mei::SysReq::SysReq() :
     MeiElement("sysReq"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::SysReq, "sysReq");
 mei::SysReq::~SysReq() {}
-mei::SysReq::SysReq(const SysReq& other) :
+mei::SysReq::SysReq(const SysReq &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
     m_Lang(this)
 {
@@ -1462,126 +2987,311 @@ mei::SysReq::SysReq(const SysReq& other) :
 
 /* include <sysReq> */
 
-mei::TapeConfig::TapeConfig() :
-    MeiElement("tapeConfig"),
-    m_Common(this),
-    m_Authorized(this),
+mei::TagUsage::TagUsage() :
+    MeiElement("tagUsage"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
-REGISTER_DEFINITION(mei::TapeConfig, "tapeConfig");
-mei::TapeConfig::~TapeConfig() {}
-mei::TapeConfig::TapeConfig(const TapeConfig& other) :
+REGISTER_DEFINITION(mei::TagUsage, "tagUsage");
+mei::TagUsage::~TagUsage() {}
+mei::TagUsage::TagUsage(const TagUsage &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this)
 {
 }
 
-/* include <tapeConfig> */
-
-mei::Term::Term() :
-    MeiElement("term"),
-    m_Common(this),
-    m_Bibl(this)
-{
-}
-REGISTER_DEFINITION(mei::Term, "term");
-mei::Term::~Term() {}
-mei::Term::Term(const Term& other) :
-    MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
-{
-}
-
-MeiAttribute* mei::Term::getClasscode() {
-    if (!hasAttribute("classcode")) {
+MeiAttribute* mei::TagUsage::getName() {
+    if (!hasAttribute("name")) {
         return NULL;
     }
-    return getAttribute("classcode");
+    return getAttribute("name");
 };
 
-void mei::Term::setClasscode(std::string _classcode) {
-    MeiAttribute *a = new MeiAttribute("classcode", _classcode);
+void mei::TagUsage::setName(std::string _name) {
+    MeiAttribute *a = new MeiAttribute("name", _name);
     addAttribute(a);
 };
 
-bool mei::Term::hasClasscode() {
-    return hasAttribute("classcode");
+bool mei::TagUsage::hasName() {
+    return hasAttribute("name");
 };
 
-void mei::Term::removeClasscode() {
-    removeAttribute("classcode");
+void mei::TagUsage::removeName() {
+    removeAttribute("name");
 };
-/* include <term> */
+MeiAttribute* mei::TagUsage::getContext() {
+    if (!hasAttribute("context")) {
+        return NULL;
+    }
+    return getAttribute("context");
+};
+
+void mei::TagUsage::setContext(std::string _context) {
+    MeiAttribute *a = new MeiAttribute("context", _context);
+    addAttribute(a);
+};
+
+bool mei::TagUsage::hasContext() {
+    return hasAttribute("context");
+};
+
+void mei::TagUsage::removeContext() {
+    removeAttribute("context");
+};
+MeiAttribute* mei::TagUsage::getOccurs() {
+    if (!hasAttribute("occurs")) {
+        return NULL;
+    }
+    return getAttribute("occurs");
+};
+
+void mei::TagUsage::setOccurs(std::string _occurs) {
+    MeiAttribute *a = new MeiAttribute("occurs", _occurs);
+    addAttribute(a);
+};
+
+bool mei::TagUsage::hasOccurs() {
+    return hasAttribute("occurs");
+};
+
+void mei::TagUsage::removeOccurs() {
+    removeAttribute("occurs");
+};
+MeiAttribute* mei::TagUsage::getWithid() {
+    if (!hasAttribute("withid")) {
+        return NULL;
+    }
+    return getAttribute("withid");
+};
+
+void mei::TagUsage::setWithid(std::string _withid) {
+    MeiAttribute *a = new MeiAttribute("withid", _withid);
+    addAttribute(a);
+};
+
+bool mei::TagUsage::hasWithid() {
+    return hasAttribute("withid");
+};
+
+void mei::TagUsage::removeWithid() {
+    removeAttribute("withid");
+};
+/* include <tagUsage> */
+
+mei::TagsDecl::TagsDecl() :
+    MeiElement("tagsDecl"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+REGISTER_DEFINITION(mei::TagsDecl, "tagsDecl");
+mei::TagsDecl::~TagsDecl() {}
+mei::TagsDecl::TagsDecl(const TagsDecl &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+
+/* include <tagsDecl> */
+
+mei::Taxonomy::Taxonomy() :
+    MeiElement("taxonomy"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+REGISTER_DEFINITION(mei::Taxonomy, "taxonomy");
+mei::Taxonomy::~Taxonomy() {}
+mei::Taxonomy::Taxonomy(const Taxonomy &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
+{
+}
+
+/* include <taxonomy> */
 
 mei::TermList::TermList() :
     MeiElement("termList"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Pointing(this)
 {
 }
 REGISTER_DEFINITION(mei::TermList, "termList");
 mei::TermList::~TermList() {}
-mei::TermList::TermList(const TermList& other) :
+mei::TermList::TermList(const TermList &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Pointing(this)
 {
 }
 
-MeiAttribute* mei::TermList::getClasscode() {
-    if (!hasAttribute("classcode")) {
-        return NULL;
-    }
-    return getAttribute("classcode");
-};
-
-void mei::TermList::setClasscode(std::string _classcode) {
-    MeiAttribute *a = new MeiAttribute("classcode", _classcode);
-    addAttribute(a);
-};
-
-bool mei::TermList::hasClasscode() {
-    return hasAttribute("classcode");
-};
-
-void mei::TermList::removeClasscode() {
-    removeAttribute("classcode");
-};
 /* include <termList> */
 
 mei::TitleStmt::TitleStmt() :
     MeiElement("titleStmt"),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 REGISTER_DEFINITION(mei::TitleStmt, "titleStmt");
 mei::TitleStmt::~TitleStmt() {}
-mei::TitleStmt::TitleStmt(const TitleStmt& other) :
+mei::TitleStmt::TitleStmt(const TitleStmt &other) :
     MeiElement(other),
-    m_Bibl(this),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this)
 {
 }
 
 /* include <titleStmt> */
 
+mei::TrackConfig::TrackConfig() :
+    MeiElement("trackConfig"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
+{
+}
+REGISTER_DEFINITION(mei::TrackConfig, "trackConfig");
+mei::TrackConfig::~TrackConfig() {}
+mei::TrackConfig::TrackConfig(const TrackConfig &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
+{
+}
+
+MeiAttribute* mei::TrackConfig::getNum() {
+    if (!hasAttribute("num")) {
+        return NULL;
+    }
+    return getAttribute("num");
+};
+
+void mei::TrackConfig::setNum(std::string _num) {
+    MeiAttribute *a = new MeiAttribute("num", _num);
+    addAttribute(a);
+};
+
+bool mei::TrackConfig::hasNum() {
+    return hasAttribute("num");
+};
+
+void mei::TrackConfig::removeNum() {
+    removeAttribute("num");
+};
+/* include <trackConfig> */
+
 mei::TreatHist::TreatHist() :
     MeiElement("treatHist"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Datable(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::TreatHist, "treatHist");
 mei::TreatHist::~TreatHist() {}
-mei::TreatHist::TreatHist(const TreatHist& other) :
+mei::TreatHist::TreatHist(const TreatHist &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Datable(this),
+    m_Lang(this)
 {
 }
 
@@ -1589,16 +3299,32 @@ mei::TreatHist::TreatHist(const TreatHist& other) :
 
 mei::TreatSched::TreatSched() :
     MeiElement("treatSched"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Datable(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::TreatSched, "treatSched");
 mei::TreatSched::~TreatSched() {}
-mei::TreatSched::TreatSched(const TreatSched& other) :
+mei::TreatSched::TreatSched(const TreatSched &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Datable(this),
+    m_Lang(this)
 {
 }
 
@@ -1606,16 +3332,30 @@ mei::TreatSched::TreatSched(const TreatSched& other) :
 
 mei::Unpub::Unpub() :
     MeiElement("unpub"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Unpub, "unpub");
 mei::Unpub::~Unpub() {}
-mei::Unpub::Unpub(const Unpub& other) :
+mei::Unpub::Unpub(const Unpub &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -1623,16 +3363,34 @@ mei::Unpub::Unpub(const Unpub& other) :
 
 mei::UseRestrict::UseRestrict() :
     MeiElement("useRestrict"),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::UseRestrict, "useRestrict");
 mei::UseRestrict::~UseRestrict() {}
-mei::UseRestrict::UseRestrict(const UseRestrict& other) :
+mei::UseRestrict::UseRestrict(const UseRestrict &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_Lang(this)
 {
 }
 
@@ -1640,18 +3398,32 @@ mei::UseRestrict::UseRestrict(const UseRestrict& other) :
 
 mei::Watermark::Watermark() :
     MeiElement("watermark"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Facsimile(this)
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Watermark, "watermark");
 mei::Watermark::~Watermark() {}
-mei::Watermark::Watermark(const Watermark& other) :
+mei::Watermark::Watermark(const Watermark &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Bibl(this),
-    m_Facsimile(this)
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 
@@ -1659,37 +3431,69 @@ mei::Watermark::Watermark(const Watermark& other) :
 
 mei::Work::Work() :
     MeiElement("work"),
-    m_Datapointing(this),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_TargetEval(this)
 {
 }
 REGISTER_DEFINITION(mei::Work, "work");
 mei::Work::~Work() {}
-mei::Work::Work(const Work& other) :
+mei::Work::Work(const Work &other) :
     MeiElement(other),
-    m_Datapointing(this),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_TargetEval(this)
 {
 }
 
 /* include <work> */
 
-mei::WorkDesc::WorkDesc() :
-    MeiElement("workDesc"),
-    m_Common(this)
+mei::WorkList::WorkList() :
+    MeiElement("workList"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
-REGISTER_DEFINITION(mei::WorkDesc, "workDesc");
-mei::WorkDesc::~WorkDesc() {}
-mei::WorkDesc::WorkDesc(const WorkDesc& other) :
+REGISTER_DEFINITION(mei::WorkList, "workList");
+mei::WorkList::~WorkList() {}
+mei::WorkList::WorkList(const WorkList &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
-/* include <workDesc> */
+/* include <workList> */
 
 
 

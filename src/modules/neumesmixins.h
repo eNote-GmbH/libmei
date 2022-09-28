@@ -31,50 +31,88 @@
 #include <string>
 
 namespace mei {
-class IneumeLogMixIn {
+class NcLogMixIn {
     public:
-        explicit IneumeLogMixIn(MeiElement *b);
-        virtual ~IneumeLogMixIn();
-        /** \brief records the function of the dot.
+        explicit NcLogMixIn(MeiElement *b);
+        virtual ~NcLogMixIn();
+        /** \brief Captures written octave information.
          */
-        MeiAttribute* getForm();
-        void setForm(std::string _form);
-        bool hasForm();
-        void removeForm();
-        /** \brief records the name of the neume.
+        MeiAttribute* getOct();
+        void setOct(std::string _oct);
+        bool hasOct();
+        void removeOct();
+        /** \brief Contains a written pitch name.
          */
-        MeiAttribute* getName();
-        void setName(std::string _name);
-        bool hasName();
-        void removeName();
+        MeiAttribute* getPname();
+        void setPname(std::string _pname);
+        bool hasPname();
+        void removePname();
 
-/* include <namemixin> */
+/* include <pnamemixin> */
 
     private:
         MeiElement *b;
 };
 
-class UneumeLogMixIn {
+class NcFormMixIn {
     public:
-        explicit UneumeLogMixIn(MeiElement *b);
-        virtual ~UneumeLogMixIn();
-        /** \brief records the function of the dot.
+        explicit NcFormMixIn(MeiElement *b);
+        virtual ~NcFormMixIn();
+        /** \brief 
          */
-        MeiAttribute* getForm();
-        void setForm(std::string _form);
-        bool hasForm();
-        void removeForm();
-        /** \brief records the name of the neume.
+        MeiAttribute* getAngled();
+        void setAngled(std::string _angled);
+        bool hasAngled();
+        void removeAngled();
+        /** \brief Connection to the previous component within the same neume; this attribute
+         *  should not be used for the first component of a neume.
          */
-        MeiAttribute* getName();
-        void setName(std::string _name);
-        bool hasName();
-        void removeName();
+        MeiAttribute* getCon();
+        void setCon(std::string _con);
+        bool hasCon();
+        void removeCon();
+        /** \brief Records direction of curvature.
+         */
+        MeiAttribute* getCurve();
+        void setCurve(std::string _curve);
+        bool hasCurve();
+        void removeCurve();
+        /** \brief Pen stroke has an extension; specific to Hispanic notation.
+         */
+        MeiAttribute* getHooked();
+        void setHooked(std::string _hooked);
+        bool hasHooked();
+        void removeHooked();
+        /** \brief Indicates participation in a ligature.
+         */
+        MeiAttribute* getLigated();
+        void setLigated(std::string _ligated);
+        bool hasLigated();
+        void removeLigated();
+        /** \brief Length of the pen stroke relative to the previous component within the same
+         *  neume; this attribute should not be used for the first component of a neume.
+         */
+        MeiAttribute* getRellen();
+        void setRellen(std::string _rellen);
+        bool hasRellen();
+        void removeRellen();
+        /** \brief 
+         */
+        MeiAttribute* getSShape();
+        void setSShape(std::string _sShape);
+        bool hasSShape();
+        void removeSShape();
+        /** \brief Direction of the pen stroke.
+         */
+        MeiAttribute* getTilt();
+        void setTilt(std::string _tilt);
+        bool hasTilt();
+        void removeTilt();
 
-/* include <namemixin> */
+/* include <tiltmixin> */
 
     private:
         MeiElement *b;
 };
-}
-#endif  // NEUMESMIXIN_H_
+} // namespace mei
+#endif // NEUMESMIXIN_H_

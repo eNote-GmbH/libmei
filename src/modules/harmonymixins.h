@@ -31,28 +31,11 @@
 #include <string>
 
 namespace mei {
-class FretlocationMixIn {
-    public:
-        explicit FretlocationMixIn(MeiElement *b);
-        virtual ~FretlocationMixIn();
-        /** \brief records the location at which a string should be stopped against a fret.
-         */
-        MeiAttribute* getFret();
-        void setFret(std::string _fret);
-        bool hasFret();
-        void removeFret();
-
-/* include <fretmixin> */
-
-    private:
-        MeiElement *b;
-};
-
 class HarmLogMixIn {
     public:
         explicit HarmLogMixIn(MeiElement *b);
         virtual ~HarmLogMixIn();
-        /** \brief contains a reference to a <chordDef> element elsewhere in the document.
+        /** \brief Contains a reference to a chordDef element elsewhere in the document.
          */
         MeiAttribute* getChordref();
         void setChordref(std::string _chordref);
@@ -64,30 +47,5 @@ class HarmLogMixIn {
     private:
         MeiElement *b;
 };
-
-class HarmVisMixIn {
-    public:
-        explicit HarmVisMixIn(MeiElement *b);
-        virtual ~HarmVisMixIn();
-        /** \brief indicates the presence of an extension symbol, typically a dash or underscore,
-         *  drawn from the end of the harmonic indication to the point indicated by the dur
-         *  attribute.
-         */
-        MeiAttribute* getExtender();
-        void setExtender(std::string _extender);
-        bool hasExtender();
-        void removeExtender();
-        /** \brief describes how the harmonic indication should be rendered.
-         */
-        MeiAttribute* getRendgrid();
-        void setRendgrid(std::string _rendgrid);
-        bool hasRendgrid();
-        void removeRendgrid();
-
-/* include <rendgridmixin> */
-
-    private:
-        MeiElement *b;
-};
-}
-#endif  // HARMONYMIXIN_H_
+} // namespace mei
+#endif // HARMONYMIXIN_H_

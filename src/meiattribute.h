@@ -21,7 +21,6 @@
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-
 #ifndef MEIATTRIBUTE_H_
 #define MEIATTRIBUTE_H_
 
@@ -31,50 +30,50 @@
 
 namespace mei {
 
-    /** \brief  A representation of an attribute associated to an element in the MEI schema,
-     *          attributes describe the properties of the Mei Element.
-     *
-     * MeiAttributes are descriptors associated with MeiElements and are stored on the element.
-     * Each MeiAttribute needs a name and a value to be created and read.
-     * An MeiElement can have more than one attribute;
-     * all attributes are stored in the order they are created on the element.
-     *
-     */
-    class MeiElement;
+/** \brief  A representation of an attribute associated to an element in the MEI
+ * schema, attributes describe the properties of the Mei Element.
+ *
+ * MeiAttributes are descriptors associated with MeiElements and are stored on
+ * the element. Each MeiAttribute needs a name and a value to be created and
+ * read. An MeiElement can have more than one attribute; all attributes are
+ * stored in the order they are created on the element.
+ *
+ */
+class MeiElement;
 
-    class MEI_EXPORT MeiAttribute
-        {
-        public:
-            /** \brief The MeiAttribute Constructor, requires the attribute name and value*/
-            MeiAttribute(std::string attrname, std::string attrvalue);
+class MEI_EXPORT MeiAttribute {
+public:
+  /** \brief The MeiAttribute Constructor, requires the attribute name and
+   * value*/
+  MeiAttribute(std::string attrname, std::string attrvalue);
 
-            virtual ~MeiAttribute() {}
+  virtual ~MeiAttribute() {}
 
-            bool operator==(const MeiAttribute &other) const;
+  bool operator==(const MeiAttribute &other) const;
 
-            /** \brief Get the name of the attribute.
-             *
-             *  Each attribute is created with a name and value, the attribute cannot exist without a name
-             *  \return string containing the attribute name.
-             */
-            std::string getName();
+  /** \brief Get the name of the attribute.
+   *
+   *  Each attribute is created with a name and value, the attribute cannot
+   * exist without a name \return string containing the attribute name.
+   */
+  std::string getName();
 
-            /** \brief Get the value of the attribute.
-             *  \return A string indicating the attribute value
-             */
-            std::string getValue();
+  /** \brief Get the value of the attribute.
+   *  \return A string indicating the attribute value
+   */
+  std::string getValue();
 
-            /** \brief Set/change the value of an attribute*/
-            void setValue(std::string attrvalue);
+  /** \brief Set/change the value of an attribute*/
+  void setValue(std::string attrvalue);
 
-            MeiElement* getElement();
-            void setElement(MeiElement* el);
+  MeiElement *getElement();
+  void setElement(MeiElement *el);
 
-        private:
-            std::string name;
-            std::string value;
-            MeiElement* element;
-        };
-}
+private:
+  std::string name;
+  std::string value;
+  MeiElement *element;
+};
+} // namespace mei
 
-#endif  // MEIATTRIBUTE_H_
+#endif // MEIATTRIBUTE_H_

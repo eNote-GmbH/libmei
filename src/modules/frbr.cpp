@@ -5,35 +5,36 @@
 using std::string;
 using mei::MeiAttribute;
 
-mei::ComponentGrp::ComponentGrp() :
-    MeiElement("componentGrp"),
-    m_Common(this)
-{
-}
-REGISTER_DEFINITION(mei::ComponentGrp, "componentGrp");
-mei::ComponentGrp::~ComponentGrp() {}
-mei::ComponentGrp::ComponentGrp(const ComponentGrp& other) :
-    MeiElement(other),
-    m_Common(this)
-{
-}
-
-/* include <componentGrp> */
-
 mei::Expression::Expression() :
     MeiElement("expression"),
-    m_Datapointing(this),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this)
 {
 }
 REGISTER_DEFINITION(mei::Expression, "expression");
 mei::Expression::~Expression() {}
-mei::Expression::Expression(const Expression& other) :
+mei::Expression::Expression(const Expression &other) :
     MeiElement(other),
-    m_Datapointing(this),
-    m_Common(this),
-    m_Bibl(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_DataPointing(this)
 {
 }
 
@@ -41,14 +42,26 @@ mei::Expression::Expression(const Expression& other) :
 
 mei::ExpressionList::ExpressionList() :
     MeiElement("expressionList"),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 REGISTER_DEFINITION(mei::ExpressionList, "expressionList");
 mei::ExpressionList::~ExpressionList() {}
-mei::ExpressionList::ExpressionList(const ExpressionList& other) :
+mei::ExpressionList::ExpressionList(const ExpressionList &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
@@ -56,20 +69,38 @@ mei::ExpressionList::ExpressionList(const ExpressionList& other) :
 
 mei::Item::Item() :
     MeiElement("item"),
-    m_Datapointing(this),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Pointing(this)
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_TargetEval(this)
 {
 }
 REGISTER_DEFINITION(mei::Item, "item");
 mei::Item::~Item() {}
-mei::Item::Item(const Item& other) :
+mei::Item::Item(const Item &other) :
     MeiElement(other),
-    m_Datapointing(this),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
     m_Bibl(this),
-    m_Pointing(this)
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_TargetEval(this)
 {
 }
 
@@ -77,58 +108,119 @@ mei::Item::Item(const Item& other) :
 
 mei::ItemList::ItemList() :
     MeiElement("itemList"),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 REGISTER_DEFINITION(mei::ItemList, "itemList");
 mei::ItemList::~ItemList() {}
-mei::ItemList::ItemList(const ItemList& other) :
+mei::ItemList::ItemList(const ItemList &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
 /* include <itemList> */
 
-mei::Relation::Relation() :
-    MeiElement("relation"),
-    m_Pointing(this),
-    m_Edit(this),
+mei::Manifestation::Manifestation() :
+    MeiElement("manifestation"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
-    m_Source(this),
-    m_Rel(this),
-    m_Common(this)
-{
-}
-REGISTER_DEFINITION(mei::Relation, "relation");
-mei::Relation::~Relation() {}
-mei::Relation::Relation(const Relation& other) :
-    MeiElement(other),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_ComponentType(this),
+    m_DataPointing(this),
     m_Pointing(this),
-    m_Edit(this),
-    m_Responsibility(this),
-    m_Source(this),
-    m_Rel(this),
-    m_Common(this)
+    m_RecordType(this),
+    m_TargetEval(this)
 {
 }
-
-/* include <relation> */
-
-mei::RelationList::RelationList() :
-    MeiElement("relationList"),
-    m_Common(this)
-{
-}
-REGISTER_DEFINITION(mei::RelationList, "relationList");
-mei::RelationList::~RelationList() {}
-mei::RelationList::RelationList(const RelationList& other) :
+REGISTER_DEFINITION(mei::Manifestation, "manifestation");
+mei::Manifestation::~Manifestation() {}
+mei::Manifestation::Manifestation(const Manifestation &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Bibl(this),
+    m_ComponentType(this),
+    m_DataPointing(this),
+    m_Pointing(this),
+    m_RecordType(this),
+    m_TargetEval(this)
 {
 }
 
-/* include <relationList> */
+MeiAttribute* mei::Manifestation::getSingleton() {
+    if (!hasAttribute("singleton")) {
+        return NULL;
+    }
+    return getAttribute("singleton");
+};
+
+void mei::Manifestation::setSingleton(std::string _singleton) {
+    MeiAttribute *a = new MeiAttribute("singleton", _singleton);
+    addAttribute(a);
+};
+
+bool mei::Manifestation::hasSingleton() {
+    return hasAttribute("singleton");
+};
+
+void mei::Manifestation::removeSingleton() {
+    removeAttribute("singleton");
+};
+/* include <manifestation> */
+
+mei::ManifestationList::ManifestationList() :
+    MeiElement("manifestationList"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
+{
+}
+REGISTER_DEFINITION(mei::ManifestationList, "manifestationList");
+mei::ManifestationList::~ManifestationList() {}
+mei::ManifestationList::ManifestationList(const ManifestationList &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
+{
+}
+
+/* include <manifestationList> */
 
 
 

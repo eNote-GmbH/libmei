@@ -35,7 +35,7 @@ class ArpegLogMixIn {
     public:
         explicit ArpegLogMixIn(MeiElement *b);
         virtual ~ArpegLogMixIn();
-        /** \brief describes the direction in which an arpeggio is to be performed.
+        /** \brief Describes the direction in which an arpeggio is to be performed.
          */
         MeiAttribute* getOrder();
         void setOrder(std::string _order);
@@ -48,28 +48,11 @@ class ArpegLogMixIn {
         MeiElement *b;
 };
 
-class ArpegVisMixIn {
-    public:
-        explicit ArpegVisMixIn(MeiElement *b);
-        virtual ~ArpegVisMixIn();
-        /** \brief indicates if an arrowhead is to be drawn as part of the arpeggiation symbol.
-         */
-        MeiAttribute* getArrow();
-        void setArrow(std::string _arrow);
-        bool hasArrow();
-        void removeArrow();
-
-/* include <arrowmixin> */
-
-    private:
-        MeiElement *b;
-};
-
 class BTremLogMixIn {
     public:
         explicit BTremLogMixIn(MeiElement *b);
         virtual ~BTremLogMixIn();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
@@ -82,11 +65,11 @@ class BTremLogMixIn {
         MeiElement *b;
 };
 
-class BeamedMixIn {
+class BeamPresentMixIn {
     public:
-        explicit BeamedMixIn(MeiElement *b);
-        virtual ~BeamedMixIn();
-        /** \brief indicates that this event is "under a beam".
+        explicit BeamPresentMixIn(MeiElement *b);
+        virtual ~BeamPresentMixIn();
+        /** \brief Indicates that this event is "under a beam".
          */
         MeiAttribute* getBeam();
         void setBeam(std::string _beam);
@@ -99,10 +82,66 @@ class BeamedMixIn {
         MeiElement *b;
 };
 
-class BeamedwithMixIn {
+class BeamRendMixIn {
     public:
-        explicit BeamedwithMixIn(MeiElement *b);
-        virtual ~BeamedwithMixIn();
+        explicit BeamRendMixIn(MeiElement *b);
+        virtual ~BeamRendMixIn();
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
+         */
+        MeiAttribute* getForm();
+        void setForm(std::string _form);
+        bool hasForm();
+        void removeForm();
+        /** \brief Records the placement of the beam relative to the events it affects.
+         */
+        MeiAttribute* getPlace();
+        void setPlace(std::string _place);
+        bool hasPlace();
+        void removePlace();
+        /** \brief Indicates presence of slash through the beam.
+         */
+        MeiAttribute* getSlash();
+        void setSlash(std::string _slash);
+        bool hasSlash();
+        void removeSlash();
+        /** \brief Records the slope of the beam.
+         */
+        MeiAttribute* getSlope();
+        void setSlope(std::string _slope);
+        bool hasSlope();
+        void removeSlope();
+
+/* include <slopemixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class BeamSecondaryMixIn {
+    public:
+        explicit BeamSecondaryMixIn(MeiElement *b);
+        virtual ~BeamSecondaryMixIn();
+        /** \brief Presence of this attribute indicates that the secondary beam should be broken
+         *  following this note/chord.
+         * 
+         *  The value of the attribute records the number of beams which should remain
+         *  unbroken.
+         */
+        MeiAttribute* getBreaksec();
+        void setBreaksec(std::string _breaksec);
+        bool hasBreaksec();
+        void removeBreaksec();
+
+/* include <breaksecmixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class BeamedWithMixIn {
+    public:
+        explicit BeamedWithMixIn(MeiElement *b);
+        virtual ~BeamedWithMixIn();
         /** \brief In the case of cross-staff beams, the beam.with attribute is used to indicate
          *  which staff the beam is connected to; that is, the staff above or the staff
          *  below.
@@ -122,14 +161,14 @@ class BeamingLogMixIn {
     public:
         explicit BeamingLogMixIn(MeiElement *b);
         virtual ~BeamingLogMixIn();
-        /** \brief provides an example of how automated beaming (including secondary beams) is to
+        /** \brief Provides an example of how automated beaming (including secondary beams) is to
          *  be performed.
          */
         MeiAttribute* getBeamGroup();
         void setBeamGroup(std::string _beamgroup);
         bool hasBeamGroup();
         void removeBeamGroup();
-        /** \brief indicates whether automatically-drawn beams should include rests shorter than a
+        /** \brief Indicates whether automatically-drawn beams should include rests shorter than a
          *  quarter note duration.
          */
         MeiAttribute* getBeamRests();
@@ -143,82 +182,36 @@ class BeamingLogMixIn {
         MeiElement *b;
 };
 
-class BeamrendMixIn {
+class BeatRptLogMixIn {
     public:
-        explicit BeamrendMixIn(MeiElement *b);
-        virtual ~BeamrendMixIn();
-        /** \brief records the appearance and usually the function of the bar line.
+        explicit BeatRptLogMixIn(MeiElement *b);
+        virtual ~BeatRptLogMixIn();
+        /** \brief Indicates the performed duration represented by the beatRpt symbol; expressed in
+         *  time signature denominator units.
          */
-        MeiAttribute* getRend();
-        void setRend(std::string _rend);
-        bool hasRend();
-        void removeRend();
-        /** \brief records the slope of the beam.
-         */
-        MeiAttribute* getSlope();
-        void setSlope(std::string _slope);
-        bool hasSlope();
-        void removeSlope();
+        MeiAttribute* getBeatdef();
+        void setBeatdef(std::string _beatdef);
+        bool hasBeatdef();
+        void removeBeatdef();
 
-/* include <slopemixin> */
+/* include <beatdefmixin> */
 
     private:
         MeiElement *b;
 };
 
-class BeamsecondaryMixIn {
+class BracketSpanLogMixIn {
     public:
-        explicit BeamsecondaryMixIn(MeiElement *b);
-        virtual ~BeamsecondaryMixIn();
-        /** \brief presence of this attribute indicates that the secondary beam should be broken
-         *  following this note/chord.
-         * 
-         *  The value of the attribute records the number of beams which should remain
-         *  unbroken.
+        explicit BracketSpanLogMixIn(MeiElement *b);
+        virtual ~BracketSpanLogMixIn();
+        /** \brief Describes the function of the bracketed event sequence.
          */
-        MeiAttribute* getBreaksec();
-        void setBreaksec(std::string _breaksec);
-        bool hasBreaksec();
-        void removeBreaksec();
+        MeiAttribute* getFunc();
+        void setFunc(std::string _func);
+        bool hasFunc();
+        void removeFunc();
 
-/* include <breaksecmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class BeatRptVisMixIn {
-    public:
-        explicit BeatRptVisMixIn(MeiElement *b);
-        virtual ~BeatRptVisMixIn();
-        /** \brief records the appearance and usually the function of the bar line.
-         */
-        MeiAttribute* getRend();
-        void setRend(std::string _rend);
-        bool hasRend();
-        void removeRend();
-
-/* include <rendmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class BendGesMixIn {
-    public:
-        explicit BendGesMixIn(MeiElement *b);
-        virtual ~BendGesMixIn();
-        /** \brief records the amount of detuning.
-         * 
-         *  The decimal values should be rendered as a fraction (or an integer plus a
-         *  fraction) along with the bend symbol.
-         */
-        MeiAttribute* getAmount();
-        void setAmount(std::string _amount);
-        bool hasAmount();
-        void removeAmount();
-
-/* include <amountmixin> */
+/* include <funcmixin> */
 
     private:
         MeiElement *b;
@@ -228,7 +221,7 @@ class CutoutMixIn {
     public:
         explicit CutoutMixIn(MeiElement *b);
         virtual ~CutoutMixIn();
-        /** \brief "Cut-out" style indicated for this measure.
+        /** \brief "Cut-out" style.
          */
         MeiAttribute* getCutout();
         void setCutout(std::string _cutout);
@@ -245,7 +238,7 @@ class ExpandableMixIn {
     public:
         explicit ExpandableMixIn(MeiElement *b);
         virtual ~ExpandableMixIn();
-        /** \brief indicates whether to render a repeat symbol or the source material to which it
+        /** \brief Indicates whether to render a repeat symbol or the source material to which it
          *  refers.
          * 
          *  A value of 'true' renders the source material, while 'false' displays the repeat
@@ -266,7 +259,7 @@ class FTremLogMixIn {
     public:
         explicit FTremLogMixIn(MeiElement *b);
         virtual ~FTremLogMixIn();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
@@ -279,41 +272,41 @@ class FTremLogMixIn {
         MeiElement *b;
 };
 
-class FermataVisMixIn {
+class GlissPresentMixIn {
     public:
-        explicit FermataVisMixIn(MeiElement *b);
-        virtual ~FermataVisMixIn();
-        /** \brief records the function of the dot.
+        explicit GlissPresentMixIn(MeiElement *b);
+        virtual ~GlissPresentMixIn();
+        /** \brief Indicates that this element participates in a glissando.
+         * 
+         *  If visual information about the glissando needs to be recorded, then a gliss
+         *  element should be employed instead.
          */
-        MeiAttribute* getForm();
-        void setForm(std::string _form);
-        bool hasForm();
-        void removeForm();
-        /** \brief describes a clef's shape.
-         */
-        MeiAttribute* getShape();
-        void setShape(std::string _shape);
-        bool hasShape();
-        void removeShape();
+        MeiAttribute* getGliss();
+        void setGliss(std::string _gliss);
+        bool hasGliss();
+        void removeGliss();
 
-/* include <shapemixin> */
+/* include <glissmixin> */
 
     private:
         MeiElement *b;
 };
 
-class GlissVisMixIn {
+class GraceGrpLogMixIn {
     public:
-        explicit GlissVisMixIn(MeiElement *b);
-        virtual ~GlissVisMixIn();
-        /** \brief records a text string, such as 'gliss', that accompanies the glissando mark.
+        explicit GraceGrpLogMixIn(MeiElement *b);
+        virtual ~GraceGrpLogMixIn();
+        /** \brief Records whether the grace note group is attached to the following event or to
+         *  the preceding one.
+         * 
+         *  The usual name for the latter is "Nachschlag".
          */
-        MeiAttribute* getText();
-        void setText(std::string _text);
-        bool hasText();
-        void removeText();
+        MeiAttribute* getAttach();
+        void setAttach(std::string _attach);
+        bool hasAttach();
+        void removeAttach();
 
-/* include <textmixin> */
+/* include <attachmixin> */
 
     private:
         MeiElement *b;
@@ -323,14 +316,14 @@ class GracedMixIn {
     public:
         explicit GracedMixIn(MeiElement *b);
         virtual ~GracedMixIn();
-        /** \brief marks a note or chord as a "grace" (without a definitive written duration) and
+        /** \brief Marks a note or chord as a "grace" (without a definite performed duration) and
          *  records from which other note/chord it should "steal" time.
          */
         MeiAttribute* getGrace();
         void setGrace(std::string _grace);
         bool hasGrace();
         void removeGrace();
-        /** \brief records the amount of time to be "stolen" from a non-grace note/chord.
+        /** \brief Records the amount of time to be "stolen" from a non-grace note/chord.
          */
         MeiAttribute* getGraceTime();
         void setGraceTime(std::string _gracetime);
@@ -347,32 +340,23 @@ class HairpinLogMixIn {
     public:
         explicit HairpinLogMixIn(MeiElement *b);
         virtual ~HairpinLogMixIn();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
         bool hasForm();
         void removeForm();
-
-/* include <formmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class HairpinVisMixIn {
-    public:
-        explicit HairpinVisMixIn(MeiElement *b);
-        virtual ~HairpinVisMixIn();
-        /** \brief specifies the distance between the points of the open end of a hairpin dynamic
-         *  mark.
+        /** \brief Indicates that the hairpin starts from or ends in silence.
+         * 
+         *  Often rendered as a small circle attached to the closed end of the hairpin. See
+         *  Gould, p. 108.
          */
-        MeiAttribute* getOpening();
-        void setOpening(std::string _opening);
-        bool hasOpening();
-        void removeOpening();
+        MeiAttribute* getNiente();
+        void setNiente(std::string _niente);
+        bool hasNiente();
+        void removeNiente();
 
-/* include <openingmixin> */
+/* include <nientemixin> */
 
     private:
         MeiElement *b;
@@ -382,43 +366,43 @@ class HarpPedalLogMixIn {
     public:
         explicit HarpPedalLogMixIn(MeiElement *b);
         virtual ~HarpPedalLogMixIn();
-        /** \brief indicates the pedal setting for the harp's C strings.
+        /** \brief Indicates the pedal setting for the harp’s C strings.
          */
         MeiAttribute* getC();
         void setC(std::string _c);
         bool hasC();
         void removeC();
-        /** \brief indicates the pedal setting for the harp's D strings.
+        /** \brief Indicates the pedal setting for the harp’s D strings.
          */
         MeiAttribute* getD();
         void setD(std::string _d);
         bool hasD();
         void removeD();
-        /** \brief indicates the pedal setting for the harp's E strings.
+        /** \brief Indicates the pedal setting for the harp’s E strings.
          */
         MeiAttribute* getE();
         void setE(std::string _e);
         bool hasE();
         void removeE();
-        /** \brief indicates the pedal setting for the harp's F strings.
+        /** \brief Indicates the pedal setting for the harp’s F strings.
          */
         MeiAttribute* getF();
         void setF(std::string _f);
         bool hasF();
         void removeF();
-        /** \brief indicates the pedal setting for the harp's G strings.
+        /** \brief Indicates the pedal setting for the harp’s G strings.
          */
         MeiAttribute* getG();
         void setG(std::string _g);
         bool hasG();
         void removeG();
-        /** \brief indicates the pedal setting for the harp's A strings.
+        /** \brief Indicates the pedal setting for the harp’s A strings.
          */
         MeiAttribute* getA();
         void setA(std::string _a);
         bool hasA();
         void removeA();
-        /** \brief indicates the pedal setting for the harp's B strings.
+        /** \brief Indicates the pedal setting for the harp’s B strings.
          */
         MeiAttribute* getB();
         void setB(std::string _b);
@@ -431,11 +415,11 @@ class HarpPedalLogMixIn {
         MeiElement *b;
 };
 
-class LvpresentMixIn {
+class LvPresentMixIn {
     public:
-        explicit LvpresentMixIn(MeiElement *b);
-        virtual ~LvpresentMixIn();
-        /** \brief indicates the attachment of an l.v.
+        explicit LvPresentMixIn(MeiElement *b);
+        virtual ~LvPresentMixIn();
+        /** \brief Indicates the attachment of an l.v.
          * 
          *  (laissez vibrer) sign to this element.
          */
@@ -450,73 +434,60 @@ class LvpresentMixIn {
         MeiElement *b;
 };
 
-class MultiRestVisMixIn {
+class MeasureLogMixIn {
     public:
-        explicit MultiRestVisMixIn(MeiElement *b);
-        virtual ~MultiRestVisMixIn();
-        /** \brief When the block attribute is used, combinations of the 1, 2, and 4 measure rest
-         *  forms (Read, p.
+        explicit MeasureLogMixIn(MeiElement *b);
+        virtual ~MeasureLogMixIn();
+        /** \brief Indicates the visual rendition of the left bar line.
          * 
-         *  104) should be rendered instead of the modern form or an alternative symbol.
+         *  It is present here only for facilitation of translation from legacy encodings
+         *  which use it. Usually, it can be safely ignored.
          */
-        MeiAttribute* getBlock();
-        void setBlock(std::string _block);
-        bool hasBlock();
-        void removeBlock();
+        MeiAttribute* getLeft();
+        void setLeft(std::string _left);
+        bool hasLeft();
+        void removeLeft();
+        /** \brief Indicates the function of the right bar line and is structurally important.
+         */
+        MeiAttribute* getRight();
+        void setRight(std::string _right);
+        bool hasRight();
+        void removeRight();
 
-/* include <blockmixin> */
+/* include <rightmixin> */
 
     private:
         MeiElement *b;
 };
 
-class NoteGesCmnMixIn {
+class MeterSigGrpLogMixIn {
     public:
-        explicit NoteGesCmnMixIn(MeiElement *b);
-        virtual ~NoteGesCmnMixIn();
-        /** \brief indicates that this element participates in a glissando.
+        explicit MeterSigGrpLogMixIn(MeiElement *b);
+        virtual ~MeterSigGrpLogMixIn();
+        /** \brief Describes the function of the bracketed event sequence.
          */
-        MeiAttribute* getGliss();
-        void setGliss(std::string _gliss);
-        bool hasGliss();
-        void removeGliss();
+        MeiAttribute* getFunc();
+        void setFunc(std::string _func);
+        bool hasFunc();
+        void removeFunc();
 
-/* include <glissmixin> */
+/* include <funcmixin> */
 
     private:
         MeiElement *b;
 };
 
-class NumberedMixIn {
+class NumberPlacementMixIn {
     public:
-        explicit NumberedMixIn(MeiElement *b);
-        virtual ~NumberedMixIn();
-        /** \brief along with numbase, describes duration as a ratio.
-         * 
-         *  num is the first value in the ratio, while numbase is the second.
-         */
-        MeiAttribute* getNum();
-        void setNum(std::string _num);
-        bool hasNum();
-        void removeNum();
-
-/* include <nummixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class NumberplacementMixIn {
-    public:
-        explicit NumberplacementMixIn(MeiElement *b);
-        virtual ~NumberplacementMixIn();
-        /** \brief states where the tuplet number will be placed in relation to the note heads.
+        explicit NumberPlacementMixIn(MeiElement *b);
+        virtual ~NumberPlacementMixIn();
+        /** \brief States where the tuplet number will be placed in relation to the note heads.
          */
         MeiAttribute* getNumPlace();
         void setNumPlace(std::string _numplace);
         bool hasNumPlace();
         void removeNumPlace();
-        /** \brief determines if the tuplet number is visible.
+        /** \brief Determines if the tuplet number is visible.
          */
         MeiAttribute* getNumVisible();
         void setNumVisible(std::string _numvisible);
@@ -529,11 +500,28 @@ class NumberplacementMixIn {
         MeiElement *b;
 };
 
+class NumberedMixIn {
+    public:
+        explicit NumberedMixIn(MeiElement *b);
+        virtual ~NumberedMixIn();
+        /** \brief Records a number or count accompanying a notational feature.
+         */
+        MeiAttribute* getNum();
+        void setNum(std::string _num);
+        bool hasNum();
+        void removeNum();
+
+/* include <nummixin> */
+
+    private:
+        MeiElement *b;
+};
+
 class OctaveLogMixIn {
     public:
         explicit OctaveLogMixIn(MeiElement *b);
         virtual ~OctaveLogMixIn();
-        /** \brief indicates whether the octave displacement should be performed simultaneously
+        /** \brief Indicates whether the octave displacement should be performed simultaneously
          *  with the written notes, i.e., "coll' ottava".
          * 
          *  Unlike other octave signs which are indicated by broken lines, coll' ottava
@@ -555,41 +543,30 @@ class PedalLogMixIn {
     public:
         explicit PedalLogMixIn(MeiElement *b);
         virtual ~PedalLogMixIn();
-        /** \brief records the position of the piano damper pedal.
+        /** \brief Records the position of the piano damper pedal.
          */
         MeiAttribute* getDir();
         void setDir(std::string _dir);
         bool hasDir();
         void removeDir();
-
-/* include <dirmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class PedalVisMixIn {
-    public:
-        explicit PedalVisMixIn(MeiElement *b);
-        virtual ~PedalVisMixIn();
-        /** \brief determines whether piano pedal marks should be rendered as lines or as terms.
+        /** \brief Describes the function of the bracketed event sequence.
          */
-        MeiAttribute* getStyle();
-        void setStyle(std::string _style);
-        bool hasStyle();
-        void removeStyle();
+        MeiAttribute* getFunc();
+        void setFunc(std::string _func);
+        bool hasFunc();
+        void removeFunc();
 
-/* include <stylemixin> */
+/* include <funcmixin> */
 
     private:
         MeiElement *b;
 };
 
-class PianopedalsMixIn {
+class PianoPedalsMixIn {
     public:
-        explicit PianopedalsMixIn(MeiElement *b);
-        virtual ~PianopedalsMixIn();
-        /** \brief determines whether piano pedal marks should be rendered as lines or as terms.
+        explicit PianoPedalsMixIn(MeiElement *b);
+        virtual ~PianoPedalsMixIn();
+        /** \brief Determines whether piano pedal marks should be rendered as lines or as terms.
          */
         MeiAttribute* getPedalStyle();
         void setPedalStyle(std::string _pedalstyle);
@@ -606,7 +583,7 @@ class RehearsalMixIn {
     public:
         explicit RehearsalMixIn(MeiElement *b);
         virtual ~RehearsalMixIn();
-        /** \brief describes the enclosing shape for rehearsal marks.
+        /** \brief Describes the enclosing shape for rehearsal marks.
          */
         MeiAttribute* getRehEnclose();
         void setRehEnclose(std::string _rehenclose);
@@ -623,7 +600,7 @@ class ScoreDefVisCmnMixIn {
     public:
         explicit ScoreDefVisCmnMixIn(MeiElement *b);
         virtual ~ScoreDefVisCmnMixIn();
-        /** \brief determines whether to display guitar chord grids.
+        /** \brief Determines whether to display guitar chord grids.
          */
         MeiAttribute* getGridShow();
         void setGridShow(std::string _gridshow);
@@ -636,35 +613,34 @@ class ScoreDefVisCmnMixIn {
         MeiElement *b;
 };
 
-class SlurrendMixIn {
+class SlurRendMixIn {
     public:
-        explicit SlurrendMixIn(MeiElement *b);
-        virtual ~SlurrendMixIn();
-        /** \brief describes the line style of the slur.
+        explicit SlurRendMixIn(MeiElement *b);
+        virtual ~SlurRendMixIn();
+        /** \brief 
          */
-        MeiAttribute* getSlurRend();
-        void setSlurRend(std::string _slurrend);
-        bool hasSlurRend();
-        void removeSlurRend();
+        MeiAttribute* getSlurLform();
+        void setSlurLform(std::string _slurlform);
+        bool hasSlurLform();
+        void removeSlurLform();
+        /** \brief 
+         */
+        MeiAttribute* getSlurLwidth();
+        void setSlurLwidth(std::string _slurlwidth);
+        bool hasSlurLwidth();
+        void removeSlurLwidth();
 
-/* include <slur.rendmixin> */
+/* include <slur.lwidthmixin> */
 
     private:
         MeiElement *b;
 };
 
-class StemmedCmnMixIn {
+class StemsCmnMixIn {
     public:
-        explicit StemmedCmnMixIn(MeiElement *b);
-        virtual ~StemmedCmnMixIn();
-        /** \brief encodes any stem "modifiers"; that is, symbols rendered on the stem, such as
-         *  tremolo or Sprechstimme indicators.
-         */
-        MeiAttribute* getStemMod();
-        void setStemMod(std::string _stemmod);
-        bool hasStemMod();
-        void removeStemMod();
-        /** \brief contains an indication of which staff a note or chord that logically belongs to
+        explicit StemsCmnMixIn(MeiElement *b);
+        virtual ~StemsCmnMixIn();
+        /** \brief Contains an indication of which staff a note or chord that logically belongs to
          *  the current staff should be visually placed on; that is, the one above or the
          *  one below.
          */
@@ -679,74 +655,44 @@ class StemmedCmnMixIn {
         MeiElement *b;
 };
 
-class TierendMixIn {
+class TieRendMixIn {
     public:
-        explicit TierendMixIn(MeiElement *b);
-        virtual ~TierendMixIn();
-        /** \brief describes the line style of the tie.
+        explicit TieRendMixIn(MeiElement *b);
+        virtual ~TieRendMixIn();
+        /** \brief 
          */
-        MeiAttribute* getTieRend();
-        void setTieRend(std::string _tierend);
-        bool hasTieRend();
-        void removeTieRend();
+        MeiAttribute* getTieLform();
+        void setTieLform(std::string _tielform);
+        bool hasTieLform();
+        void removeTieLform();
+        /** \brief 
+         */
+        MeiAttribute* getTieLwidth();
+        void setTieLwidth(std::string _tielwidth);
+        bool hasTieLwidth();
+        void removeTieLwidth();
 
-/* include <tie.rendmixin> */
+/* include <tie.lwidthmixin> */
 
     private:
         MeiElement *b;
 };
 
-class TremmeasuredMixIn {
+class TremMeasuredMixIn {
     public:
-        explicit TremmeasuredMixIn(MeiElement *b);
-        virtual ~TremmeasuredMixIn();
-        /** \brief the performed duration of an individual note in a measured tremolo.
+        explicit TremMeasuredMixIn(MeiElement *b);
+        virtual ~TremMeasuredMixIn();
+        /** \brief The performed duration of an individual note in a measured tremolo.
          */
-        MeiAttribute* getMeasperf();
-        void setMeasperf(std::string _measperf);
-        bool hasMeasperf();
-        void removeMeasperf();
+        MeiAttribute* getUnitdur();
+        void setUnitdur(std::string _unitdur);
+        bool hasUnitdur();
+        void removeUnitdur();
 
-/* include <measperfmixin> */
+/* include <unitdurmixin> */
 
     private:
         MeiElement *b;
 };
-
-class TupletVisMixIn {
-    public:
-        explicit TupletVisMixIn(MeiElement *b);
-        virtual ~TupletVisMixIn();
-        /** \brief used to state where a tuplet bracket will be placed in relation to the note
-         *  heads.
-         */
-        MeiAttribute* getBracketPlace();
-        void setBracketPlace(std::string _bracketplace);
-        bool hasBracketPlace();
-        void removeBracketPlace();
-        /** \brief states whether a bracket should be rendered with a tuplet.
-         */
-        MeiAttribute* getBracketVisible();
-        void setBracketVisible(std::string _bracketvisible);
-        bool hasBracketVisible();
-        void removeBracketVisible();
-        /** \brief determines if the tuplet duration is visible.
-         */
-        MeiAttribute* getDurVisible();
-        void setDurVisible(std::string _durvisible);
-        bool hasDurVisible();
-        void removeDurVisible();
-        /** \brief controls how the num:numbase ratio is to be displayed.
-         */
-        MeiAttribute* getNumFormat();
-        void setNumFormat(std::string _numformat);
-        bool hasNumFormat();
-        void removeNumFormat();
-
-/* include <num.formatmixin> */
-
-    private:
-        MeiElement *b;
-};
-}
-#endif  // CMNMIXIN_H_
+} // namespace mei
+#endif // CMNMIXIN_H_

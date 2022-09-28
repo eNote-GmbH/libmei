@@ -31,41 +31,20 @@
 #include <string>
 
 namespace mei {
-class LigatureLogMixIn {
+class DurationQualityMixIn {
     public:
-        explicit LigatureLogMixIn(MeiElement *b);
-        virtual ~LigatureLogMixIn();
-        /** \brief records the function of the dot.
+        explicit DurationQualityMixIn(MeiElement *b);
+        virtual ~DurationQualityMixIn();
+        /** \brief Encodes the durational quality of a mensural note using the values provided by
+         *  the data.DURQUALITY.mensural datatype (i.e., the perfect / imperfect / altered /
+         *  major / minor / duplex quality of a note).
          */
-        MeiAttribute* getForm();
-        void setForm(std::string _form);
-        bool hasForm();
-        void removeForm();
+        MeiAttribute* getDurQuality();
+        void setDurQuality(std::string _durquality);
+        bool hasDurQuality();
+        void removeDurQuality();
 
-/* include <formmixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class MensurVisMixIn {
-    public:
-        explicit MensurVisMixIn(MeiElement *b);
-        virtual ~MensurVisMixIn();
-        /** \brief records the function of the dot.
-         */
-        MeiAttribute* getForm();
-        void setForm(std::string _form);
-        bool hasForm();
-        void removeForm();
-        /** \brief describes the rotation or reflection of the base symbol.
-         */
-        MeiAttribute* getOrient();
-        void setOrient(std::string _orient);
-        bool hasOrient();
-        void removeOrient();
-
-/* include <orientmixin> */
+/* include <dur.qualitymixin> */
 
     private:
         MeiElement *b;
@@ -75,26 +54,6 @@ class MensuralLogMixIn {
     public:
         explicit MensuralLogMixIn(MeiElement *b);
         virtual ~MensuralLogMixIn();
-        /** \brief determines if a dot is to be added to the base symbol.
-         */
-        MeiAttribute* getMensurDot();
-        void setMensurDot(std::string _mensurdot);
-        bool hasMensurDot();
-        void removeMensurDot();
-        /** \brief the base symbol in the mensuration sign/time signature of mensural notation.
-         */
-        MeiAttribute* getMensurSign();
-        void setMensurSign(std::string _mensursign);
-        bool hasMensurSign();
-        void removeMensurSign();
-        /** \brief indicates the number lines added to the mensuration sign.
-         * 
-         *  For example, one slash is added for what we now call 'alla breve'.
-         */
-        MeiAttribute* getMensurSlash();
-        void setMensurSlash(std::string _mensurslash);
-        bool hasMensurSlash();
-        void removeMensurSlash();
         /** \brief Together, proport.num and proport.numbase specify a proportional change as a
          *  ratio, e.g., 1:3.
          * 
@@ -124,85 +83,48 @@ class MensuralSharedMixIn {
     public:
         explicit MensuralSharedMixIn(MeiElement *b);
         virtual ~MensuralSharedMixIn();
-        /** \brief describes the maxima-long relationship.
+        /** \brief Describes the maxima-long relationship.
          */
         MeiAttribute* getModusmaior();
         void setModusmaior(std::string _modusmaior);
         bool hasModusmaior();
         void removeModusmaior();
-        /** \brief describes the long-breve relationship.
+        /** \brief Describes the long-breve relationship.
          */
         MeiAttribute* getModusminor();
         void setModusminor(std::string _modusminor);
         bool hasModusminor();
         void removeModusminor();
-        /** \brief describes the semibreve-minim relationship.
+        /** \brief Describes the semibreve-minim relationship.
          */
         MeiAttribute* getProlatio();
         void setProlatio(std::string _prolatio);
         bool hasProlatio();
         void removeProlatio();
-        /** \brief describes the breve-semibreve relationship.
+        /** \brief Describes the breve-semibreve relationship.
          */
         MeiAttribute* getTempus();
         void setTempus(std::string _tempus);
         bool hasTempus();
         void removeTempus();
+        /** \brief Describes the divisions of the breve in use in 14th-century Italy.
+         */
+        MeiAttribute* getDivisio();
+        void setDivisio(std::string _divisio);
+        bool hasDivisio();
+        void removeDivisio();
 
-/* include <tempusmixin> */
+/* include <divisiomixin> */
 
     private:
         MeiElement *b;
 };
 
-class MensuralVisMixIn {
+class NoteVisMensuralMixIn {
     public:
-        explicit MensuralVisMixIn(MeiElement *b);
-        virtual ~MensuralVisMixIn();
-        /** \brief records the color of the mensuration sign.
-         * 
-         *  Do not confuse this with the musical term 'color' as used in pre-CMN notation.
-         */
-        MeiAttribute* getMensurColor();
-        void setMensurColor(std::string _mensurcolor);
-        bool hasMensurColor();
-        void removeMensurColor();
-        /** \brief indicates whether the base symbol is written vertically or horizontally.
-         */
-        MeiAttribute* getMensurForm();
-        void setMensurForm(std::string _mensurform);
-        bool hasMensurForm();
-        void removeMensurForm();
-        /** \brief holds the staff location of the mensuration sign.
-         */
-        MeiAttribute* getMensurLoc();
-        void setMensurLoc(std::string _mensurloc);
-        bool hasMensurLoc();
-        void removeMensurLoc();
-        /** \brief describes the rotation or reflection of the base symbol.
-         */
-        MeiAttribute* getMensurOrient();
-        void setMensurOrient(std::string _mensurorient);
-        bool hasMensurOrient();
-        void removeMensurOrient();
-        /** \brief describes the relative size of the mensuration sign.
-         */
-        MeiAttribute* getMensurSize();
-        void setMensurSize(std::string _mensursize);
-        bool hasMensurSize();
-        void removeMensurSize();
-
-/* include <mensur.sizemixin> */
-
-    private:
-        MeiElement *b;
-};
-
-class NoteLogMensuralMixIn {
-    public:
-        explicit NoteLogMensuralMixIn(MeiElement *b);
-        virtual ~NoteLogMensuralMixIn();
-        /** \brief indicates this element's participation in a ligature.
+        explicit NoteVisMensuralMixIn(MeiElement *b);
+        virtual ~NoteVisMensuralMixIn();
+        /** \brief Indicates this element’s participation in a ligature.
          */
         MeiAttribute* getLig();
         void setLig(std::string _lig);
@@ -215,11 +137,34 @@ class NoteLogMensuralMixIn {
         MeiElement *b;
 };
 
+class PlicaVisMixIn {
+    public:
+        explicit PlicaVisMixIn(MeiElement *b);
+        virtual ~PlicaVisMixIn();
+        /** \brief Records the position of the piano damper pedal.
+         */
+        MeiAttribute* getDir();
+        void setDir(std::string _dir);
+        bool hasDir();
+        void removeDir();
+        /** \brief Encodes the stem length.
+         */
+        MeiAttribute* getLen();
+        void setLen(std::string _len);
+        bool hasLen();
+        void removeLen();
+
+/* include <lenmixin> */
+
+    private:
+        MeiElement *b;
+};
+
 class RestVisMensuralMixIn {
     public:
         explicit RestVisMensuralMixIn(MeiElement *b);
         virtual ~RestVisMensuralMixIn();
-        /** \brief states how many spaces are covered by the rest.
+        /** \brief States how many spaces are covered by the rest.
          */
         MeiAttribute* getSpaces();
         void setSpaces(std::string _spaces);
@@ -231,5 +176,71 @@ class RestVisMensuralMixIn {
     private:
         MeiElement *b;
 };
-}
-#endif  // MENSURALMIXIN_H_
+
+class StemVisMixIn {
+    public:
+        explicit StemVisMixIn(MeiElement *b);
+        virtual ~StemVisMixIn();
+        /** \brief Records the position of the stem in relation to the note head(s).
+         */
+        MeiAttribute* getPos();
+        void setPos(std::string _pos);
+        bool hasPos();
+        void removePos();
+        /** \brief Encodes the stem length.
+         */
+        MeiAttribute* getLen();
+        void setLen(std::string _len);
+        bool hasLen();
+        void removeLen();
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
+         */
+        MeiAttribute* getForm();
+        void setForm(std::string _form);
+        bool hasForm();
+        void removeForm();
+        /** \brief Records the position of the piano damper pedal.
+         */
+        MeiAttribute* getDir();
+        void setDir(std::string _dir);
+        bool hasDir();
+        void removeDir();
+        /** \brief Records the position of the flag using the values provided by the
+         *  data.FLAGPOS.mensural datatype.
+         */
+        MeiAttribute* getFlagPos();
+        void setFlagPos(std::string _flagpos);
+        bool hasFlagPos();
+        void removeFlagPos();
+        /** \brief Encodes the form of the flag using the values provided by the
+         *  data.FLAGFORM.mensural datatype.
+         */
+        MeiAttribute* getFlagForm();
+        void setFlagForm(std::string _flagform);
+        bool hasFlagForm();
+        void removeFlagForm();
+
+/* include <flag.formmixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class StemsMensuralMixIn {
+    public:
+        explicit StemsMensuralMixIn(MeiElement *b);
+        virtual ~StemsMensuralMixIn();
+        /** \brief Records the form of the stem.
+         */
+        MeiAttribute* getStemForm();
+        void setStemForm(std::string _stemform);
+        bool hasStemForm();
+        void removeStemForm();
+
+/* include <stem.formmixin> */
+
+    private:
+        MeiElement *b;
+};
+} // namespace mei
+#endif // MENSURALMIXIN_H_

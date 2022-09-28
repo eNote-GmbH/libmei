@@ -3,36 +3,25 @@
 
 #include <string>
 
-using std::string;
 using mei::MeiElement;
+using std::string;
 
 mei::MeiAttribute::MeiAttribute(string attrname, string attrvalue) {
-    this->name = attrname;
-    this->value = attrvalue;
-    this->element = NULL;
+  this->name = attrname;
+  this->value = attrvalue;
+  this->element = NULL;
 }
 
 bool mei::MeiAttribute::operator==(const MeiAttribute &other) const {
-    return (this->name == other.name &&
-            this->value == other.value);
+  return (this->name == other.name && this->value == other.value);
 }
 
-string mei::MeiAttribute::getName() {
-    return this->name;
-}
+string mei::MeiAttribute::getName() { return this->name; }
 
-string mei::MeiAttribute::getValue() {
-    return this->value;
-}
+string mei::MeiAttribute::getValue() { return this->value; }
 
-void mei::MeiAttribute::setValue(string attrvalue) {
-    this->value = attrvalue;
-}
+void mei::MeiAttribute::setValue(string attrvalue) { this->value = attrvalue; }
 
-MeiElement* mei::MeiAttribute::getElement() {
-    return this->element;
-}
+MeiElement *mei::MeiAttribute::getElement() { return this->element; }
 
-void mei::MeiAttribute::setElement(MeiElement *el) {
-    this->element = el;
-}
+void mei::MeiAttribute::setElement(MeiElement *el) { this->element = el; }

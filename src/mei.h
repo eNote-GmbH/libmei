@@ -24,9 +24,9 @@
 #ifndef MEI_H_
 #define MEI_H_
 
-#include "meielement.h"
-#include "meidocument.h"
-#include "meiattribute.h"
 #include "exceptions.h"
+#include "meiattribute.h"
+#include "meidocument.h"
+#include "meielement.h"
 
-#endif  // MEI_H_
+#endif // MEI_H_

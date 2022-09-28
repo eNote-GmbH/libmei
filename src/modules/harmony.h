@@ -29,82 +29,64 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
-#include "harmonymixins.h"
-#include "analysismixins.h"
-#include "linkalignmixins.h"
+#include "analyticalmixins.h"
 #include "facsimilemixins.h"
-#include <string>
+#include "gesturalmixins.h"
+#include "harmonymixins.h"
+#include "performancemixins.h"
+#include "sharedmixins.h"
+#include "stringtabmixins.h"
+#include "usersymbolsmixins.h"
+#include "visualmixins.h"
 
 
 namespace mei {
-/** \brief An indication of fingering in a chord tablature grid.
- */
-class MEI_EXPORT Barre : public MeiElement {
-    public:
-        Barre();
-        Barre(const Barre& other);
-        virtual ~Barre();
-
-/* include <barre> */
-
-        CommonMixIn    m_Common;
-        FretlocationMixIn    m_Fretlocation;
-        StartendidMixIn    m_Startendid;
-        StartidMixIn    m_Startid;
-
-    private:
-        REGISTER_DECLARATION(Barre);
-};
-
 /** \brief (chord definition) – Chord tablature definition.
  */
 class MEI_EXPORT ChordDef : public MeiElement {
     public:
         ChordDef();
-        ChordDef(const ChordDef& other);
+        ChordDef(const ChordDef &other);
         virtual ~ChordDef();
-        /** \brief records the fret position at which the chord tablature is to be played.
-         */
-        MeiAttribute* getPos();
-        void setPos(std::string _pos);
-        bool hasPos();
-        void removePos();
 
 /* include <chordDef> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        StringtabPositionMixIn    m_StringtabPosition;
+        StringtabTuningMixIn    m_StringtabTuning;
 
     private:
         REGISTER_DECLARATION(ChordDef);
 };
 
-/** \brief An individual pitch in a chord defined by a <chordDef> element.
+/** \brief An individual pitch in a chord defined by a chordDef element.
  */
 class MEI_EXPORT ChordMember : public MeiElement {
     public:
         ChordMember();
-        ChordMember(const ChordMember& other);
+        ChordMember(const ChordMember &other);
         virtual ~ChordMember();
-        /** \brief indicates which finger, if any, should be used to play an individual string.
-         * 
-         *  The index, middle, ring, and little fingers are represented by the values 1-4,
-         *  while 't' is for the thumb. The values 'x' and 'o' indicate muffled and open
-         *  strings, respectively.
-         */
-        MeiAttribute* getFing();
-        void setFing(std::string _fing);
-        bool hasFing();
-        void removeFing();
 
 /* include <chordMember> */
 
-        CommonMixIn    m_Common;
-        AccidentalPerformedMixIn    m_AccidentalPerformed;
-        FretlocationMixIn    m_Fretlocation;
-        IntervalharmonicMixIn    m_Intervalharmonic;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        IntervalHarmonicMixIn    m_IntervalHarmonic;
+        AccidentalGesturalMixIn    m_AccidentalGestural;
         PitchMixIn    m_Pitch;
         OctaveMixIn    m_Octave;
+        StringtabMixIn    m_Stringtab;
 
     private:
         REGISTER_DECLARATION(ChordMember);
@@ -115,12 +97,18 @@ class MEI_EXPORT ChordMember : public MeiElement {
 class MEI_EXPORT ChordTable : public MeiElement {
     public:
         ChordTable();
-        ChordTable(const ChordTable& other);
+        ChordTable(const ChordTable &other);
         virtual ~ChordTable();
 
 /* include <chordTable> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
 
     private:
         REGISTER_DECLARATION(ChordTable);
@@ -131,24 +119,42 @@ class MEI_EXPORT ChordTable : public MeiElement {
 class MEI_EXPORT F : public MeiElement {
     public:
         F();
-        F(const F& other);
+        F(const F &other);
         virtual ~F();
-        /** \brief indicates the presence of an extension symbol, typically a dash or underscore,
-         *  drawn from the end of the harmonic indication to the point indicated by the dur
-         *  attribute.
-         */
-        MeiAttribute* getExtender();
-        void setExtender(std::string _extender);
-        bool hasExtender();
-        void removeExtender();
 
 /* include <f> */
 
-        CommonMixIn    m_Common;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
-        AltsymMixIn    m_Altsym;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
+        DurationGesturalMixIn    m_DurationGestural;
+        Timestamp2GesturalMixIn    m_Timestamp2Gestural;
+        AlignmentMixIn    m_Alignment;
+        LayerIdentMixIn    m_LayerIdent;
+        PartIdentMixIn    m_PartIdent;
+        PlistMixIn    m_Plist;
+        StaffIdentMixIn    m_StaffIdent;
+        TargetEvalMixIn    m_TargetEval;
+        TimestampLogicalMixIn    m_TimestampLogical;
+        TimestampGesturalMixIn    m_TimestampGestural;
+        DurationAdditiveMixIn    m_DurationAdditive;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        Timestamp2LogicalMixIn    m_Timestamp2Logical;
+        AltSymMixIn    m_AltSym;
+        ExtenderMixIn    m_Extender;
+        LineRendMixIn    m_LineRend;
+        LineRendBaseMixIn    m_LineRendBase;
+        PlacementRelStaffMixIn    m_PlacementRelStaff;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
+        XyMixIn    m_Xy;
 
     private:
         REGISTER_DECLARATION(F);
@@ -162,14 +168,18 @@ class MEI_EXPORT F : public MeiElement {
 class MEI_EXPORT Fb : public MeiElement {
     public:
         Fb();
-        Fb(const Fb& other);
+        Fb(const Fb &other);
         virtual ~Fb();
 
 /* include <fb> */
 
-        CommonMixIn    m_Common;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
 
     private:
@@ -182,38 +192,50 @@ class MEI_EXPORT Fb : public MeiElement {
 class MEI_EXPORT Harm : public MeiElement {
     public:
         Harm();
-        Harm(const Harm& other);
+        Harm(const Harm &other);
         virtual ~Harm();
 
 /* include <harm> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         HarmLogMixIn    m_HarmLog;
-        PlistMixIn    m_Plist;
-        TimestampMusicalMixIn    m_TimestampMusical;
-        TimestampPerformedMixIn    m_TimestampPerformed;
-        StaffidentMixIn    m_Staffident;
-        LayeridentMixIn    m_Layerident;
-        AugmentdotsMixIn    m_Augmentdots;
-        DurationAdditiveMixIn    m_DurationAdditive;
-        StartendidMixIn    m_Startendid;
-        StartidMixIn    m_Startid;
-        Timestamp2MusicalMixIn    m_Timestamp2Musical;
-        HarmVisMixIn    m_HarmVis;
-        PlacementMixIn    m_Placement;
-        VisualoffsetHoMixIn    m_VisualoffsetHo;
-        VisualoffsetToMixIn    m_VisualoffsetTo;
-        VisualoffsetVoMixIn    m_VisualoffsetVo;
-        Visualoffset2HoMixIn    m_Visualoffset2Ho;
-        Visualoffset2ToMixIn    m_Visualoffset2To;
-        XyMixIn    m_Xy;
-        DurationPerformedMixIn    m_DurationPerformed;
-        CommonAnlMixIn    m_CommonAnl;
         AlignmentMixIn    m_Alignment;
+        LayerIdentMixIn    m_LayerIdent;
+        PartIdentMixIn    m_PartIdent;
+        PlistMixIn    m_Plist;
+        StaffIdentMixIn    m_StaffIdent;
+        TargetEvalMixIn    m_TargetEval;
+        TimestampLogicalMixIn    m_TimestampLogical;
+        TimestampGesturalMixIn    m_TimestampGestural;
+        DurationAdditiveMixIn    m_DurationAdditive;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        Timestamp2LogicalMixIn    m_Timestamp2Logical;
+        HarmVisMixIn    m_HarmVis;
+        ExtenderMixIn    m_Extender;
+        LineRendMixIn    m_LineRend;
+        LineRendBaseMixIn    m_LineRendBase;
+        PlacementRelStaffMixIn    m_PlacementRelStaff;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
+        VisualOffset2HoMixIn    m_VisualOffset2Ho;
+        VisualOffset2ToMixIn    m_VisualOffset2To;
+        XyMixIn    m_Xy;
+        DurationGesturalMixIn    m_DurationGestural;
+        Timestamp2GesturalMixIn    m_Timestamp2Gestural;
+        HarmAnlMixIn    m_HarmAnl;
+        IntervalHarmonicMixIn    m_IntervalHarmonic;
 
     private:
         REGISTER_DECLARATION(Harm);
 };
-}
-#endif  // HARMONY_H_
+} // namespace mei
+#endif // HARMONY_H_

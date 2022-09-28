@@ -50,73 +50,73 @@ void mei::MordentLogMixIn::removeLong() {
 };
 
 /* include <longmixin> */
-mei::OrnamMixIn::OrnamMixIn(MeiElement *b) {
+mei::OrnamPresentMixIn::OrnamPresentMixIn(MeiElement *b) {
     this->b = b;
 };
 
-mei::OrnamMixIn::~OrnamMixIn() {}
-MeiAttribute* mei::OrnamMixIn::getOrnam() {
+mei::OrnamPresentMixIn::~OrnamPresentMixIn() {}
+MeiAttribute* mei::OrnamPresentMixIn::getOrnam() {
     if (!b->hasAttribute("ornam")) {
         return NULL;
     }
     return b->getAttribute("ornam");
 };
 
-void mei::OrnamMixIn::setOrnam(std::string _ornam) {
+void mei::OrnamPresentMixIn::setOrnam(std::string _ornam) {
     MeiAttribute *a = new MeiAttribute("ornam", _ornam);
     b->addAttribute(a);
 };
 
-bool mei::OrnamMixIn::hasOrnam() {
+bool mei::OrnamPresentMixIn::hasOrnam() {
     return b->hasAttribute("ornam");
 };
 
-void mei::OrnamMixIn::removeOrnam() {
+void mei::OrnamPresentMixIn::removeOrnam() {
     b->removeAttribute("ornam");
 };
 
 /* include <ornammixin> */
-mei::OrnamentaccidMixIn::OrnamentaccidMixIn(MeiElement *b) {
+mei::OrnamentAccidMixIn::OrnamentAccidMixIn(MeiElement *b) {
     this->b = b;
 };
 
-mei::OrnamentaccidMixIn::~OrnamentaccidMixIn() {}
-MeiAttribute* mei::OrnamentaccidMixIn::getAccidupper() {
+mei::OrnamentAccidMixIn::~OrnamentAccidMixIn() {}
+MeiAttribute* mei::OrnamentAccidMixIn::getAccidupper() {
     if (!b->hasAttribute("accidupper")) {
         return NULL;
     }
     return b->getAttribute("accidupper");
 };
 
-void mei::OrnamentaccidMixIn::setAccidupper(std::string _accidupper) {
+void mei::OrnamentAccidMixIn::setAccidupper(std::string _accidupper) {
     MeiAttribute *a = new MeiAttribute("accidupper", _accidupper);
     b->addAttribute(a);
 };
 
-bool mei::OrnamentaccidMixIn::hasAccidupper() {
+bool mei::OrnamentAccidMixIn::hasAccidupper() {
     return b->hasAttribute("accidupper");
 };
 
-void mei::OrnamentaccidMixIn::removeAccidupper() {
+void mei::OrnamentAccidMixIn::removeAccidupper() {
     b->removeAttribute("accidupper");
 };
-MeiAttribute* mei::OrnamentaccidMixIn::getAccidlower() {
+MeiAttribute* mei::OrnamentAccidMixIn::getAccidlower() {
     if (!b->hasAttribute("accidlower")) {
         return NULL;
     }
     return b->getAttribute("accidlower");
 };
 
-void mei::OrnamentaccidMixIn::setAccidlower(std::string _accidlower) {
+void mei::OrnamentAccidMixIn::setAccidlower(std::string _accidlower) {
     MeiAttribute *a = new MeiAttribute("accidlower", _accidlower);
     b->addAttribute(a);
 };
 
-bool mei::OrnamentaccidMixIn::hasAccidlower() {
+bool mei::OrnamentAccidMixIn::hasAccidlower() {
     return b->hasAttribute("accidlower");
 };
 
-void mei::OrnamentaccidMixIn::removeAccidlower() {
+void mei::OrnamentAccidMixIn::removeAccidlower() {
     b->removeAttribute("accidlower");
 };
 

@@ -35,14 +35,14 @@ class MordentLogMixIn {
     public:
         explicit MordentLogMixIn(MeiElement *b);
         virtual ~MordentLogMixIn();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
         bool hasForm();
         void removeForm();
-        /** \brief When the long attribute is set to 'yes', a double or long mordent, consisting of
-         *  5 notes, is indicated.
+        /** \brief When set to 'true', a double or long mordent, sometimes called a "pincé double",
+         *  consisting of 5 notes, is indicated.
          */
         MeiAttribute* getLong();
         void setLong(std::string _long);
@@ -55,11 +55,11 @@ class MordentLogMixIn {
         MeiElement *b;
 };
 
-class OrnamMixIn {
+class OrnamPresentMixIn {
     public:
-        explicit OrnamMixIn(MeiElement *b);
-        virtual ~OrnamMixIn();
-        /** \brief indicates that this element has an attached ornament.
+        explicit OrnamPresentMixIn(MeiElement *b);
+        virtual ~OrnamPresentMixIn();
+        /** \brief Indicates that this element has an attached ornament.
          * 
          *  If visual information about the ornament is needed, then one of the elements
          *  that represents an ornament (mordent, trill, or turn) should be employed.
@@ -75,17 +75,17 @@ class OrnamMixIn {
         MeiElement *b;
 };
 
-class OrnamentaccidMixIn {
+class OrnamentAccidMixIn {
     public:
-        explicit OrnamentaccidMixIn(MeiElement *b);
-        virtual ~OrnamentaccidMixIn();
-        /** \brief records the written accidental associated with an upper neighboring note.
+        explicit OrnamentAccidMixIn(MeiElement *b);
+        virtual ~OrnamentAccidMixIn();
+        /** \brief Records the written accidental associated with an upper neighboring note.
          */
         MeiAttribute* getAccidupper();
         void setAccidupper(std::string _accidupper);
         bool hasAccidupper();
         void removeAccidupper();
-        /** \brief records the written accidental associated with a lower neighboring note.
+        /** \brief Records the written accidental associated with a lower neighboring note.
          */
         MeiAttribute* getAccidlower();
         void setAccidlower(std::string _accidlower);
@@ -102,16 +102,13 @@ class TurnLogMixIn {
     public:
         explicit TurnLogMixIn(MeiElement *b);
         virtual ~TurnLogMixIn();
-        /** \brief When the delayed attribute is set to 'true', the turn begins on the second half
-         *  of the beat.
-         * 
-         *  See Read, p. 246.
+        /** \brief When set to 'true', the turn begins on the second half of the beat.
          */
         MeiAttribute* getDelayed();
         void setDelayed(std::string _delayed);
         bool hasDelayed();
         void removeDelayed();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
@@ -123,5 +120,5 @@ class TurnLogMixIn {
     private:
         MeiElement *b;
 };
-}
-#endif  // CMNORNAMENTSMIXIN_H_
+} // namespace mei
+#endif // CMNORNAMENTSMIXIN_H_

@@ -29,8 +29,9 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
 #include "facsimilemixins.h"
+#include "sharedmixins.h"
+#include <string>
 
 
 namespace mei {
@@ -39,17 +40,23 @@ namespace mei {
 class MEI_EXPORT AvFile : public MeiElement {
     public:
         AvFile();
-        AvFile(const AvFile& other);
+        AvFile(const AvFile &other);
         virtual ~AvFile();
 
 /* include <avFile> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
-        InternetmediaMixIn    m_Internetmedia;
-        FacsimileMixIn    m_Facsimile;
-        PointingMixIn    m_Pointing;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        BiblMixIn    m_Bibl;
+        InternetMediaMixIn    m_InternetMedia;
+        FacsimileMixIn    m_Facsimile;
+        MetadataPointingMixIn    m_MetadataPointing;
+        PointingMixIn    m_Pointing;
 
     private:
         REGISTER_DECLARATION(AvFile);
@@ -61,15 +68,22 @@ class MEI_EXPORT AvFile : public MeiElement {
 class MEI_EXPORT Clip : public MeiElement {
     public:
         Clip();
-        Clip(const Clip& other);
+        Clip(const Clip &other);
         virtual ~Clip();
 
 /* include <clip> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
-        MediaboundsMixIn    m_Mediabounds;
-        StartidMixIn    m_Startid;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        DataPointingMixIn    m_DataPointing;
+        MediaBoundsMixIn    m_MediaBounds;
+        MetadataPointingMixIn    m_MetadataPointing;
+        StartIdMixIn    m_StartId;
 
     private:
         REGISTER_DECLARATION(Clip);
@@ -80,13 +94,19 @@ class MEI_EXPORT Clip : public MeiElement {
 class MEI_EXPORT Performance : public MeiElement {
     public:
         Performance();
-        Performance(const Performance& other);
+        Performance(const Performance &other);
         virtual ~Performance();
 
 /* include <performance> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
         REGISTER_DECLARATION(Performance);
@@ -97,18 +117,91 @@ class MEI_EXPORT Performance : public MeiElement {
 class MEI_EXPORT Recording : public MeiElement {
     public:
         Recording();
-        Recording(const Recording& other);
+        Recording(const Recording &other);
         virtual ~Recording();
 
 /* include <recording> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
-        MediaboundsMixIn    m_Mediabounds;
-        StartidMixIn    m_Startid;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        DataPointingMixIn    m_DataPointing;
+        MediaBoundsMixIn    m_MediaBounds;
+        MetadataPointingMixIn    m_MetadataPointing;
+        StartIdMixIn    m_StartId;
 
     private:
         REGISTER_DECLARATION(Recording);
 };
-}
-#endif  // PERFORMANCE_H_
+
+/** \brief Indicates a point in time either absolutely (using the absolute attribute), or
+ *  relative to another when element (using the since, interval and inttype
+ *  attributes).
+ */
+class MEI_EXPORT When : public MeiElement {
+    public:
+        When();
+        When(const When &other);
+        virtual ~When();
+        /** \brief Provides an absolute value for the time point.
+         */
+        MeiAttribute* getAbsolute();
+        void setAbsolute(std::string _absolute);
+        bool hasAbsolute();
+        void removeAbsolute();
+        /** \brief Specifies the time interval between this time point and the one designated by
+         *  the since attribute.
+         * 
+         *  This attribute can only be interpreted meaningfully in conjunction with the
+         *  inttype attribute.
+         */
+        MeiAttribute* getInterval();
+        void setInterval(std::string _interval);
+        bool hasInterval();
+        void removeInterval();
+        /** \brief Specifies the kind of values used in the absolute attribute.
+         */
+        MeiAttribute* getAbstype();
+        void setAbstype(std::string _abstype);
+        bool hasAbstype();
+        void removeAbstype();
+        /** \brief Specifies the kind of values used in the interval attribute.
+         */
+        MeiAttribute* getInttype();
+        void setInttype(std::string _inttype);
+        bool hasInttype();
+        void removeInttype();
+        /** \brief Identifies the reference point for determining the time of the current when
+         *  element, which is obtained by adding the interval to the time of the reference
+         *  point.
+         * 
+         *  The value should be the ID of another when element within the same parent
+         *  element. If the since attribute is omitted and the absolute attribute is not
+         *  specified, then the reference point is understood to be the immediately
+         *  preceding when element.
+         */
+        MeiAttribute* getSince();
+        void setSince(std::string _since);
+        bool hasSince();
+        void removeSince();
+
+/* include <when> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        DataPointingMixIn    m_DataPointing;
+
+    private:
+        REGISTER_DECLARATION(When);
+};
+} // namespace mei
+#endif // PERFORMANCE_H_

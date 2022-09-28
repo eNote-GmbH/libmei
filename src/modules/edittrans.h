@@ -29,10 +29,14 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
 #include "edittransmixins.h"
-#include "critappmixins.h"
+#include "externalsymbolsmixins.h"
 #include "facsimilemixins.h"
+#include "geneticmixins.h"
+#include "gesturalmixins.h"
+#include "performancemixins.h"
+#include "sharedmixins.h"
+#include "usersymbolsmixins.h"
 #include <string>
 
 
@@ -43,9 +47,9 @@ namespace mei {
 class MEI_EXPORT Abbr : public MeiElement {
     public:
         Abbr();
-        Abbr(const Abbr& other);
+        Abbr(const Abbr &other);
         virtual ~Abbr();
-        /** \brief records the expansion of a text abbreviation.
+        /** \brief Records the expansion of a text abbreviation.
          */
         MeiAttribute* getExpan();
         void setExpan(std::string _expan);
@@ -54,15 +58,21 @@ class MEI_EXPORT Abbr : public MeiElement {
 
 /* include <abbr> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
-        HandidentMixIn    m_Handident;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
-        TypedMixIn    m_Typed;
 
     private:
         REGISTER_DECLARATION(Abbr);
@@ -73,17 +83,34 @@ class MEI_EXPORT Abbr : public MeiElement {
 class MEI_EXPORT Add : public MeiElement {
     public:
         Add();
-        Add(const Add& other);
+        Add(const Add &other);
         virtual ~Add();
+        /** \brief Records the placement of the beam relative to the events it affects.
+         */
+        MeiAttribute* getPlace();
+        void setPlace(std::string _place);
+        bool hasPlace();
+        void removePlace();
 
 /* include <add> */
 
-        CommonMixIn    m_Common;
-        FacsimileMixIn    m_Facsimile;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
         SourceMixIn    m_Source;
-        HandidentMixIn    m_Handident;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        LangMixIn    m_Lang;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
 
     private:
@@ -95,12 +122,18 @@ class MEI_EXPORT Add : public MeiElement {
 class MEI_EXPORT Choice : public MeiElement {
     public:
         Choice();
-        Choice(const Choice& other);
+        Choice(const Choice &other);
         virtual ~Choice();
 
 /* include <choice> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
 
     private:
         REGISTER_DECLARATION(Choice);
@@ -111,20 +144,83 @@ class MEI_EXPORT Choice : public MeiElement {
 class MEI_EXPORT Corr : public MeiElement {
     public:
         Corr();
-        Corr(const Corr& other);
+        Corr(const Corr &other);
         virtual ~Corr();
 
 /* include <corr> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
-        HandidentMixIn    m_Handident;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        LangMixIn    m_Lang;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
 
     private:
         REGISTER_DECLARATION(Corr);
+};
+
+/** \brief (copy/colla parte mark) – A verbal or graphical indication to copy musical
+ *  material written elsewhere.
+ */
+class MEI_EXPORT CpMark : public MeiElement {
+    public:
+        CpMark();
+        CpMark(const CpMark &other);
+        virtual ~CpMark();
+
+/* include <cpMark> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        AlignmentMixIn    m_Alignment;
+        LayerIdentMixIn    m_LayerIdent;
+        PartIdentMixIn    m_PartIdent;
+        PlistMixIn    m_Plist;
+        StaffIdentMixIn    m_StaffIdent;
+        TargetEvalMixIn    m_TargetEval;
+        TimestampLogicalMixIn    m_TimestampLogical;
+        TimestampGesturalMixIn    m_TimestampGestural;
+        OriginTimestampLogicalMixIn    m_OriginTimestampLogical;
+        OriginStaffIdentMixIn    m_OriginStaffIdent;
+        OriginLayerIdentMixIn    m_OriginLayerIdent;
+        OriginStartEndIdMixIn    m_OriginStartEndId;
+        OctaveDisplacementMixIn    m_OctaveDisplacement;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        Timestamp2LogicalMixIn    m_Timestamp2Logical;
+        AltSymMixIn    m_AltSym;
+        ColorMixIn    m_Color;
+        EnclosingCharsMixIn    m_EnclosingChars;
+        ExtSymMixIn    m_ExtSym;
+        PlacementRelStaffMixIn    m_PlacementRelStaff;
+        TypographyMixIn    m_Typography;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
+        XyMixIn    m_Xy;
+        DurationGesturalMixIn    m_DurationGestural;
+        Timestamp2GesturalMixIn    m_Timestamp2Gestural;
+
+    private:
+        REGISTER_DECLARATION(CpMark);
 };
 
 /** \brief Contains an area of damage to the physical medium.
@@ -132,9 +228,9 @@ class MEI_EXPORT Corr : public MeiElement {
 class MEI_EXPORT Damage : public MeiElement {
     public:
         Damage();
-        Damage(const Damage& other);
+        Damage(const Damage &other);
         virtual ~Damage();
-        /** \brief records the degree of damage.
+        /** \brief Records the degree of damage.
          */
         MeiAttribute* getDegree();
         void setDegree(std::string _degree);
@@ -143,12 +239,20 @@ class MEI_EXPORT Damage : public MeiElement {
 
 /* include <damage> */
 
-        AgentidentMixIn    m_Agentident;
-        CommonMixIn    m_Common;
-        ExtentMixIn    m_Extent;
-        FacsimileMixIn    m_Facsimile;
-        HandidentMixIn    m_Handident;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        AgentIdentMixIn    m_AgentIdent;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        FacsimileMixIn    m_Facsimile;
+        HandIdentMixIn    m_HandIdent;
+        LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(Damage);
@@ -161,20 +265,29 @@ class MEI_EXPORT Damage : public MeiElement {
 class MEI_EXPORT Del : public MeiElement {
     public:
         Del();
-        Del(const Del& other);
+        Del(const Del &other);
         virtual ~Del();
-        /** \brief records the appearance and usually the function of the bar line.
-         */
-        MeiAttribute* getRend();
-        void setRend(std::string _rend);
-        bool hasRend();
-        void removeRend();
 
 /* include <del> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
         FacsimileMixIn    m_Facsimile;
-        HandidentMixIn    m_Handident;
+        LangMixIn    m_Lang;
+        TextRenditionMixIn    m_TextRendition;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
 
     private:
@@ -186,9 +299,9 @@ class MEI_EXPORT Del : public MeiElement {
 class MEI_EXPORT Expan : public MeiElement {
     public:
         Expan();
-        Expan(const Expan& other);
+        Expan(const Expan &other);
         virtual ~Expan();
-        /** \brief captures the unabbreviated form of the text.
+        /** \brief Captures the abbreviated form of the text.
          */
         MeiAttribute* getAbbr();
         void setAbbr(std::string _abbr);
@@ -197,15 +310,24 @@ class MEI_EXPORT Expan : public MeiElement {
 
 /* include <expan> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
-        HandidentMixIn    m_Handident;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
-        TypedMixIn    m_Typed;
 
     private:
         REGISTER_DECLARATION(Expan);
@@ -217,19 +339,25 @@ class MEI_EXPORT Expan : public MeiElement {
 class MEI_EXPORT Gap : public MeiElement {
     public:
         Gap();
-        Gap(const Gap& other);
+        Gap(const Gap &other);
         virtual ~Gap();
 
 /* include <gap> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
         ExtentMixIn    m_Extent;
-        HandidentMixIn    m_Handident;
-        ReasonidentMixIn    m_Reasonident;
         MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        HandIdentMixIn    m_HandIdent;
+        ReasonIdentMixIn    m_ReasonIdent;
 
     private:
         REGISTER_DECLARATION(Gap);
@@ -241,15 +369,15 @@ class MEI_EXPORT Gap : public MeiElement {
 class MEI_EXPORT HandShift : public MeiElement {
     public:
         HandShift();
-        HandShift(const HandShift& other);
+        HandShift(const HandShift &other);
         virtual ~HandShift();
-        /** \brief describes the character of the new hand.
+        /** \brief Describes the character of the new hand.
          */
         MeiAttribute* getCharacter();
         void setCharacter(std::string _character);
         bool hasCharacter();
         void removeCharacter();
-        /** \brief identifies the new hand.
+        /** \brief Identifies the new hand.
          * 
          *  The value must contain the ID of a hand element given elsewhere in the document.
          */
@@ -257,7 +385,7 @@ class MEI_EXPORT HandShift : public MeiElement {
         void setNew(std::string _new);
         bool hasNew();
         void removeNew();
-        /** \brief identifies the old hand.
+        /** \brief Identifies the old hand.
          * 
          *  The value must contain the ID of a hand element given elsewhere in the document.
          */
@@ -268,15 +396,74 @@ class MEI_EXPORT HandShift : public MeiElement {
 
 /* include <handShift> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
         FacsimileMixIn    m_Facsimile;
         MediumMixIn    m_Medium;
 
     private:
         REGISTER_DECLARATION(HandShift);
+};
+
+/** \brief A graphical or textual statement with additional / explanatory information about
+ *  the musical text.
+ * 
+ *  The textual consequences of this intervention are encoded independently via
+ *  other means; that is, with elements such as <add>, <del>, etc.
+ */
+class MEI_EXPORT MetaMark : public MeiElement {
+    public:
+        MetaMark();
+        MetaMark(const MetaMark &other);
+        virtual ~MetaMark();
+        /** \brief Describes the purpose of the metaMark.
+         */
+        MeiAttribute* getFunction();
+        void setFunction(std::string _function);
+        bool hasFunction();
+        void removeFunction();
+
+/* include <metaMark> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
+        AlignmentMixIn    m_Alignment;
+        LayerIdentMixIn    m_LayerIdent;
+        PartIdentMixIn    m_PartIdent;
+        PlistMixIn    m_Plist;
+        StaffIdentMixIn    m_StaffIdent;
+        TargetEvalMixIn    m_TargetEval;
+        TimestampLogicalMixIn    m_TimestampLogical;
+        TimestampGesturalMixIn    m_TimestampGestural;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        Timestamp2LogicalMixIn    m_Timestamp2Logical;
+        SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
+        SequenceMixIn    m_Sequence;
+        PlacementRelStaffMixIn    m_PlacementRelStaff;
+        DurationGesturalMixIn    m_DurationGestural;
+        PointingMixIn    m_Pointing;
+
+    private:
+        REGISTER_DECLARATION(MetaMark);
 };
 
 /** \brief (original) – Contains material which is marked as following the original, rather
@@ -285,17 +472,25 @@ class MEI_EXPORT HandShift : public MeiElement {
 class MEI_EXPORT Orig : public MeiElement {
     public:
         Orig();
-        Orig(const Orig& other);
+        Orig(const Orig &other);
         virtual ~Orig();
 
 /* include <orig> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
-        SourceMixIn    m_Source;
-        FacsimileMixIn    m_Facsimile;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(Orig);
@@ -307,16 +502,26 @@ class MEI_EXPORT Orig : public MeiElement {
 class MEI_EXPORT Reg : public MeiElement {
     public:
         Reg();
-        Reg(const Reg& other);
+        Reg(const Reg &other);
         virtual ~Reg();
 
 /* include <reg> */
 
-        CommonMixIn    m_Common;
-        AuthorizedMixIn    m_Authorized;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        AuthorizedMixIn    m_Authorized;
+        CanonicalMixIn    m_Canonical;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(Reg);
@@ -328,9 +533,10 @@ class MEI_EXPORT Reg : public MeiElement {
 class MEI_EXPORT Restore : public MeiElement {
     public:
         Restore();
-        Restore(const Restore& other);
+        Restore(const Restore &other);
         virtual ~Restore();
-        /** \brief provides a description of the means of restoration.
+        /** \brief Provides a description of the means of restoration, stet or strike-down, for
+         *  example.
          */
         MeiAttribute* getDesc();
         void setDesc(std::string _desc);
@@ -339,14 +545,24 @@ class MEI_EXPORT Restore : public MeiElement {
 
 /* include <restore> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
-        SourceMixIn    m_Source;
-        FacsimileMixIn    m_Facsimile;
-        HandidentMixIn    m_Handident;
-        SequenceMixIn    m_Sequence;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
+        FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
+        SequenceMixIn    m_Sequence;
 
     private:
         REGISTER_DECLARATION(Restore);
@@ -357,13 +573,25 @@ class MEI_EXPORT Restore : public MeiElement {
 class MEI_EXPORT Sic : public MeiElement {
     public:
         Sic();
-        Sic(const Sic& other);
+        Sic(const Sic &other);
         virtual ~Sic();
 
 /* include <sic> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
         FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(Sic);
@@ -375,41 +603,55 @@ class MEI_EXPORT Sic : public MeiElement {
 class MEI_EXPORT Subst : public MeiElement {
     public:
         Subst();
-        Subst(const Subst& other);
+        Subst(const Subst &other);
         virtual ~Subst();
 
 /* include <subst> */
 
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         SourceMixIn    m_Source;
-        HandidentMixIn    m_Handident;
+        EvidenceMixIn    m_Evidence;
+        GeneticStateMixIn    m_GeneticState;
+        HandIdentMixIn    m_HandIdent;
+        MetadataPointingMixIn    m_MetadataPointing;
         SequenceMixIn    m_Sequence;
 
     private:
         REGISTER_DECLARATION(Subst);
 };
 
-/** \brief Contains material supplied by the transcriber or editor in place of text which
- *  cannot be read, either because of physical damage or loss in the original or
- *  because it is illegible for any reason.
+/** \brief Contains material supplied by the transcriber or editor for any reason.
  */
 class MEI_EXPORT Supplied : public MeiElement {
     public:
         Supplied();
-        Supplied(const Supplied& other);
+        Supplied(const Supplied &other);
         virtual ~Supplied();
 
 /* include <supplied> */
 
-        AgentidentMixIn    m_Agentident;
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        AgentIdentMixIn    m_AgentIdent;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
         FacsimileMixIn    m_Facsimile;
-        ReasonidentMixIn    m_Reasonident;
+        LangMixIn    m_Lang;
+        ReasonIdentMixIn    m_ReasonIdent;
 
     private:
         REGISTER_DECLARATION(Supplied);
@@ -421,22 +663,31 @@ class MEI_EXPORT Supplied : public MeiElement {
 class MEI_EXPORT Unclear : public MeiElement {
     public:
         Unclear();
-        Unclear(const Unclear& other);
+        Unclear(const Unclear &other);
         virtual ~Unclear();
 
 /* include <unclear> */
 
-        AgentidentMixIn    m_Agentident;
-        CommonMixIn    m_Common;
-        EditMixIn    m_Edit;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        AgentIdentMixIn    m_AgentIdent;
         SourceMixIn    m_Source;
+        EvidenceMixIn    m_Evidence;
+        ExtentMixIn    m_Extent;
+        MeasurementMixIn    m_Measurement;
+        RangingMixIn    m_Ranging;
         FacsimileMixIn    m_Facsimile;
-        HandidentMixIn    m_Handident;
-        ReasonidentMixIn    m_Reasonident;
+        HandIdentMixIn    m_HandIdent;
+        LangMixIn    m_Lang;
+        ReasonIdentMixIn    m_ReasonIdent;
 
     private:
         REGISTER_DECLARATION(Unclear);
 };
-}
-#endif  // EDITTRANS_H_
+} // namespace mei
+#endif // EDITTRANS_H_

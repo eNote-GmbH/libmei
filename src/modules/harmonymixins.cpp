@@ -5,32 +5,6 @@
 using std::string;
 using mei::MeiAttribute;
 
-mei::FretlocationMixIn::FretlocationMixIn(MeiElement *b) {
-    this->b = b;
-};
-
-mei::FretlocationMixIn::~FretlocationMixIn() {}
-MeiAttribute* mei::FretlocationMixIn::getFret() {
-    if (!b->hasAttribute("fret")) {
-        return NULL;
-    }
-    return b->getAttribute("fret");
-};
-
-void mei::FretlocationMixIn::setFret(std::string _fret) {
-    MeiAttribute *a = new MeiAttribute("fret", _fret);
-    b->addAttribute(a);
-};
-
-bool mei::FretlocationMixIn::hasFret() {
-    return b->hasAttribute("fret");
-};
-
-void mei::FretlocationMixIn::removeFret() {
-    b->removeAttribute("fret");
-};
-
-/* include <fretmixin> */
 mei::HarmLogMixIn::HarmLogMixIn(MeiElement *b) {
     this->b = b;
 };
@@ -57,50 +31,5 @@ void mei::HarmLogMixIn::removeChordref() {
 };
 
 /* include <chordrefmixin> */
-mei::HarmVisMixIn::HarmVisMixIn(MeiElement *b) {
-    this->b = b;
-};
-
-mei::HarmVisMixIn::~HarmVisMixIn() {}
-MeiAttribute* mei::HarmVisMixIn::getExtender() {
-    if (!b->hasAttribute("extender")) {
-        return NULL;
-    }
-    return b->getAttribute("extender");
-};
-
-void mei::HarmVisMixIn::setExtender(std::string _extender) {
-    MeiAttribute *a = new MeiAttribute("extender", _extender);
-    b->addAttribute(a);
-};
-
-bool mei::HarmVisMixIn::hasExtender() {
-    return b->hasAttribute("extender");
-};
-
-void mei::HarmVisMixIn::removeExtender() {
-    b->removeAttribute("extender");
-};
-MeiAttribute* mei::HarmVisMixIn::getRendgrid() {
-    if (!b->hasAttribute("rendgrid")) {
-        return NULL;
-    }
-    return b->getAttribute("rendgrid");
-};
-
-void mei::HarmVisMixIn::setRendgrid(std::string _rendgrid) {
-    MeiAttribute *a = new MeiAttribute("rendgrid", _rendgrid);
-    b->addAttribute(a);
-};
-
-bool mei::HarmVisMixIn::hasRendgrid() {
-    return b->hasAttribute("rendgrid");
-};
-
-void mei::HarmVisMixIn::removeRendgrid() {
-    b->removeAttribute("rendgrid");
-};
-
-/* include <rendgridmixin> */
 
 

@@ -29,12 +29,37 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
 #include "facsimilemixins.h"
+#include "sharedmixins.h"
 #include <string>
 
 
 namespace mei {
+/** \brief Contains a formal list or prose description of topics addressed.
+ */
+class MEI_EXPORT Argument : public MeiElement {
+    public:
+        Argument();
+        Argument(const Argument &other);
+        virtual ~Argument();
+
+/* include <argument> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
+        MetadataPointingMixIn    m_MetadataPointing;
+
+    private:
+        REGISTER_DECLARATION(Argument);
+};
+
 /** \brief (back matter) – Contains any appendixes, advertisements, indexes, etc.
  * 
  *  following the main body of a musical text.
@@ -42,39 +67,49 @@ namespace mei {
 class MEI_EXPORT Back : public MeiElement {
     public:
         Back();
-        Back(const Back& other);
+        Back(const Back &other);
         virtual ~Back();
 
 /* include <back> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
         REGISTER_DECLARATION(Back);
 };
 
-/** \brief (division) – Major structural division of text, such as a preface, chapter or
- *  section.
+/** \brief Contains a quotation, anonymous or attributed, appearing on a title page.
  */
-class MEI_EXPORT Div : public MeiElement {
+class MEI_EXPORT Epigraph : public MeiElement {
     public:
-        Div();
-        Div(const Div& other);
-        virtual ~Div();
+        Epigraph();
+        Epigraph(const Epigraph &other);
+        virtual ~Epigraph();
 
-/* include <div> */
+/* include <epigraph> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
-        TypedMixIn    m_Typed;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
-        REGISTER_DECLARATION(Div);
+        REGISTER_DECLARATION(Epigraph);
 };
 
 /** \brief (front matter) – Bundles prefatory text found before the start of the musical
@@ -83,38 +118,50 @@ class MEI_EXPORT Div : public MeiElement {
 class MEI_EXPORT Front : public MeiElement {
     public:
         Front();
-        Front(const Front& other);
+        Front(const Front &other);
         virtual ~Front();
 
 /* include <front> */
 
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
         REGISTER_DECLARATION(Front);
 };
 
-/** \brief (heading) – Contains any heading, for example, the title of a section of text,
- *  or the heading of a list.
+/** \brief Contains a formal statement authorizing the publication of a work, sometimes
+ *  required to appear on a title page or its verso.
  */
-class MEI_EXPORT Head : public MeiElement {
+class MEI_EXPORT Imprimatur : public MeiElement {
     public:
-        Head();
-        Head(const Head& other);
-        virtual ~Head();
+        Imprimatur();
+        Imprimatur(const Imprimatur &other);
+        virtual ~Imprimatur();
 
-/* include <head> */
+/* include <imprimatur> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
-        XyMixIn    m_Xy;
+        MetadataPointingMixIn    m_MetadataPointing;
 
     private:
-        REGISTER_DECLARATION(Head);
+        REGISTER_DECLARATION(Imprimatur);
 };
 
 /** \brief (line of text) – Contains a single line of text within a line group.
@@ -122,12 +169,25 @@ class MEI_EXPORT Head : public MeiElement {
 class MEI_EXPORT L : public MeiElement {
     public:
         L();
-        L(const L& other);
+        L(const L &other);
         virtual ~L();
+        /** \brief Used to specify a rhythm for the lyric syllables that differs from that of the
+         *  notes on the staff, e.g., '4,4,4,4' when the rhythm of the notes is '4.,8,4.,8'.
+         */
+        MeiAttribute* getRhythm();
+        void setRhythm(std::string _rhythm);
+        bool hasRhythm();
+        void removeRhythm();
 
 /* include <l> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
 
@@ -135,42 +195,25 @@ class MEI_EXPORT L : public MeiElement {
         REGISTER_DECLARATION(L);
 };
 
-/** \brief (line group) – May be used for any section of text that is organized as a group
- *  of lines; however, it is most often used for a group of verse lines functioning
- *  as a formal unit, e.g.
- * 
- *  a stanza, refrain, verse paragraph, etc.
- */
-class MEI_EXPORT Lg : public MeiElement {
-    public:
-        Lg();
-        Lg(const Lg& other);
-        virtual ~Lg();
-
-/* include <lg> */
-
-        CommonMixIn    m_Common;
-        DeclaringMixIn    m_Declaring;
-        FacsimileMixIn    m_Facsimile;
-        LangMixIn    m_Lang;
-        XyMixIn    m_Xy;
-
-    private:
-        REGISTER_DECLARATION(Lg);
-};
-
-/** \brief (list item) – Single item in a <list>.
+/** \brief (list item) – Single item in a list.
  */
 class MEI_EXPORT Li : public MeiElement {
     public:
         Li();
-        Li(const Li& other);
+        Li(const Li &other);
         virtual ~Li();
 
 /* include <li> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
 
     private:
         REGISTER_DECLARATION(Li);
@@ -182,40 +225,89 @@ class MEI_EXPORT Li : public MeiElement {
 class MEI_EXPORT List : public MeiElement {
     public:
         List();
-        List(const List& other);
+        List(const List &other);
         virtual ~List();
-        /** \brief records the function of the dot.
+        /** \brief Indicates to what degree the harmonic label is supported by the notation.
          */
         MeiAttribute* getForm();
         void setForm(std::string _form);
         bool hasForm();
         void removeForm();
+        /** \brief Provides a description of the relationship between the current and the target
+         *  categories.
+         */
+        MeiAttribute* getType();
+        void setType(std::string _type);
+        bool hasType();
+        void removeType();
 
 /* include <list> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
+        LabelledMixIn    m_Labelled;
         LangMixIn    m_Lang;
-        TypedMixIn    m_Typed;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         XyMixIn    m_Xy;
 
     private:
         REGISTER_DECLARATION(List);
 };
 
-/** \brief (block quote) – A formatting element that designates an extended quotation; that
- *  is, a passage attributed to a source external to the text and normally set off
- *  from the text by spacing or other typographic distinction.
+/** \brief (quoted) – Contains material which is distinguished from the surrounding phrase-
+ *  level text using quotation marks or a similar method.
+ * 
+ *  Use quote for block-level quotations.
+ */
+class MEI_EXPORT Q : public MeiElement {
+    public:
+        Q();
+        Q(const Q &other);
+        virtual ~Q();
+        /** \brief Provides a description of the relationship between the current and the target
+         *  categories.
+         */
+        MeiAttribute* getType();
+        void setType(std::string _type);
+        bool hasType();
+        void removeType();
+
+/* include <q> */
+
+        BasicMixIn    m_Basic;
+        ClassedMixIn    m_Classed;
+        LabelledMixIn    m_Labelled;
+        LangMixIn    m_Lang;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+
+    private:
+        REGISTER_DECLARATION(Q);
+};
+
+/** \brief (quoted material) – Contains a paragraph-like block of text attributed to an
+ *  external source, normally set off from the surrounding text by spacing or other
+ *  typographic distinction.
  */
 class MEI_EXPORT Quote : public MeiElement {
     public:
         Quote();
-        Quote(const Quote& other);
+        Quote(const Quote &other);
         virtual ~Quote();
 
 /* include <quote> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
         XyMixIn    m_Xy;
@@ -223,5 +315,30 @@ class MEI_EXPORT Quote : public MeiElement {
     private:
         REGISTER_DECLARATION(Quote);
 };
-}
-#endif  // TEXT_H_
+
+/** \brief (arbitrary segment) represents any segmentation of text below the "text
+ *  component" level.
+ */
+class MEI_EXPORT Seg : public MeiElement {
+    public:
+        Seg();
+        Seg(const Seg &other);
+        virtual ~Seg();
+
+/* include <seg> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        LangMixIn    m_Lang;
+
+    private:
+        REGISTER_DECLARATION(Seg);
+};
+} // namespace mei
+#endif // TEXT_H_

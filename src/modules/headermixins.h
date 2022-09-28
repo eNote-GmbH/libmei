@@ -31,11 +31,90 @@
 #include <string>
 
 namespace mei {
-class RegularmethodMixIn {
+class BifoliumSurfacesMixIn {
     public:
-        explicit RegularmethodMixIn(MeiElement *b);
-        virtual ~RegularmethodMixIn();
-        /** \brief indicates the method employed to mark corrections and normalizations.
+        explicit BifoliumSurfacesMixIn(MeiElement *b);
+        virtual ~BifoliumSurfacesMixIn();
+        /** \brief A reference to a surface element positioned on the outer recto side of a
+         *  (folded) sheet.
+         */
+        MeiAttribute* getOuterRecto();
+        void setOuterRecto(std::string _outerrecto);
+        bool hasOuterRecto();
+        void removeOuterRecto();
+        /** \brief A reference to a surface element positioned on the inner verso side of a
+         *  (folded) sheet.
+         */
+        MeiAttribute* getInnerVerso();
+        void setInnerVerso(std::string _innerverso);
+        bool hasInnerVerso();
+        void removeInnerVerso();
+        /** \brief A reference to a surface element positioned on the inner recto side of a
+         *  (folded) sheet.
+         */
+        MeiAttribute* getInnerRecto();
+        void setInnerRecto(std::string _innerrecto);
+        bool hasInnerRecto();
+        void removeInnerRecto();
+        /** \brief A reference to a surface element positioned on the outer verso side of a
+         *  (folded) sheet.
+         */
+        MeiAttribute* getOuterVerso();
+        void setOuterVerso(std::string _outerverso);
+        bool hasOuterVerso();
+        void removeOuterVerso();
+
+/* include <outer.versomixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class FoliumSurfacesMixIn {
+    public:
+        explicit FoliumSurfacesMixIn(MeiElement *b);
+        virtual ~FoliumSurfacesMixIn();
+        /** \brief A reference to a surface element positioned on the recto side of the sheet.
+         */
+        MeiAttribute* getRecto();
+        void setRecto(std::string _recto);
+        bool hasRecto();
+        void removeRecto();
+        /** \brief A reference to a surface element positioned on the verso side of the sheet.
+         */
+        MeiAttribute* getVerso();
+        void setVerso(std::string _verso);
+        bool hasVerso();
+        void removeVerso();
+
+/* include <versomixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class RecordTypeMixIn {
+    public:
+        explicit RecordTypeMixIn(MeiElement *b);
+        virtual ~RecordTypeMixIn();
+        /** \brief 
+         */
+        MeiAttribute* getRecordtype();
+        void setRecordtype(std::string _recordtype);
+        bool hasRecordtype();
+        void removeRecordtype();
+
+/* include <recordtypemixin> */
+
+    private:
+        MeiElement *b;
+};
+
+class RegularMethodMixIn {
+    public:
+        explicit RegularMethodMixIn(MeiElement *b);
+        virtual ~RegularMethodMixIn();
+        /** \brief Indicates the method employed to mark corrections and normalizations.
          */
         MeiAttribute* getMethod();
         void setMethod(std::string _method);
@@ -47,5 +126,5 @@ class RegularmethodMixIn {
     private:
         MeiElement *b;
 };
-}
-#endif  // HEADERMIXIN_H_
+} // namespace mei
+#endif // HEADERMIXIN_H_

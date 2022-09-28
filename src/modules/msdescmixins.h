@@ -21,8 +21,8 @@
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LINKALIGNMIXIN_H_
-#define LINKALIGNMIXIN_H_
+#ifndef MSDESCMIXIN_H_
+#define MSDESCMIXIN_H_
 
 #include "meielement.h"
 #include "exceptions.h"
@@ -31,23 +31,21 @@
 #include <string>
 
 namespace mei {
-class AlignmentMixIn {
+class ComponentTypeMixIn {
     public:
-        explicit AlignmentMixIn(MeiElement *b);
-        virtual ~AlignmentMixIn();
-        /** \brief indicates the point of occurrence of this feature along a time line.
-         * 
-         *  Its value must be the ID of a <when> element.
+        explicit ComponentTypeMixIn(MeiElement *b);
+        virtual ~ComponentTypeMixIn();
+        /** \brief 
          */
-        MeiAttribute* getWhen();
-        void setWhen(std::string _when);
-        bool hasWhen();
-        void removeWhen();
+        MeiAttribute* getComptype();
+        void setComptype(std::string _comptype);
+        bool hasComptype();
+        void removeComptype();
 
-/* include <whenmixin> */
+/* include <comptypemixin> */
 
     private:
         MeiElement *b;
 };
-}
-#endif  // LINKALIGNMIXIN_H_
+} // namespace mei
+#endif // MSDESCMIXIN_H_

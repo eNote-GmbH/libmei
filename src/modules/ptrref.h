@@ -33,43 +33,60 @@
 
 
 namespace mei {
-/** \brief (pointer) – Defines a pointer to another location, using only attributes to
- *  describe the destination.
+/** \brief (pointer) – Defines a traversible pointer to another location, using only
+ *  attributes to describe the destination.
  */
 class MEI_EXPORT Ptr : public MeiElement {
     public:
         Ptr();
-        Ptr(const Ptr& other);
+        Ptr(const Ptr &other);
         virtual ~Ptr();
 
 /* include <ptr> */
 
-        CommonMixIn    m_Common;
-        InternetmediaMixIn    m_Internetmedia;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        InternetMediaMixIn    m_InternetMedia;
+        MetadataPointingMixIn    m_MetadataPointing;
         PointingMixIn    m_Pointing;
+        TargetEvalMixIn    m_TargetEval;
 
     private:
         REGISTER_DECLARATION(Ptr);
 };
 
-/** \brief (reference) – Defines a reference to another location that may contain text and
- *  sub-elements to describe the destination.
+/** \brief (reference) – Defines a traversible reference to another location.
+ * 
+ *  May contain text and sub-elements that describe the destination.
  */
 class MEI_EXPORT Ref : public MeiElement {
     public:
         Ref();
-        Ref(const Ref& other);
+        Ref(const Ref &other);
         virtual ~Ref();
 
 /* include <ref> */
 
-        CommonMixIn    m_Common;
-        InternetmediaMixIn    m_Internetmedia;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        InternetMediaMixIn    m_InternetMedia;
         LangMixIn    m_Lang;
+        MetadataPointingMixIn    m_MetadataPointing;
         PointingMixIn    m_Pointing;
+        TargetEvalMixIn    m_TargetEval;
 
     private:
         REGISTER_DECLARATION(Ref);
 };
-}
-#endif  // PTRREF_H_
+} // namespace mei
+#endif // PTRREF_H_

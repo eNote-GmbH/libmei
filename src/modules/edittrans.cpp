@@ -7,30 +7,42 @@ using mei::MeiAttribute;
 
 mei::Abbr::Abbr() :
     MeiElement("abbr"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Abbr, "abbr");
 mei::Abbr::~Abbr() {}
-mei::Abbr::Abbr(const Abbr& other) :
+mei::Abbr::Abbr(const Abbr &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 
@@ -57,41 +69,94 @@ void mei::Abbr::removeExpan() {
 
 mei::Add::Add() :
     MeiElement("add"),
-    m_Common(this),
-    m_Facsimile(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Add, "add");
 mei::Add::~Add() {}
-mei::Add::Add(const Add& other) :
+mei::Add::Add(const Add &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Facsimile(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 
+MeiAttribute* mei::Add::getPlace() {
+    if (!hasAttribute("place")) {
+        return NULL;
+    }
+    return getAttribute("place");
+};
+
+void mei::Add::setPlace(std::string _place) {
+    MeiAttribute *a = new MeiAttribute("place", _place);
+    addAttribute(a);
+};
+
+bool mei::Add::hasPlace() {
+    return hasAttribute("place");
+};
+
+void mei::Add::removePlace() {
+    removeAttribute("place");
+};
 /* include <add> */
 
 mei::Choice::Choice() :
     MeiElement("choice"),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 REGISTER_DEFINITION(mei::Choice, "choice");
 mei::Choice::~Choice() {}
-mei::Choice::Choice(const Choice& other) :
+mei::Choice::Choice(const Choice &other) :
     MeiElement(other),
-    m_Common(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this)
 {
 }
 
@@ -99,49 +164,172 @@ mei::Choice::Choice(const Choice& other) :
 
 mei::Corr::Corr() :
     MeiElement("corr"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Corr, "corr");
 mei::Corr::~Corr() {}
-mei::Corr::Corr(const Corr& other) :
+mei::Corr::Corr(const Corr &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 
 /* include <corr> */
 
+mei::CpMark::CpMark() :
+    MeiElement("cpMark"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Alignment(this),
+    m_LayerIdent(this),
+    m_PartIdent(this),
+    m_Plist(this),
+    m_StaffIdent(this),
+    m_TargetEval(this),
+    m_TimestampLogical(this),
+    m_TimestampGestural(this),
+    m_OriginTimestampLogical(this),
+    m_OriginStaffIdent(this),
+    m_OriginLayerIdent(this),
+    m_OriginStartEndId(this),
+    m_OctaveDisplacement(this),
+    m_StartEndId(this),
+    m_StartId(this),
+    m_Timestamp2Logical(this),
+    m_AltSym(this),
+    m_Color(this),
+    m_EnclosingChars(this),
+    m_ExtSym(this),
+    m_PlacementRelStaff(this),
+    m_Typography(this),
+    m_VisualOffsetHo(this),
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_Xy(this),
+    m_DurationGestural(this),
+    m_Timestamp2Gestural(this)
+{
+}
+REGISTER_DEFINITION(mei::CpMark, "cpMark");
+mei::CpMark::~CpMark() {}
+mei::CpMark::CpMark(const CpMark &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Alignment(this),
+    m_LayerIdent(this),
+    m_PartIdent(this),
+    m_Plist(this),
+    m_StaffIdent(this),
+    m_TargetEval(this),
+    m_TimestampLogical(this),
+    m_TimestampGestural(this),
+    m_OriginTimestampLogical(this),
+    m_OriginStaffIdent(this),
+    m_OriginLayerIdent(this),
+    m_OriginStartEndId(this),
+    m_OctaveDisplacement(this),
+    m_StartEndId(this),
+    m_StartId(this),
+    m_Timestamp2Logical(this),
+    m_AltSym(this),
+    m_Color(this),
+    m_EnclosingChars(this),
+    m_ExtSym(this),
+    m_PlacementRelStaff(this),
+    m_Typography(this),
+    m_VisualOffsetHo(this),
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_Xy(this),
+    m_DurationGestural(this),
+    m_Timestamp2Gestural(this)
+{
+}
+
+/* include <cpMark> */
+
 mei::Damage::Damage() :
     MeiElement("damage"),
-    m_Agentident(this),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Typed(this)
+    m_HandIdent(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Damage, "damage");
 mei::Damage::~Damage() {}
-mei::Damage::Damage(const Damage& other) :
+mei::Damage::Damage(const Damage &other) :
     MeiElement(other),
-    m_Agentident(this),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Typed(this)
+    m_HandIdent(this),
+    m_Lang(this)
 {
 }
 
@@ -168,70 +356,99 @@ void mei::Damage::removeDegree() {
 
 mei::Del::Del() :
     MeiElement("del"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
+    m_Lang(this),
+    m_TextRendition(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Del, "del");
 mei::Del::~Del() {}
-mei::Del::Del(const Del& other) :
+mei::Del::Del(const Del &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
+    m_Lang(this),
+    m_TextRendition(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 
-MeiAttribute* mei::Del::getRend() {
-    if (!hasAttribute("rend")) {
-        return NULL;
-    }
-    return getAttribute("rend");
-};
-
-void mei::Del::setRend(std::string _rend) {
-    MeiAttribute *a = new MeiAttribute("rend", _rend);
-    addAttribute(a);
-};
-
-bool mei::Del::hasRend() {
-    return hasAttribute("rend");
-};
-
-void mei::Del::removeRend() {
-    removeAttribute("rend");
-};
 /* include <del> */
 
 mei::Expan::Expan() :
     MeiElement("expan"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Expan, "expan");
 mei::Expan::~Expan() {}
-mei::Expan::Expan(const Expan& other) :
+mei::Expan::Expan(const Expan &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 
@@ -258,28 +475,40 @@ void mei::Expan::removeAbbr() {
 
 mei::Gap::Gap() :
     MeiElement("gap"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Extent(this),
-    m_Handident(this),
-    m_Reasonident(this),
-    m_Measurement(this)
+    m_Measurement(this),
+    m_Ranging(this),
+    m_HandIdent(this),
+    m_ReasonIdent(this)
 {
 }
 REGISTER_DEFINITION(mei::Gap, "gap");
 mei::Gap::~Gap() {}
-mei::Gap::Gap(const Gap& other) :
+mei::Gap::Gap(const Gap &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Extent(this),
-    m_Handident(this),
-    m_Reasonident(this),
-    m_Measurement(this)
+    m_Measurement(this),
+    m_Ranging(this),
+    m_HandIdent(this),
+    m_ReasonIdent(this)
 {
 }
 
@@ -287,22 +516,32 @@ mei::Gap::Gap(const Gap& other) :
 
 mei::HandShift::HandShift() :
     MeiElement("handShift"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Facsimile(this),
     m_Medium(this)
 {
 }
 REGISTER_DEFINITION(mei::HandShift, "handShift");
 mei::HandShift::~HandShift() {}
-mei::HandShift::HandShift(const HandShift& other) :
+mei::HandShift::HandShift(const HandShift &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
     m_Facsimile(this),
     m_Medium(this)
 {
@@ -367,26 +606,132 @@ void mei::HandShift::removeOld() {
 };
 /* include <handShift> */
 
+mei::MetaMark::MetaMark() :
+    MeiElement("metaMark"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Lang(this),
+    m_Alignment(this),
+    m_LayerIdent(this),
+    m_PartIdent(this),
+    m_Plist(this),
+    m_StaffIdent(this),
+    m_TargetEval(this),
+    m_TimestampLogical(this),
+    m_TimestampGestural(this),
+    m_StartEndId(this),
+    m_StartId(this),
+    m_Timestamp2Logical(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_PlacementRelStaff(this),
+    m_DurationGestural(this),
+    m_Pointing(this)
+{
+}
+REGISTER_DEFINITION(mei::MetaMark, "metaMark");
+mei::MetaMark::~MetaMark() {}
+mei::MetaMark::MetaMark(const MetaMark &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Lang(this),
+    m_Alignment(this),
+    m_LayerIdent(this),
+    m_PartIdent(this),
+    m_Plist(this),
+    m_StaffIdent(this),
+    m_TargetEval(this),
+    m_TimestampLogical(this),
+    m_TimestampGestural(this),
+    m_StartEndId(this),
+    m_StartId(this),
+    m_Timestamp2Logical(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this),
+    m_PlacementRelStaff(this),
+    m_DurationGestural(this),
+    m_Pointing(this)
+{
+}
+
+MeiAttribute* mei::MetaMark::getFunction() {
+    if (!hasAttribute("function")) {
+        return NULL;
+    }
+    return getAttribute("function");
+};
+
+void mei::MetaMark::setFunction(std::string _function) {
+    MeiAttribute *a = new MeiAttribute("function", _function);
+    addAttribute(a);
+};
+
+bool mei::MetaMark::hasFunction() {
+    return hasAttribute("function");
+};
+
+void mei::MetaMark::removeFunction() {
+    removeAttribute("function");
+};
+/* include <metaMark> */
+
 mei::Orig::Orig() :
     MeiElement("orig"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Typed(this)
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Orig, "orig");
 mei::Orig::~Orig() {}
-mei::Orig::Orig(const Orig& other) :
+mei::Orig::Orig(const Orig &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Typed(this)
+    m_Lang(this)
 {
 }
 
@@ -394,22 +739,42 @@ mei::Orig::Orig(const Orig& other) :
 
 mei::Reg::Reg() :
     MeiElement("reg"),
-    m_Common(this),
-    m_Authorized(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
-    m_Source(this)
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Reg, "reg");
 mei::Reg::~Reg() {}
-mei::Reg::Reg(const Reg& other) :
+mei::Reg::Reg(const Reg &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Authorized(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
-    m_Source(this)
+    m_Typed(this),
+    m_Classed(this),
+    m_Authorized(this),
+    m_Canonical(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Lang(this)
 {
 }
 
@@ -417,28 +782,48 @@ mei::Reg::Reg(const Reg& other) :
 
 mei::Restore::Restore() :
     MeiElement("restore"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Restore, "restore");
 mei::Restore::~Restore() {}
-mei::Restore::Restore(const Restore& other) :
+mei::Restore::Restore(const Restore &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Sequence(this),
-    m_Typed(this)
+    m_Lang(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
+    m_Sequence(this)
 {
 }
 
@@ -465,16 +850,40 @@ void mei::Restore::removeDesc() {
 
 mei::Sic::Sic() :
     MeiElement("sic"),
-    m_Common(this),
-    m_Facsimile(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 REGISTER_DEFINITION(mei::Sic, "sic");
 mei::Sic::~Sic() {}
-mei::Sic::Sic(const Sic& other) :
+mei::Sic::Sic(const Sic &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Facsimile(this)
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
+    m_Facsimile(this),
+    m_Lang(this)
 {
 }
 
@@ -482,23 +891,37 @@ mei::Sic::Sic(const Sic& other) :
 
 mei::Subst::Subst() :
     MeiElement("subst"),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
 REGISTER_DEFINITION(mei::Subst, "subst");
 mei::Subst::~Subst() {}
-mei::Subst::Subst(const Subst& other) :
+mei::Subst::Subst(const Subst &other) :
     MeiElement(other),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Source(this),
-    m_Handident(this),
+    m_Evidence(this),
+    m_GeneticState(this),
+    m_HandIdent(this),
+    m_MetadataPointing(this),
     m_Sequence(this)
 {
 }
@@ -507,26 +930,44 @@ mei::Subst::Subst(const Subst& other) :
 
 mei::Supplied::Supplied() :
     MeiElement("supplied"),
-    m_Agentident(this),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Reasonident(this)
+    m_Lang(this),
+    m_ReasonIdent(this)
 {
 }
 REGISTER_DEFINITION(mei::Supplied, "supplied");
 mei::Supplied::~Supplied() {}
-mei::Supplied::Supplied(const Supplied& other) :
+mei::Supplied::Supplied(const Supplied &other) :
     MeiElement(other),
-    m_Agentident(this),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Reasonident(this)
+    m_Lang(this),
+    m_ReasonIdent(this)
 {
 }
 
@@ -534,28 +975,46 @@ mei::Supplied::Supplied(const Supplied& other) :
 
 mei::Unclear::Unclear() :
     MeiElement("unclear"),
-    m_Agentident(this),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Reasonident(this)
+    m_HandIdent(this),
+    m_Lang(this),
+    m_ReasonIdent(this)
 {
 }
 REGISTER_DEFINITION(mei::Unclear, "unclear");
 mei::Unclear::~Unclear() {}
-mei::Unclear::Unclear(const Unclear& other) :
+mei::Unclear::Unclear(const Unclear &other) :
     MeiElement(other),
-    m_Agentident(this),
-    m_Common(this),
-    m_Edit(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
     m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_AgentIdent(this),
     m_Source(this),
+    m_Evidence(this),
+    m_Extent(this),
+    m_Measurement(this),
+    m_Ranging(this),
     m_Facsimile(this),
-    m_Handident(this),
-    m_Reasonident(this)
+    m_HandIdent(this),
+    m_Lang(this),
+    m_ReasonIdent(this)
 {
 }
 

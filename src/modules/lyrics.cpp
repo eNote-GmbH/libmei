@@ -5,69 +5,136 @@
 using std::string;
 using mei::MeiAttribute;
 
-mei::Lyrics::Lyrics() :
-    MeiElement("lyrics"),
-    m_Common(this),
+mei::Refrain::Refrain() :
+    MeiElement("refrain"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Staffident(this),
-    m_Layerident(this),
-    m_Placement(this),
+    m_Color(this),
+    m_PlacementRelStaff(this),
     m_Typography(this),
-    m_CommonAnl(this),
-    m_Alignment(this)
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_VoltaGroupingSym(this),
+    m_Xy(this)
 {
 }
-REGISTER_DEFINITION(mei::Lyrics, "lyrics");
-mei::Lyrics::~Lyrics() {}
-mei::Lyrics::Lyrics(const Lyrics& other) :
+REGISTER_DEFINITION(mei::Refrain, "refrain");
+mei::Refrain::~Refrain() {}
+mei::Refrain::Refrain(const Refrain &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_Staffident(this),
-    m_Layerident(this),
-    m_Placement(this),
+    m_Color(this),
+    m_PlacementRelStaff(this),
     m_Typography(this),
-    m_CommonAnl(this),
-    m_Alignment(this)
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_VoltaGroupingSym(this),
+    m_Xy(this)
 {
 }
 
-/* include <lyrics> */
+/* include <refrain> */
 
 mei::Verse::Verse() :
     MeiElement("verse"),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_VerseLog(this),
+    m_Color(this),
+    m_PlacementRelStaff(this),
     m_Typography(this),
-    m_VisualoffsetTo(this),
-    m_VisualoffsetVo(this),
-    m_Xy(this),
-    m_CommonAnl(this),
-    m_Alignment(this)
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_VoltaGroupingSym(this),
+    m_Xy(this)
 {
 }
 REGISTER_DEFINITION(mei::Verse, "verse");
 mei::Verse::~Verse() {}
-mei::Verse::Verse(const Verse& other) :
+mei::Verse::Verse(const Verse &other) :
     MeiElement(other),
-    m_Common(this),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
     m_Facsimile(this),
     m_Lang(this),
-    m_VerseLog(this),
+    m_Color(this),
+    m_PlacementRelStaff(this),
     m_Typography(this),
-    m_VisualoffsetTo(this),
-    m_VisualoffsetVo(this),
-    m_Xy(this),
-    m_CommonAnl(this),
-    m_Alignment(this)
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_VoltaGroupingSym(this),
+    m_Xy(this)
 {
 }
 
 /* include <verse> */
+
+mei::Volta::Volta() :
+    MeiElement("volta"),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Lang(this),
+    m_Color(this),
+    m_Typography(this),
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_Xy(this)
+{
+}
+REGISTER_DEFINITION(mei::Volta, "volta");
+mei::Volta::~Volta() {}
+mei::Volta::Volta(const Volta &other) :
+    MeiElement(other),
+    m_Basic(this),
+    m_Labelled(this),
+    m_Linking(this),
+    m_NNumberLike(this),
+    m_Responsibility(this),
+    m_Typed(this),
+    m_Classed(this),
+    m_Facsimile(this),
+    m_Lang(this),
+    m_Color(this),
+    m_Typography(this),
+    m_VisualOffsetTo(this),
+    m_VisualOffsetVo(this),
+    m_Xy(this)
+{
+}
+
+/* include <volta> */
 
 
 

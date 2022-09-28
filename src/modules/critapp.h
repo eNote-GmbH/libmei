@@ -29,10 +29,8 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
 #include "critappmixins.h"
-#include "analysismixins.h"
-#include "linkalignmixins.h"
+#include "sharedmixins.h"
 
 
 namespace mei {
@@ -41,13 +39,18 @@ namespace mei {
 class MEI_EXPORT App : public MeiElement {
     public:
         App();
-        App(const App& other);
+        App(const App &other);
         virtual ~App();
 
 /* include <app> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
 
     private:
         REGISTER_DECLARATION(App);
@@ -58,21 +61,24 @@ class MEI_EXPORT App : public MeiElement {
 class MEI_EXPORT Lem : public MeiElement {
     public:
         Lem();
-        Lem(const Lem& other);
+        Lem(const Lem &other);
         virtual ~Lem();
 
 /* include <lem> */
 
-        CommonMixIn    m_Common;
-        CritMixIn    m_Crit;
-        HandidentMixIn    m_Handident;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        CritMixIn    m_Crit;
+        HandIdentMixIn    m_HandIdent;
         SequenceMixIn    m_Sequence;
         SourceMixIn    m_Source;
-        TypedMixIn    m_Typed;
         PointingMixIn    m_Pointing;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        TargetEvalMixIn    m_TargetEval;
 
     private:
         REGISTER_DECLARATION(Lem);
@@ -83,24 +89,27 @@ class MEI_EXPORT Lem : public MeiElement {
 class MEI_EXPORT Rdg : public MeiElement {
     public:
         Rdg();
-        Rdg(const Rdg& other);
+        Rdg(const Rdg &other);
         virtual ~Rdg();
 
 /* include <rdg> */
 
-        CommonMixIn    m_Common;
-        CritMixIn    m_Crit;
-        HandidentMixIn    m_Handident;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
         ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        CritMixIn    m_Crit;
+        HandIdentMixIn    m_HandIdent;
         SequenceMixIn    m_Sequence;
         SourceMixIn    m_Source;
-        TypedMixIn    m_Typed;
         PointingMixIn    m_Pointing;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        TargetEvalMixIn    m_TargetEval;
 
     private:
         REGISTER_DECLARATION(Rdg);
 };
-}
-#endif  // CRITAPP_H_
+} // namespace mei
+#endif // CRITAPP_H_

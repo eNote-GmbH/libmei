@@ -31,31 +31,5 @@ void mei::CritMixIn::removeCause() {
 };
 
 /* include <causemixin> */
-mei::SourceMixIn::SourceMixIn(MeiElement *b) {
-    this->b = b;
-};
-
-mei::SourceMixIn::~SourceMixIn() {}
-MeiAttribute* mei::SourceMixIn::getSource() {
-    if (!b->hasAttribute("source")) {
-        return NULL;
-    }
-    return b->getAttribute("source");
-};
-
-void mei::SourceMixIn::setSource(std::string _source) {
-    MeiAttribute *a = new MeiAttribute("source", _source);
-    b->addAttribute(a);
-};
-
-bool mei::SourceMixIn::hasSource() {
-    return b->hasAttribute("source");
-};
-
-void mei::SourceMixIn::removeSource() {
-    b->removeAttribute("source");
-};
-
-/* include <sourcemixin> */
 
 

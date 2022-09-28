@@ -29,11 +29,12 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "sharedmixins.h"
+#include "externalsymbolsmixins.h"
 #include "facsimilemixins.h"
 #include "mensuralmixins.h"
-#include "analysismixins.h"
-#include "linkalignmixins.h"
+#include "sharedmixins.h"
+#include "usersymbolsmixins.h"
+#include "visualmixins.h"
 
 
 namespace mei {
@@ -42,16 +43,21 @@ namespace mei {
 class MEI_EXPORT Ligature : public MeiElement {
     public:
         Ligature();
-        Ligature(const Ligature& other);
+        Ligature(const Ligature &other);
         virtual ~Ligature();
 
 /* include <ligature> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
-        LigatureLogMixIn    m_LigatureLog;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        LigatureVisMixIn    m_LigatureVis;
+        ColorMixIn    m_Color;
 
     private:
         REGISTER_DECLARATION(Ligature);
@@ -63,26 +69,55 @@ class MEI_EXPORT Ligature : public MeiElement {
 class MEI_EXPORT Mensur : public MeiElement {
     public:
         Mensur();
-        Mensur(const Mensur& other);
+        Mensur(const Mensur &other);
         virtual ~Mensur();
 
 /* include <mensur> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
-        MensurLogMixIn    m_MensurLog;
         DurationRatioMixIn    m_DurationRatio;
-        SlashcountMixIn    m_Slashcount;
         MensuralSharedMixIn    m_MensuralShared;
         MensurVisMixIn    m_MensurVis;
+        AltSymMixIn    m_AltSym;
         ColorMixIn    m_Color;
-        RelativesizeMixIn    m_Relativesize;
-        StafflocMixIn    m_Staffloc;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        ExtSymMixIn    m_ExtSym;
+        StaffLocMixIn    m_StaffLoc;
+        TypographyMixIn    m_Typography;
+        SlashCountMixIn    m_SlashCount;
 
     private:
         REGISTER_DECLARATION(Mensur);
+};
+
+/** \brief Plica
+ */
+class MEI_EXPORT Plica : public MeiElement {
+    public:
+        Plica();
+        Plica(const Plica &other);
+        virtual ~Plica();
+
+/* include <plica> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        PlicaVisMixIn    m_PlicaVis;
+
+    private:
+        REGISTER_DECLARATION(Plica);
 };
 
 /** \brief (proportion) – Description of note duration as arithmetic ratio.
@@ -90,19 +125,54 @@ class MEI_EXPORT Mensur : public MeiElement {
 class MEI_EXPORT Proport : public MeiElement {
     public:
         Proport();
-        Proport(const Proport& other);
+        Proport(const Proport &other);
         virtual ~Proport();
 
 /* include <proport> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         DurationRatioMixIn    m_DurationRatio;
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
+        AltSymMixIn    m_AltSym;
+        ColorMixIn    m_Color;
+        ExtSymMixIn    m_ExtSym;
+        StaffLocMixIn    m_StaffLoc;
+        TypographyMixIn    m_Typography;
 
     private:
         REGISTER_DECLARATION(Proport);
 };
-}
-#endif  // MENSURAL_H_
+
+/** \brief A stem element.
+ */
+class MEI_EXPORT Stem : public MeiElement {
+    public:
+        Stem();
+        Stem(const Stem &other);
+        virtual ~Stem();
+
+/* include <stem> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        StemVisMixIn    m_StemVis;
+        XyMixIn    m_Xy;
+        ColorMixIn    m_Color;
+
+    private:
+        REGISTER_DECLARATION(Stem);
+};
+} // namespace mei
+#endif // MENSURAL_H_

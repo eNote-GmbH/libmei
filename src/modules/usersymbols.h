@@ -29,35 +29,41 @@
 /* #include_block */
 
 #include "meicommon.h"
-#include "analysismixins.h"
-#include "linkalignmixins.h"
-#include "sharedmixins.h"
 #include "facsimilemixins.h"
+#include "gesturalmixins.h"
+#include "performancemixins.h"
+#include "sharedmixins.h"
+#include "usersymbolsmixins.h"
+#include "visualmixins.h"
 #include <string>
 
 
 namespace mei {
-/** \brief Container for text that is fixed to a particular location, regardless of changes
- *  made to the layout of the measures around it.
+/** \brief Container for text that is fixed to a particular page location, regardless of
+ *  changes made to the layout of the measures around it.
  */
 class MEI_EXPORT AnchoredText : public MeiElement {
     public:
         AnchoredText();
-        AnchoredText(const AnchoredText& other);
+        AnchoredText(const AnchoredText &other);
         virtual ~AnchoredText();
 
 /* include <anchoredText> */
 
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         FacsimileMixIn    m_Facsimile;
         LangMixIn    m_Lang;
-        StartidMixIn    m_Startid;
-        TypedMixIn    m_Typed;
-        VisualoffsetHoMixIn    m_VisualoffsetHo;
-        VisualoffsetToMixIn    m_VisualoffsetTo;
-        VisualoffsetVoMixIn    m_VisualoffsetVo;
+        AnchoredTextLogMixIn    m_AnchoredTextLog;
+        StartIdMixIn    m_StartId;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
         XyMixIn    m_Xy;
 
     private:
@@ -65,102 +71,209 @@ class MEI_EXPORT AnchoredText : public MeiElement {
 };
 
 /** \brief A curved line that cannot be represented by a more specific element, such as a
- *  <slur>.
+ *  slur.
  */
 class MEI_EXPORT Curve : public MeiElement {
     public:
         Curve();
-        Curve(const Curve& other);
+        Curve(const Curve &other);
         virtual ~Curve();
 
 /* include <curve> */
 
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
-        ColorMixIn    m_Color;
-        CommonMixIn    m_Common;
-        FacsimileMixIn    m_Facsimile;
-        StartendidMixIn    m_Startendid;
-        StartidMixIn    m_Startid;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
-        VisualoffsetHoMixIn    m_VisualoffsetHo;
-        VisualoffsetToMixIn    m_VisualoffsetTo;
-        VisualoffsetVoMixIn    m_VisualoffsetVo;
-        Visualoffset2HoMixIn    m_Visualoffset2Ho;
-        Visualoffset2ToMixIn    m_Visualoffset2To;
-        Visualoffset2VoMixIn    m_Visualoffset2Vo;
+        ClassedMixIn    m_Classed;
+        CurveLogMixIn    m_CurveLog;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        ColorMixIn    m_Color;
+        CurvatureMixIn    m_Curvature;
+        CurveRendMixIn    m_CurveRend;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
+        VisualOffset2HoMixIn    m_VisualOffset2Ho;
+        VisualOffset2ToMixIn    m_VisualOffset2To;
+        VisualOffset2VoMixIn    m_VisualOffset2Vo;
         XyMixIn    m_Xy;
         Xy2MixIn    m_Xy2;
-        CurvatureMixIn    m_Curvature;
-        CurverendMixIn    m_Curverend;
+        FacsimileMixIn    m_Facsimile;
 
     private:
         REGISTER_DECLARATION(Curve);
 };
 
-/** \brief A line that cannot be represented by a more specific element.
+/** \brief A visual line that cannot be represented by a more specific; i.e., semantic,
+ *  element.
  */
 class MEI_EXPORT Line : public MeiElement {
     public:
         Line();
-        Line(const Line& other);
+        Line(const Line &other);
         virtual ~Line();
 
 /* include <line> */
 
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
-        ColorMixIn    m_Color;
-        CommonMixIn    m_Common;
-        FacsimileMixIn    m_Facsimile;
-        StartendidMixIn    m_Startendid;
-        StartidMixIn    m_Startid;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
-        VisualoffsetHoMixIn    m_VisualoffsetHo;
-        VisualoffsetToMixIn    m_VisualoffsetTo;
-        VisualoffsetVoMixIn    m_VisualoffsetVo;
-        Visualoffset2HoMixIn    m_Visualoffset2Ho;
-        Visualoffset2ToMixIn    m_Visualoffset2To;
-        Visualoffset2VoMixIn    m_Visualoffset2Vo;
+        ClassedMixIn    m_Classed;
+        FacsimileMixIn    m_Facsimile;
+        DurationGesturalMixIn    m_DurationGestural;
+        Timestamp2GesturalMixIn    m_Timestamp2Gestural;
+        LineLogMixIn    m_LineLog;
+        AlignmentMixIn    m_Alignment;
+        LayerIdentMixIn    m_LayerIdent;
+        PartIdentMixIn    m_PartIdent;
+        PlistMixIn    m_Plist;
+        StaffIdentMixIn    m_StaffIdent;
+        TargetEvalMixIn    m_TargetEval;
+        TimestampLogicalMixIn    m_TimestampLogical;
+        TimestampGesturalMixIn    m_TimestampGestural;
+        DurationAdditiveMixIn    m_DurationAdditive;
+        StartEndIdMixIn    m_StartEndId;
+        StartIdMixIn    m_StartId;
+        Timestamp2LogicalMixIn    m_Timestamp2Logical;
+        LineVisMixIn    m_LineVis;
+        ColorMixIn    m_Color;
+        PlacementRelStaffMixIn    m_PlacementRelStaff;
+        VisualOffsetHoMixIn    m_VisualOffsetHo;
+        VisualOffsetToMixIn    m_VisualOffsetTo;
+        VisualOffsetVoMixIn    m_VisualOffsetVo;
+        VisualOffset2HoMixIn    m_VisualOffset2Ho;
+        VisualOffset2ToMixIn    m_VisualOffset2To;
+        VisualOffset2VoMixIn    m_VisualOffset2Vo;
         XyMixIn    m_Xy;
         Xy2MixIn    m_Xy2;
-        LinerendMixIn    m_Linerend;
 
     private:
         REGISTER_DECLARATION(Line);
 };
 
-/** \brief A reference to a previously defined symbol.
+/** \brief One or more characters which are related to the parent symbol in some respect,
+ *  as specified by the type attribute.
  */
-class MEI_EXPORT Symbol : public MeiElement {
+class MEI_EXPORT Mapping : public MeiElement {
     public:
-        Symbol();
-        Symbol(const Symbol& other);
-        virtual ~Symbol();
-        /** \brief contains a reference to a previously-declared user-defined symbol.
-         */
-        MeiAttribute* getRef();
-        void setRef(std::string _ref);
-        bool hasRef();
-        void removeRef();
+        Mapping();
+        Mapping(const Mapping &other);
+        virtual ~Mapping();
 
-/* include <symbol> */
+/* include <mapping> */
 
-        CommonAnlMixIn    m_CommonAnl;
-        AlignmentMixIn    m_Alignment;
-        ColorMixIn    m_Color;
-        CommonMixIn    m_Common;
-        FacsimileMixIn    m_Facsimile;
-        ScalableMixIn    m_Scalable;
-        StartidMixIn    m_Startid;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
         TypedMixIn    m_Typed;
-        VisualoffsetHoMixIn    m_VisualoffsetHo;
-        VisualoffsetToMixIn    m_VisualoffsetTo;
-        VisualoffsetVoMixIn    m_VisualoffsetVo;
-        XyMixIn    m_Xy;
+        ClassedMixIn    m_Classed;
 
     private:
-        REGISTER_DECLARATION(Symbol);
+        REGISTER_DECLARATION(Mapping);
+};
+
+/** \brief (property name) – Name of a property of the symbol.
+ */
+class MEI_EXPORT PropName : public MeiElement {
+    public:
+        PropName();
+        PropName(const PropName &other);
+        virtual ~PropName();
+        /** \brief Provides a description of the relationship between the current and the target
+         *  categories.
+         */
+        MeiAttribute* getType();
+        void setType(std::string _type);
+        bool hasType();
+        void removeType();
+
+/* include <propName> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+
+    private:
+        REGISTER_DECLARATION(PropName);
+};
+
+/** \brief (property value) – A single property value.
+ */
+class MEI_EXPORT PropValue : public MeiElement {
+    public:
+        PropValue();
+        PropValue(const PropValue &other);
+        virtual ~PropValue();
+
+/* include <propValue> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+
+    private:
+        REGISTER_DECLARATION(PropValue);
+};
+
+/** \brief (symbol name) – Contains the name of a symbol, expressed following Unicode
+ *  conventions.
+ */
+class MEI_EXPORT SymName : public MeiElement {
+    public:
+        SymName();
+        SymName(const SymName &other);
+        virtual ~SymName();
+
+/* include <symName> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+
+    private:
+        REGISTER_DECLARATION(SymName);
+};
+
+/** \brief (symbol property) – Provides a name and value for some property of the parent
+ *  symbol.
+ */
+class MEI_EXPORT SymProp : public MeiElement {
+    public:
+        SymProp();
+        SymProp(const SymProp &other);
+        virtual ~SymProp();
+
+/* include <symProp> */
+
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
+
+    private:
+        REGISTER_DECLARATION(SymProp);
 };
 
 /** \brief (symbol definition) – Declaration of an individual symbol in a symbolTable.
@@ -168,32 +281,44 @@ class MEI_EXPORT Symbol : public MeiElement {
 class MEI_EXPORT SymbolDef : public MeiElement {
     public:
         SymbolDef();
-        SymbolDef(const SymbolDef& other);
+        SymbolDef(const SymbolDef &other);
         virtual ~SymbolDef();
 
 /* include <symbolDef> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
         CoordinatedMixIn    m_Coordinated;
 
     private:
         REGISTER_DECLARATION(SymbolDef);
 };
 
-/** \brief Contains individual, user-defined symbols.
+/** \brief Contains a set of user-defined symbols.
  */
 class MEI_EXPORT SymbolTable : public MeiElement {
     public:
         SymbolTable();
-        SymbolTable(const SymbolTable& other);
+        SymbolTable(const SymbolTable &other);
         virtual ~SymbolTable();
 
 /* include <symbolTable> */
 
-        CommonMixIn    m_Common;
+        BasicMixIn    m_Basic;
+        LabelledMixIn    m_Labelled;
+        LinkingMixIn    m_Linking;
+        NNumberLikeMixIn    m_NNumberLike;
+        ResponsibilityMixIn    m_Responsibility;
+        TypedMixIn    m_Typed;
+        ClassedMixIn    m_Classed;
 
     private:
         REGISTER_DECLARATION(SymbolTable);
 };
-}
-#endif  // USERSYMBOLS_H_
+} // namespace mei
+#endif // USERSYMBOLS_H_
