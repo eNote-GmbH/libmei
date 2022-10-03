@@ -30,50 +30,60 @@ class argument_(MeiElement):
         MeiElement.__init__(self, "argument")
     # <argument>
 
+
 class back_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "back")
     # <back>
+
 
 class epigraph_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "epigraph")
     # <epigraph>
 
+
 class front_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "front")
     # <front>
+
 
 class imprimatur_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "imprimatur")
     # <imprimatur>
 
+
 class l_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "l")
     # <l>
+
 
 class li_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "li")
     # <li>
 
+
 class list_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "list")
     # <list>
+
 
 class q_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "q")
     # <q>
 
+
 class quote_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "quote")
     # <quote>
+
 
 class seg_(MeiElement):
     def __init__(self):

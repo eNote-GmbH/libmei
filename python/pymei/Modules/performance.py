@@ -30,20 +30,24 @@ class avFile_(MeiElement):
         MeiElement.__init__(self, "avFile")
     # <avFile>
 
+
 class clip_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "clip")
     # <clip>
+
 
 class performance_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "performance")
     # <performance>
 
+
 class recording_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "recording")
     # <recording>
+
 
 class when_(MeiElement):
     def __init__(self):

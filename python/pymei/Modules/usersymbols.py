@@ -30,45 +30,54 @@ class anchoredText_(MeiElement):
         MeiElement.__init__(self, "anchoredText")
     # <anchoredText>
 
+
 class curve_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "curve")
     # <curve>
+
 
 class line_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "line")
     # <line>
 
+
 class mapping_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "mapping")
     # <mapping>
+
 
 class propName_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "propName")
     # <propName>
 
+
 class propValue_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "propValue")
     # <propValue>
+
 
 class symName_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "symName")
     # <symName>
 
+
 class symProp_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "symProp")
     # <symProp>
 
+
 class symbolDef_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "symbolDef")
     # <symbolDef>
+
 
 class symbolTable_(MeiElement):
     def __init__(self):

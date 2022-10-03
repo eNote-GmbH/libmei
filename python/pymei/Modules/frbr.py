@@ -30,25 +30,30 @@ class expression_(MeiElement):
         MeiElement.__init__(self, "expression")
     # <expression>
 
+
 class expressionList_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "expressionList")
     # <expressionList>
+
 
 class item_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "item")
     # <item>
 
+
 class itemList_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "itemList")
     # <itemList>
 
+
 class manifestation_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "manifestation")
     # <manifestation>
+
 
 class manifestationList_(MeiElement):
     def __init__(self):

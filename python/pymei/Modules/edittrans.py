@@ -30,85 +30,102 @@ class abbr_(MeiElement):
         MeiElement.__init__(self, "abbr")
     # <abbr>
 
+
 class add_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "add")
     # <add>
+
 
 class choice_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "choice")
     # <choice>
 
+
 class corr_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "corr")
     # <corr>
+
 
 class cpMark_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "cpMark")
     # <cpMark>
 
+
 class damage_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "damage")
     # <damage>
+
 
 class del_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "del")
     # <del>
 
+
 class expan_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "expan")
     # <expan>
+
 
 class gap_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "gap")
     # <gap>
 
+
 class handShift_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "handShift")
     # <handShift>
+
 
 class metaMark_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "metaMark")
     # <metaMark>
 
+
 class orig_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "orig")
     # <orig>
+
 
 class reg_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "reg")
     # <reg>
 
+
 class restore_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "restore")
     # <restore>
+
 
 class sic_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "sic")
     # <sic>
 
+
 class subst_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "subst")
     # <subst>
 
+
 class supplied_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "supplied")
     # <supplied>
+
 
 class unclear_(MeiElement):
     def __init__(self):

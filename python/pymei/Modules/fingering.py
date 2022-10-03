@@ -30,6 +30,7 @@ class fing_(MeiElement):
         MeiElement.__init__(self, "fing")
     # <fing>
 
+
 class fingGrp_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "fingGrp")

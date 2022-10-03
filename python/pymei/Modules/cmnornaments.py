@@ -30,10 +30,12 @@ class mordent_(MeiElement):
         MeiElement.__init__(self, "mordent")
     # <mordent>
 
+
 class trill_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "trill")
     # <trill>
+
 
 class turn_(MeiElement):
     def __init__(self):

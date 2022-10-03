@@ -30,6 +30,7 @@ class sp_(MeiElement):
         MeiElement.__init__(self, "sp")
     # <sp>
 
+
 class stageDir_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "stageDir")

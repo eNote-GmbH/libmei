@@ -30,30 +30,36 @@ class fig_(MeiElement):
         MeiElement.__init__(self, "fig")
     # <fig>
 
+
 class figDesc_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "figDesc")
     # <figDesc>
+
 
 class graphic_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "graphic")
     # <graphic>
 
+
 class table_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "table")
     # <table>
+
 
 class td_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "td")
     # <td>
 
+
 class th_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "th")
     # <th>
+
 
 class tr_(MeiElement):
     def __init__(self):

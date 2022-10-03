@@ -30,25 +30,30 @@ class chordDef_(MeiElement):
         MeiElement.__init__(self, "chordDef")
     # <chordDef>
 
+
 class chordMember_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "chordMember")
     # <chordMember>
+
 
 class chordTable_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "chordTable")
     # <chordTable>
 
+
 class f_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "f")
     # <f>
 
+
 class fb_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "fb")
     # <fb>
+
 
 class harm_(MeiElement):
     def __init__(self):

@@ -30,10 +30,12 @@ class refrain_(MeiElement):
         MeiElement.__init__(self, "refrain")
     # <refrain>
 
+
 class verse_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "verse")
     # <verse>
+
 
 class volta_(MeiElement):
     def __init__(self):

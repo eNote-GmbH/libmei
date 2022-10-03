@@ -21,6 +21,7 @@
 
 import uuid
 
+
 def generate_mei_id():
     return "{0}-{1}".format('m', str(uuid.uuid4()))
 
@@ -46,12 +47,12 @@ def generate_mei_id():
 #         return a
 #     else:
 #         return att
-        
+
 # def generate_mei_id():
 #     return "{0}-{1}".format('m', str(uuid.uuid4()))
 
 # def flatten(mei_obj):
-#     """ 
+#     """
 #         Flattens the nested descendant elements into a single list.
 #     """
 #     def __fl(ls):

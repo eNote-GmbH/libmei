@@ -30,6 +30,7 @@ class ptr_(MeiElement):
         MeiElement.__init__(self, "ptr")
     # <ptr>
 
+
 class ref_(MeiElement):
     def __init__(self):
         MeiElement.__init__(self, "ref")
